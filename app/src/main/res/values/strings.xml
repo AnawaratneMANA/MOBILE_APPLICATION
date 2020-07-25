@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Home Work Tracking Software</string>
+    <string name="edit_masssage">Enter a Massage</string>
+    <string name="button_value_1">Show Tasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="control_panel">Control Panel</string>
+    <string name="add_new_subject">Add New Subject</string>
+    <string name="add_new_task">Add New Task</string>
+    <string name="description">Description</string>
+    <string name="select_subject">Select Subject</string>
+</resources>
