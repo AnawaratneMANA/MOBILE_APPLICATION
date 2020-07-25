@@ -100,5 +100,7 @@ public class ReadSubjects extends Fragment {
         ListAdapter adapter = new ArrayAdapter<>(requireActivity(),android.R.layout.simple_list_item_1,list);
         listViewsubject.setAdapter(adapter);
         //Newly Created.
+        //Further updates. -Git
+        //New version
     }
 }
