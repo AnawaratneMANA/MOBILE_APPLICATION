@@ -77,7 +77,7 @@ public class DbHandler extends SQLiteOpenHelper {
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_DES,description);
 
-        long result = db.update(TABLE_NAME,cv, "_id?",new String[]{row_id});
+        long result = db.update(TABLE_NAME,cv, "_id=?",new String[]{row_id});
         if(result == -1){
             Toast.makeText(context,"Failed to update.",Toast.LENGTH_SHORT).show();
         }else{

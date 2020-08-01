@@ -26,10 +26,13 @@ public class UpdateActivity extends AppCompatActivity {
 
         getAndSetIntentData();
 
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DbHandler dbHandler = new DbHandler(UpdateActivity.this);
+                title = title_input.getText().toString().trim();
+                des = description.getText().toString().trim();
                 dbHandler.updateData(id,title,des);
             }
         });
