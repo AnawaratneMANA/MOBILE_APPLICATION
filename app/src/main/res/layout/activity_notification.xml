@@ -4,8 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Notification">
 
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="@dimen/switch_size"
+        android:layout_height="57dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="@dimen/layout_marginEnd"
+        android:layout_marginBottom="360dp"
+        android:text="Pop up"
+        android:textSize="@dimen/content_size" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="@dimen/switch_size"
+        android:layout_height="57dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="@dimen/layout_marginEnd"
+        android:layout_marginBottom="446dp"
+        android:text="Vibration"
+        android:textSize="@dimen/content_size" />
 
     <TextView
         android:id="@+id/textView"
@@ -13,8 +40,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="127dp"
+        android:layout_marginEnd="@dimen/layout_marginEnd_topic_Notification"
         android:layout_marginBottom="651dp"
+        android:text="@string/title_activity_Notification"
+        style="@style/Header"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="@dimen/switch_size"
+        android:layout_height="57dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="@dimen/layout_marginEnd"
+        android:layout_marginBottom="538dp"
         android:text="Notification"
-        android:textSize="36sp" />
+        android:textSize="@dimen/content_size" />
+
+
+
 </RelativeLayout>
