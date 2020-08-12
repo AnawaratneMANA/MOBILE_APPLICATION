@@ -13,12 +13,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Enter Title Name"
+        android:hint="@string/enter_title_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.368" />
+        app:layout_constraintVertical_bias="0.368"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/description2"
@@ -26,18 +27,19 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Enter Description"
+        android:hint="@string/enter_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.47"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/update_button"
         android:layout_width="139dp"
         android:layout_height="54dp"
-        android:text="Update"
+        android:text="@string/update"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +52,7 @@
         android:id="@+id/delete_button"
         android:layout_width="139dp"
         android:layout_height="54dp"
-        android:text="Delete"
+        android:text="@string/delete"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="24sp"

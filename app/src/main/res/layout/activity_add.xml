@@ -2,17 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_taskmanage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddActivity"
-    android:padding="30dp">
+    android:padding="30dp"
+    tools:context=".AddActivity">
 
     <EditText
         android:id="@+id/title_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Enter Title Name"
+        android:hint="@string/enter_title_name"
         android:inputType="textPersonName"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,9 +27,10 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/enter_description"
         android:inputType="textPersonName"
-        android:hint="Enter Description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,15 +39,38 @@
 
     <Button
         android:id="@+id/add_button"
-        android:layout_width="137dp"
-        android:layout_height="62dp"
-        android:text="Add"
+        android:layout_width="180dp"
+        android:layout_height="61dp"
+        android:text="@string/add"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.733" />
+
+    <Button
+        android:id="@+id/add_task"
+        android:layout_width="185dp"
+        android:layout_height="69dp"
+        android:text="@string/task_manager"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <TextView
+        android:id="@+id/addheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/we_help_you_manage_everything"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/title_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
