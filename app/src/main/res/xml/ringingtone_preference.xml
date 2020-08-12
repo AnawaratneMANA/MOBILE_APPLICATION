@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <RingtonePreference
+        android:title="Sounds Generate"
+        android:summary="Choose a sound"
+        android:key="Ringtone"
+        />
+</PreferenceScreen>
