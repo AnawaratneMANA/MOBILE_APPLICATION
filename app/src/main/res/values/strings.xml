@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Home Work Tacking Software</string>
+    <string name="app_name">Task Tracker </string>
     <string name="title_activity_sounds">Sounds</string>
     <string name="title_activity_Notification">Notification</string>
     <string name="title_activity_Background">Background</string>
