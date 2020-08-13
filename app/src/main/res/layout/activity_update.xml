@@ -39,19 +39,22 @@
         android:id="@+id/update_button"
         android:layout_width="139dp"
         android:layout_height="54dp"
+        android:background="@color/colorAccent"
         android:text="@string/update"
         android:textAllCaps="false"
+        android:textColor="@color/design_default_color_background"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.657 " />
 
     <Button
         android:id="@+id/delete_button"
         android:layout_width="139dp"
         android:layout_height="54dp"
+        android:background="#E5ED92"
         android:text="@string/delete"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_red_dark"
