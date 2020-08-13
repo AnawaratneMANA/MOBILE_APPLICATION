@@ -9,4 +9,6 @@
     <string name="title_1">Title 1</string>
     <string name="task_manager">Task Manager</string>
     <string name="we_help_you_manage_everything">We help you manage everything</string>
+    <string name="todo">TODO</string>
+    <string name="todo2" tools:ignore="DuplicateDefinition">TODO</string>
 </resources>
