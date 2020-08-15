@@ -28,7 +28,7 @@ public class addSubject extends Fragment implements View.OnClickListener {
 
     // TODO: Rename and change types of parameters
     private Button Submit;
-    EditText Id, Name;
+    EditText Name;
     private Button viewsubject;
 
     //Creating instance from the interface
@@ -76,7 +76,6 @@ public class addSubject extends Fragment implements View.OnClickListener {
 
         //Initialize the buttons
         Submit = view.findViewById(R.id.btn_sub);
-        Id = view.findViewById(R.id.SubjectCode);
         Name = view.findViewById(R.id.SubjectName);
         viewsubject = view.findViewById(R.id.viewSubject);
 
@@ -85,7 +84,6 @@ public class addSubject extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 //Getting the data
-                String id  = Id.getText().toString();
                 String name = Name.getText().toString();
 
                 //Create a object from the SQLiteOpenHelper Class
@@ -94,11 +92,10 @@ public class addSubject extends Fragment implements View.OnClickListener {
                 //Create a object from the SQLiteDatabase
                 //TODO: warning do not perform database operation with the main thread, Use a background thread to perform DB operations (Async task)
                 SQLiteDatabase database = databaseHelper.getWritableDatabase();
-                databaseHelper.addSubject(Integer.parseInt(id),name,database);
+                databaseHelper.addSubject(name,database);
                 databaseHelper.close();
 
                 //Reset the form after adding the information
-                Id.setText("");
                 Name.setText("");
 
                 Toast.makeText(getActivity(), "Subject saved Successfully...", Toast.LENGTH_SHORT).show();

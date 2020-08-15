@@ -36,7 +36,7 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
     private String mParam2;
 
     //My Variables
-    private EditText id,name,description;
+    private EditText name,description;
     private Spinner subject;
     private TextView date;
 
@@ -94,7 +94,6 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
         });
 
         //Implementing the method to insert task to the database
-        id = view.findViewById(R.id.TaskId);
         name =view.findViewById(R.id.TaskName);
         description = view.findViewById(R.id.DescriptionId);
         //subject = view.findViewById(R.id.SubjectSpinner);
@@ -106,7 +105,6 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
             public void onClick(View view){
 
                 //Getting String values from the interface
-                String Id = id.getText().toString();
                 String Name = name.getText().toString();
                 String Description = description.getText().toString();
                 String Date = date.getText().toString();
@@ -119,13 +117,12 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                 SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
                 //Calling the Method in the DBClass
-                databaseHelper.addTasks(Integer.parseInt(Id),Name,Description,Spinner_Sub,Date,database);
+                databaseHelper.addTasks(Name,Description,Spinner_Sub,Date,database);
 
                 //Close the DB Connection
                 databaseHelper.close();
 
                 //Reset the Input fields
-                id.setText("");
                 name.setText("");
                 description.setText("");
                 date.setText("");

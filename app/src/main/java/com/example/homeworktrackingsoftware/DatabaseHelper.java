@@ -35,14 +35,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //TODO: SQL Queries
     //Creating the query - Table - 1
     public static final String CREATE_TABLE = "create table "+ TABLE_NAME + "(" +
-            SUBJECT_ID+ " number," + SUBJECT_NAME+ " text);";
+            SUBJECT_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," + SUBJECT_NAME+ " text);"; //Made a change to the key attribute
 
     //Creating the query - Table - 1
     public static final String DROP_TABLE = "drop table if exists "+ TABLE_NAME;
 
     //Creating the query - Table - 2
     public static final String CREATE_TABLE2 = "create table "+ TABLE2_NAME + "(" +
-            TASK_ID+ " number," + TASK_NAME+ " text," + TASK_DESCRIPTION+ " text," + TASK_SUBJECT+ " text,"
+            TASK_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," + TASK_NAME+ " text," + TASK_DESCRIPTION+ " text," + TASK_SUBJECT+ " text,"
             + TASK_DATE+ " text);"; //Partially Updated Query 2 and Added Task Class. Working on the date.
 
     //Creating the query - Table - 2
@@ -73,11 +73,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Create a method to put information to the table - Attributes are the columns.
-    public void addSubject(int id, String name, SQLiteDatabase database)
+    public void addSubject(String name, SQLiteDatabase database)
     {
         //First we have to create a object from ContentValues
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SUBJECT_ID, id);
         contentValues.put(SUBJECT_NAME, name);
 
         //Creating the database inserting method.
@@ -86,11 +85,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Add Task Method to put task to the database.
-    public void addTasks(int id, String name, String description, String subject, String date, SQLiteDatabase database){
+    public void addTasks(String name, String description, String subject, String date, SQLiteDatabase database){
 
         //Creating a Object from the ContentValues
         ContentValues contentValues = new ContentValues();
-        contentValues.put(TASK_ID,id);
+        //contentValues.put(TASK_ID,id);
         contentValues.put(TASK_NAME,name);
         contentValues.put(TASK_DESCRIPTION,description);
         contentValues.put(TASK_SUBJECT,subject);

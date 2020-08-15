@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements MainControlPanel.ControlOpListener, addSubject.ControlOpListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.ControlOpListener, addSubject.ControlOpListener {
 
     //Creating variables
     public static FragmentManager fragmentManager;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainControlPanel.
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             //Creating a Object from the MainControlPanel fragment
-            MainControlPanel controlPanel = new MainControlPanel();
+            HomeFragment controlPanel = new HomeFragment();
             fragmentTransaction.add(R.id.fragment_container, controlPanel, null );
             fragmentTransaction.commit();
         }
