@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button3);
+
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
                 openNotification();
             }
         });
+
     }
+
     public void openNotification(){
         Intent intent = new Intent(this , Notification.class);
         startActivity(intent);
