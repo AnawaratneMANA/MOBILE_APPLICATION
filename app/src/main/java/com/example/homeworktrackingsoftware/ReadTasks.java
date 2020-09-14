@@ -1,14 +1,17 @@
 package com.example.homeworktrackingsoftware;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
 import static com.example.homeworktrackingsoftware.Task.TaskEntry.TASK_DATE;
 import static com.example.homeworktrackingsoftware.Task.TaskEntry.TASK_DESCRIPTION;
 import static com.example.homeworktrackingsoftware.Task.TaskEntry.TASK_ID;
@@ -83,7 +87,7 @@ public class ReadTasks extends Fragment {
 
     public void readContacts()
     {
-        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+        final DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         //Create this process in a separate thread.
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
 
@@ -95,25 +99,56 @@ public class ReadTasks extends Fragment {
         ArrayList<String> listDescription = new ArrayList();
         while(cursor.moveToNext())
         {
-            String id = Integer.toString(cursor.getColumnIndex(TASK_ID));
+            //String id = Integer.toString(cursor.getColumnIndex(TASK_ID));
             String name = cursor.getString(cursor.getColumnIndex(TASK_NAME));
-            String description = cursor.getString(cursor.getColumnIndex(TASK_DESCRIPTION));
-            String subject = cursor.getString(cursor.getColumnIndex(TASK_SUBJECT));
-            String date = cursor.getString(cursor.getColumnIndex(TASK_DATE));
+            //String description = cursor.getString(cursor.getColumnIndex(TASK_DESCRIPTION));
+            //subject = cursor.getString(cursor.getColumnIndex(TASK_SUBJECT));
+            //String date = cursor.getString(cursor.getColumnIndex(TASK_DATE));
             //Add files to the ArrayList
             listName.add(name);
-            listDescription.add(description);
+            //listDescription.add(description);
 
             //concatenate the text into a variable
-            string = string + "\n\n" + "TASK ID - " +id+  "\nTASK NAME - " +name+
-                    "\nTASK DESCRIPTION - " + description+ "\nTASK SUBJECT - " +subject+ "\nTASK DATE - " +date;
+            /*string = string + "\n\n" + "TASK ID - " +id+  "\nTASK NAME - " +name+
+                    "\nTASK DESCRIPTION - " + description+ "\nTASK SUBJECT - " +subject+ "\nTASK DATE - " +date;*/
         }
 
         //Creating a ListAdapter and pass the arrayList
         ListAdapter adapter = new ArrayAdapter<>(requireActivity(),android.R.layout.simple_list_item_1,listName);
         listView.setAdapter(adapter); //Creating Update function on DialogFragment.
 
-        //showing_task.setText(string);
+        //Creating a OnClick Listener to the List View
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getItemAtPosition(i).toString();
+                Log.d(TAG, "onItemClick: Item Clicked " + name);
+
+//                //Get the ID of the data that we click on
+//                Cursor data = databaseHelper.getItemID(name);
+                int pointer = 3;
+//                //Declare All String variables
+//                String old_name = "";
+//
+//                while(data.moveToNext()){
+//                    pointer = data.getInt(data.getColumnIndex(TASK_ID));
+//                    //Get Existing data from the Cursor Object
+//                    //old_name = data.getString(data.getColumnIndex(TASK_NAME));
+//
+//                }
+
+                if(pointer > -1){
+                    Log.d(TAG, "onItemClick: ID is " + pointer);
+                    //When navigating from Fragment to Activity use this instead of the Typical Notation.
+                    Intent updateTask = new Intent(getActivity(), UpdateTask.class);
+                    //updateTask.putExtra("id", pointer);
+                    //updateTask.putExtra("name", old_name);
+                    startActivity(updateTask);
+                } else {
+                    System.out.println("Such date is not in the database.");
+                }
+            }
+        });
 
     }
 }
