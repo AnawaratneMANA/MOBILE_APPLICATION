@@ -178,6 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Create a SQL query
         String SQL = "SELECT " + TASK_ID + " FROM " + TABLE2_NAME +
                 " WHERE " + TASK_NAME + " = " + " '"+name +"' "; //if Not working then format the String.
+        //this was not work because I was only asking for ID, Try to fetch all
 
         //Declare the cursor object
         Cursor data = db.rawQuery(SQL, null);
