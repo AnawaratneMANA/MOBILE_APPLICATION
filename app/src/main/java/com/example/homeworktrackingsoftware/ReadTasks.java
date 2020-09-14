@@ -111,7 +111,7 @@ public class ReadTasks extends Fragment {
 
         //Creating a ListAdapter and pass the arrayList
         ListAdapter adapter = new ArrayAdapter<>(requireActivity(),android.R.layout.simple_list_item_1,listName);
-        listView.setAdapter(adapter); //Create a search for this list using a text field.
+        listView.setAdapter(adapter); //Creating Update function on DialogFragment.
 
         //showing_task.setText(string);
 
