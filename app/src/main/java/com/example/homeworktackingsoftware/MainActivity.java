@@ -2,16 +2,30 @@ package com.example.homeworktackingsoftware;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import android.os.Environment;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.io.File;
+import java.util.ArrayList;
+
+
+//i have added "implementation 'com.karumi:dexter:6.2.1'" this one to Gradle Scripts build.grade please add it
+
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName() ;
@@ -23,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = (Button) findViewById(R.id.button);
+        button = (Button) findViewById(R.id.buttonAddAudio);
         button2 = (Button) findViewById(R.id.button3);
+
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,22 +65,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this , Background.class);
         startActivity(intent);
     }
-        public void onClick(View view) {
+    public void onClick(View view) {
             Intent i = new Intent(this , Sounds.class);
             startActivity(i);
-        }
+    }
 
 
-        protected void onResume() {
-            super.onResume();
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            String path = preferences.getString("Ringtone" , "");
-            Log.v(TAG , "path : " + path);
-            /**if(!path.isEmpty()){
-                ringtone = RingtoneManager.getRingtone(this , Uri.parse(path));
-                ringtone.play();
-            }
-             **/
-        }
 
 }
