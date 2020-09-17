@@ -33,7 +33,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 BackgroundFragment backgroundFragment = new BackgroundFragment();
                 FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
-                transaction1.replace(R.id.mainSettingsLayout , backgroundFragment);
+                transaction1.replace(R.id.mainSettingsLayout , backgroundFragment).addToBackStack(null);
                 transaction1.commit();
             }
         });
@@ -49,7 +49,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 NotificationFragment notificationFragment = new NotificationFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainSettingsLayout , notificationFragment);
+                transaction.replace(R.id.mainSettingsLayout , notificationFragment).addToBackStack(null);
                 transaction.commit();
                  //notificationFragment.show(getSupportFragmentManager() , "myFragmentNotifiaction");
 
