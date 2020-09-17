@@ -3,6 +3,7 @@ package com.example.homeworktrackingsoftware;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -43,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Creating the query - Table - 2
     public static final String CREATE_TABLE2 = "create table "+ TABLE2_NAME + "(" +
             TASK_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," + TASK_NAME+ " text," + TASK_DESCRIPTION+ " text," + TASK_SUBJECT+ " text,"
-            + TASK_DATE+ " text);"; //Partially Updated Query 2 and Added Task Class. Working on the date.
+            + TASK_DATE+ " text);";
 
     //Creating the query - Table - 2
     public static final String DROP_TABLE2 = "drop table if exists "+ TABLE2_NAME;
@@ -186,7 +187,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Create a Update method
-//    public boolean UpdateDetails(String name , int ID, String Description, String subject, String date){
-//        //Creating the Query
+    public boolean UpdateDetails(String old_name, String name , String Description, String subject, String date){
+        //Getting Writable database.
+        SQLiteDatabase db = getReadableDatabase();
+//
+//        //Embed new values to ContentValue
+//        ContentValues values = new ContentValues();
+//        values.put(TASK_NAME, name);
+//        values.put(TASK_SUBJECT, subject);
+//        values.put(TASK_DESCRIPTION, Description);
+//        values.put(TASK_DATE, date);
+//
+//        //Select the row, should be updated.
+//        String selection = TASK_ID
+
+        //String formatting.
+        old_name = " '"+old_name+"' ";
+        name = " '"+name+"' ";
+        subject = " '"+subject+"' ";
+        date = " '"+date+"' ";
+        Description = " '"+Description+"' ";
+
+
+        //Creating the Query
+        String SQL = "UPDATE " + TABLE2_NAME +
+                " SET " +  TASK_NAME + " = " + name +" , " +
+                TASK_DESCRIPTION + " = " + Description +" , " +
+                TASK_SUBJECT + " = " + subject +" , " +
+                TASK_DATE + " = " + date + " WHERE " + TASK_NAME + " = " + old_name;
+        try{
+            db.execSQL(SQL);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+    //Create a Method to update the Subject Details.
+
+    //Create a Method to delete the data
+//    public boolean deleteData(String name){
+//
 //    }
 }

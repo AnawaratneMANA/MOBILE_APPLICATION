@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,9 +21,17 @@ import java.util.Calendar;
 public class UpdateTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     EditText etname;
+    EditText etdescription;
+    private Button update;
+    private Button delete;
+    private Spinner subjectspinner;
+    private String selected_subject;
 
     //Variable to Assign data coming from the Intent
     String old_name;
+    String subject_name;
+    String description;
+    String Date;
     int Id_number;
     TextView date;
 
@@ -35,6 +44,12 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
         etname = findViewById(R.id.TaskName);
         //Getting Date and initialize the TextView
         date = findViewById(R.id.datetextview);
+        etdescription = findViewById(R.id.DescriptionId);
+
+        //Register the Buttons
+        update = findViewById(R.id.taskUpdate);
+        delete = findViewById(R.id.taskDelete);
+        subjectspinner = findViewById(R.id.SubjectSpinner);
 
         //Filling the spinner
         DatabaseHelper databaseHelper = new DatabaseHelper(this); //Check this.
@@ -52,23 +67,37 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-
-
-
-
-        //Make sure the Drop down menu works. When connected.
-
         //Get the intent
         Intent recivingIntent = getIntent();
 
         //Assign values to local variables
         old_name = recivingIntent.getStringExtra("name");
-//        Id_number = Integer.parseInt(recivingIntent.getStringExtra("id"));
+        subject_name = recivingIntent.getStringExtra("subject");
+        System.out.println(subject_name); //Testing
+        description = recivingIntent.getStringExtra("description");
+        System.out.println(description); //Testing
+        Date = recivingIntent.getStringExtra("date");
+        System.out.println(Date); //Testing
+
         //Set the value to the Element
         etname.setText(old_name);
+        etdescription.setText(description);
+        date.setText(Date);
+
+        //Get New values from the fields
+        selected_subject = (String)subjectspinner.getSelectedItem();
 
         //Create the ClickListener to Update the Data In the database.
-        //Create a Update method in the DBHelper class.
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseHelper dbhelper = new DatabaseHelper(getApplication()); //Check
+                //Calling the Database method Update.
+                boolean status = dbhelper.UpdateDetails(old_name, etname.getText().toString(),etdescription.getText().toString(), selected_subject,  date.getText().toString());
+
+                //Confirmation.
+            }
+        });
         //Create a Delete method
     }
 

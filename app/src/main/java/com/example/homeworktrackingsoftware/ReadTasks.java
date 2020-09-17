@@ -134,23 +134,26 @@ public class ReadTasks extends Fragment {
                 String subject = "";
                 String date = "";
 
+                //Testing
+                int iD = 9;
+
                 while(data.moveToNext()){
-                    pointer = data.getInt(data.getColumnIndex(TASK_ID));
+                    //pointer = data.getInt(data.getColumnIndex(TASK_ID));
                     //Get Existing data from the Cursor Object
 
                     old_name = data.getString(data.getColumnIndex(TASK_NAME));
-                    //ID = Integer.toString(data.getColumnIndex(TASK_ID));
+                    ID = data.getString(data.getColumnIndex(TASK_ID));
                     description = data.getString(data.getColumnIndex(TASK_DESCRIPTION));
                     subject = data.getString(data.getColumnIndex(TASK_SUBJECT));
                     date = data.getString(data.getColumnIndex(TASK_DATE));
 
                 }
 
-                if(pointer > -1){
+                if(iD > -1){
                     Log.d(TAG, "onItemClick: ID is " + pointer);
                     //When navigating from Fragment to Activity use this instead of the Typical Notation.
                     Intent updateTask = new Intent(getActivity(), UpdateTask.class);
-                    updateTask.putExtra("id", pointer);
+                    updateTask.putExtra("id", ID);
                     updateTask.putExtra("name", old_name);
                     updateTask.putExtra("description", description);
                     updateTask.putExtra("subject", subject);

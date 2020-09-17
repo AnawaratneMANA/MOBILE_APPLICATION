@@ -22,4 +22,6 @@
     <string name="welcome">Welcome</string>
     <string name="task_tracker_control_pannel">Task Tracker Control Pannel</string>
     <string name="we_help_you_with_everything">We help you with everything</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 </resources>

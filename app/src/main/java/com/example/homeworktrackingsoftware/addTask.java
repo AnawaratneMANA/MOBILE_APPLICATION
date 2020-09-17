@@ -99,7 +99,7 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
         //subject = view.findViewById(R.id.SubjectSpinner);
 
         //Create a click listener for the task submit
-        view.findViewById(R.id.taskSubmit).setOnClickListener(new View.OnClickListener()
+        view.findViewById(R.id.taskUpdate).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view){
