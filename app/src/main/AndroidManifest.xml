@@ -12,12 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Background"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".Notification"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity
             android:name=".Sounds"
             android:label="@string/title_activity_sounds"
             android:parentActivityName=".MainActivity"

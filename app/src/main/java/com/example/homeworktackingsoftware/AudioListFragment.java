@@ -91,13 +91,18 @@ public class AudioListFragment extends DialogFragment {
         myListViewforSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String songName = myListViewforSongs.getItemAtPosition(i).toString();
-        boolean inserted = myDB.insertData(songName);
-        if(inserted == true){
-        Toast.makeText(getActivity(),"data inserted" , Toast.LENGTH_LONG).show();
-        }else{
-        Toast.makeText(getActivity(),"data declined" , Toast.LENGTH_LONG).show();
-        }
+            //try {
+                String songName = myListViewforSongs.getItemAtPosition(i).toString();
+                boolean inserted = myDB.insertData(songName);
+                if (inserted == true) {
+                    Toast.makeText(getActivity(), "data inserted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "data declined", Toast.LENGTH_LONG).show();
+                }
+            /**}
+            else(Exception ){
+
+            }**/
         }
         });
     }

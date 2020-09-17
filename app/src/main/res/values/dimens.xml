@@ -4,7 +4,7 @@
     <dimen name="switch_size">310dp</dimen>
     <dimen name="layout_marginEnd">65dp</dimen>
     //settings
-    <dimen name="layout_marginEnd_topic_settings">140dp</dimen>
+    <dimen name="layout_marginEnd_topic_settings">200dp</dimen>
     //notification
     <dimen name="layout_marginEnd_topic_Notification">127dp</dimen>
     //Sounds

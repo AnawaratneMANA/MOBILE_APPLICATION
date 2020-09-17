@@ -4,59 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainSettingsLayout"
     android:background="@drawable/background"
     tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="212dp"
-        android:background="@drawable/rounded_corners"
-        android:text="www"
-        android:textSize="@dimen/content_size" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="310dp"
-        android:background="@drawable/rounded_corners"
-        android:text="@string/title_activity_Background"
-        android:textSize="@dimen/content_size" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="512dp"
-        android:background="@drawable/rounded_corners"
-        android:key="Ringtone"
-        android:onClick="onClick"
-        android:text="@string/title_activity_sounds"
-        android:textSize="@dimen/content_size" />
-
-    <Button
-        android:id="@+id/buttonAddAudio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="409dp"
-        android:background="@drawable/rounded_corners"
-        android:text="@string/title_activity_Notification"
-        android:textSize="@dimen/content_size" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/layout_marginEnd_topic_settings"
-        android:layout_marginBottom="622dp"
-        android:text="@string/title_activity_Settings"
-        style="@style/Header"/>
 
 </RelativeLayout>
