@@ -62,10 +62,10 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
         Intent recivingIntent = getIntent();
 
         //Assign values to local variables
-//        old_name = recivingIntent.getStringExtra("name");
+        old_name = recivingIntent.getStringExtra("name");
 //        Id_number = Integer.parseInt(recivingIntent.getStringExtra("id"));
-//        //Set the value to the Element
-//        etname.setText(Id_number);
+        //Set the value to the Element
+        etname.setText(old_name);
 
         //Create the ClickListener to Update the Data In the database.
         //Create a Update method in the DBHelper class.

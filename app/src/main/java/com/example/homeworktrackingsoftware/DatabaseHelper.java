@@ -172,11 +172,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Creating a Method to get the ID when a String name is Given.
-    public Cursor getItemID(String name){
+    public Cursor getFromItemID(String name){
         //Getting writable database
         SQLiteDatabase db = this.getWritableDatabase();
         //Create a SQL query
-        String SQL = "SELECT " + TASK_ID + " FROM " + TABLE2_NAME +
+        String SQL = "SELECT * " + " FROM " + TABLE2_NAME +
                 " WHERE " + TASK_NAME + " = " + " '"+name +"' "; //if Not working then format the String.
         //this was not work because I was only asking for ID, Try to fetch all
 
@@ -184,4 +184,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(SQL, null);
         return data;
     }
+
+    //Create a Update method
+//    public boolean UpdateDetails(String name , int ID, String Description, String subject, String date){
+//        //Creating the Query
+//    }
 }

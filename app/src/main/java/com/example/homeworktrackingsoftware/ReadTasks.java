@@ -124,25 +124,37 @@ public class ReadTasks extends Fragment {
                 String name = adapterView.getItemAtPosition(i).toString();
                 Log.d(TAG, "onItemClick: Item Clicked " + name);
 
-//                //Get the ID of the data that we click on
-//                Cursor data = databaseHelper.getItemID(name);
-                int pointer = 3;
-//                //Declare All String variables
-//                String old_name = "";
-//
-//                while(data.moveToNext()){
-//                    pointer = data.getInt(data.getColumnIndex(TASK_ID));
-//                    //Get Existing data from the Cursor Object
-//                    //old_name = data.getString(data.getColumnIndex(TASK_NAME));
-//
-//                }
+                //Get the ID of the data that we click on
+                Cursor data = databaseHelper.getFromItemID(name);
+                int pointer = -1;
+                //Declare All String variables
+                String old_name = "";
+                String ID = "";
+                String description = "";
+                String subject = "";
+                String date = "";
+
+                while(data.moveToNext()){
+                    pointer = data.getInt(data.getColumnIndex(TASK_ID));
+                    //Get Existing data from the Cursor Object
+
+                    old_name = data.getString(data.getColumnIndex(TASK_NAME));
+                    //ID = Integer.toString(data.getColumnIndex(TASK_ID));
+                    description = data.getString(data.getColumnIndex(TASK_DESCRIPTION));
+                    subject = data.getString(data.getColumnIndex(TASK_SUBJECT));
+                    date = data.getString(data.getColumnIndex(TASK_DATE));
+
+                }
 
                 if(pointer > -1){
                     Log.d(TAG, "onItemClick: ID is " + pointer);
                     //When navigating from Fragment to Activity use this instead of the Typical Notation.
                     Intent updateTask = new Intent(getActivity(), UpdateTask.class);
-                    //updateTask.putExtra("id", pointer);
-                    //updateTask.putExtra("name", old_name);
+                    updateTask.putExtra("id", pointer);
+                    updateTask.putExtra("name", old_name);
+                    updateTask.putExtra("description", description);
+                    updateTask.putExtra("subject", subject);
+                    updateTask.putExtra("date", date);
                     startActivity(updateTask);
                 } else {
                     System.out.println("Such date is not in the database.");
