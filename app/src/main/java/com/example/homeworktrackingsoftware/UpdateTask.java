@@ -50,6 +50,7 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
         update = findViewById(R.id.taskUpdate);
         delete = findViewById(R.id.taskDelete);
         subjectspinner = findViewById(R.id.SubjectSpinner);
+        delete = findViewById(R.id.taskDelete);
 
         //Filling the spinner
         DatabaseHelper databaseHelper = new DatabaseHelper(this); //Check this.
@@ -99,6 +100,18 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
             }
         });
         //Create a Delete method
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Object from the DatabaseHelper
+                DatabaseHelper dbhelper = new DatabaseHelper(getApplication()); //Check
+
+                //Calling the delete method
+                boolean status = dbhelper.deleteData(old_name);
+
+                //Confirmation.
+            }
+        });
     }
 
     private void showDatePickerDialog(){

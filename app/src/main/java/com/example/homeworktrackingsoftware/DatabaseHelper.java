@@ -227,7 +227,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Create a Method to update the Subject Details.
 
     //Create a Method to delete the data
-//    public boolean deleteData(String name){
+    public boolean deleteData(String name){
+        //Getting Writable database.
+        SQLiteDatabase db = getReadableDatabase();
+        //String formatting
+        name = " '"+name+"' ";
+        //SQL
+//        String SQL = "DELETE FROM " + TABLE2_NAME + " WHERE " + TASK_NAME + " = " + name;
 //
-//    }
+//        try {
+//            db.execSQL(SQL);
+//            return true;
+//        } catch (SQLException e){
+//            e.printStackTrace();
+//            return false;
+//        }
+        //Executing the delete method.
+        return db.delete(TABLE2_NAME, TASK_NAME + "=" + name, null) > 0;
+    }
 }
