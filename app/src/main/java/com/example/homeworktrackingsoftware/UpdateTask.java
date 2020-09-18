@@ -2,7 +2,9 @@ package com.example.homeworktrackingsoftware;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -97,6 +99,33 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
                 boolean status = dbhelper.UpdateDetails(old_name, etname.getText().toString(),etdescription.getText().toString(), selected_subject,  date.getText().toString());
 
                 //Confirmation.
+                if (true){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+                    builder.setMessage("Item Successfully Updated")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //Navigate back to the MainActivity.
+                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
+                                    startActivity(headingback);
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+                    builder.setMessage("Error in Updating the Item!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //Navigate back to the MainActivity.
+                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
+                                    startActivity(headingback);
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
             }
         });
         //Create a Delete method
@@ -109,7 +138,35 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
                 //Calling the delete method
                 boolean status = dbhelper.deleteData(old_name);
 
-                //Confirmation.
+                if (true){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+                    builder.setMessage("Item Successfully Deleted")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //Navigate back to the MainActivity.
+                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
+                                    startActivity(headingback);
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+                    builder.setMessage("Error in Deleting the Item!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //Navigate back to the MainActivity.
+                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
+                                    startActivity(headingback);
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+
+
             }
         });
     }
