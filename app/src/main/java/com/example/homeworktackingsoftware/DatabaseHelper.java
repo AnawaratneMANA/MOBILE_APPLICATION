@@ -8,13 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import static com.example.homeworktackingsoftware.RingingTones.song.SONG_NAME;
+import static com.example.homeworktackingsoftware.RingingTones.song.SONG_PATH;
 import static com.example.homeworktackingsoftware.RingingTones.song.TABLE_NAME;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "salitha_db";
+    public static final String DATABASE_NAME = "salithanew_db";
     public static final int DATABASE_VERSION = 1;
 
-    public static final String CREATE_TABLE = "create table " + TABLE_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB)";
+    public static final String CREATE_TABLE = "create table " + TABLE_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB , SONG_PATH String)";
     //"INSERT INTO  " + TABLE3_NAME +  " ( " + COL2_3 +"  )  VALUES (  " + name  + " )" ;
     //public static final ;
 
@@ -35,12 +36,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DROP_TABLE);
         onCreate(db);
     }
-    public boolean insertData(String audio){
+    public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
 
         //String INSERT_TABLE = "INSERT INTO " + TABLE_NAME + " (" +SONG_NAME+") VALUES ( " + audio + ")";
         ContentValues contentValues = new ContentValues();
         contentValues.put(SONG_NAME , audio);
+        contentValues.put(SONG_PATH , path);
         Long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
             return false;

@@ -93,7 +93,9 @@ public class AudioListFragment extends DialogFragment {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             //try {
                 String songName = myListViewforSongs.getItemAtPosition(i).toString();
-                boolean inserted = myDB.insertData(songName);
+                String path = Integer.toString(i);
+
+                boolean inserted = myDB.insertData(songName , path);
                 if (inserted == true) {
                     Toast.makeText(getActivity(), "data inserted", Toast.LENGTH_LONG).show();
                 } else {
