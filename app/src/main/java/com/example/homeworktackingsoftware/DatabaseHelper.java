@@ -12,7 +12,7 @@ import static com.example.homeworktackingsoftware.RingingTones.song.SONG_PATH;
 import static com.example.homeworktackingsoftware.RingingTones.song.TABLE_NAME;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "salithanew_db";
+    public static final String DATABASE_NAME = "salitha2_db";
     public static final int DATABASE_VERSION = 1;
 
     public static final String CREATE_TABLE = "create table " + TABLE_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB , SONG_PATH String)";
