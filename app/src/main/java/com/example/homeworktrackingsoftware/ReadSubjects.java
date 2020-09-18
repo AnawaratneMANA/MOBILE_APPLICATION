@@ -1,20 +1,24 @@
 package com.example.homeworktrackingsoftware;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
 import static com.example.homeworktrackingsoftware.Subject.SubjectEntry.SUBJECT_NAME;
 
 /**
@@ -80,7 +84,7 @@ public class ReadSubjects extends Fragment {
     //Create a Read Method
     public void readSubject(){
         //Object from the DatabaseHelper Class
-        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+        final DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
 
         //Getting readable database
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -96,11 +100,26 @@ public class ReadSubjects extends Fragment {
             subject_name = cursor.getString(cursor.getColumnIndex(SUBJECT_NAME));
             list.add(subject_name);
         }
+
         //Creating an ArrayAdapter
         ListAdapter adapter = new ArrayAdapter<>(requireActivity(),android.R.layout.simple_list_item_1,list);
         listViewsubject.setAdapter(adapter);
-        //Newly Created.
-        //Further updates. -Git
-        //New version
+
+        //Create a onClickListener to the ListView
+        //NOTE - Since subject only contains only the subject no need fetch it again from the database.
+        listViewsubject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getItemAtPosition(i).toString();
+                Log.d(TAG, "onItemClick: Item Clicked " + name);
+
+                //Navigate to the Update page with the value
+                Intent updateSubject = new Intent(getActivity(), UpdateSubject.class);
+                updateSubject.putExtra("name", name);
+                startActivity(updateSubject);
+            }
+        });
+
+
     }
 }

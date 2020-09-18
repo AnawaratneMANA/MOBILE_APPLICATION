@@ -24,4 +24,6 @@
     <string name="we_help_you_with_everything">We help you with everything</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="deletesubject">delete</string>
+    <string name="updateSubjectlbl">Update Subject</string>
 </resources>

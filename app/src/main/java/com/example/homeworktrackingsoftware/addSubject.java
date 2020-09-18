@@ -75,9 +75,9 @@ public class addSubject extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_add_subject, container, false);
 
         //Initialize the buttons
-        Submit = view.findViewById(R.id.btn_sub);
+        Submit = view.findViewById(R.id.btnUpdateSub);
         Name = view.findViewById(R.id.SubjectName);
-        viewsubject = view.findViewById(R.id.viewSubject);
+        viewsubject = view.findViewById(R.id.btnDeleteSub);
 
         //Create a click listener
         Submit.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +110,7 @@ public class addSubject extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view){
-        if (view.getId() == R.id.viewSubject) {
+        if (view.getId() == R.id.btnDeleteSub) {
             controlOpListener.ControlPerformed(3);
         }
     }

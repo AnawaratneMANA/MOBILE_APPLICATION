@@ -138,7 +138,7 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
                 //Calling the delete method
                 boolean status = dbhelper.deleteData(old_name);
 
-                if (true){
+                if (status == true){
                     AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
                     builder.setMessage("Item Successfully Deleted")
                             .setCancelable(false)
