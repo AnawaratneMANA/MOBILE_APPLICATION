@@ -17,22 +17,22 @@
         android:id="@+id/playButton"
         android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:textSize="8sp"
-        android:text="play" />
+        android:text="play"
+        android:textSize="8sp" />
     <Button
         android:id="@+id/pauseButton"
         android:layout_width="50dp"
         android:layout_height="match_parent"
+        android:text="stop"
         android:textSize="8sp"
-        android:text="pause"
         />
+
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:textSize="8sp"
         android:text="delete"
-        />
+        android:textSize="8sp" />
     <Button
         android:id="@+id/assignToButton"
         android:layout_width="50dp"

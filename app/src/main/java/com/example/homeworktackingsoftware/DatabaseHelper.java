@@ -66,5 +66,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return list;
     }
+    public Cursor readAudioFIles(SQLiteDatabase database){
 
+        //String Array
+        String [] subject = {SONG_NAME,SONG_PATH};
+
+        //Creating a Cursor object
+        Cursor cursor = database.query(TABLE_SONG_NAME,subject,null,null,null,null,null);
+        return cursor;
+    }
 }

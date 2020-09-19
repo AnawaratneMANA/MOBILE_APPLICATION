@@ -54,11 +54,9 @@ public class CustomMusicAdapter extends BaseAdapter {
             btnPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Uri uri = Uri.parse(songLists.getPath());
-                    MediaPlayer mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer = new MediaPlayer();
                     try {
-                        mediaPlayer.setDataSource(String.valueOf(uri));
+                        mediaPlayer.setDataSource(songLists.getPath());
                         mediaPlayer.prepare();
                         mediaPlayer.start();
                     } catch (IOException e) {
@@ -67,34 +65,26 @@ public class CustomMusicAdapter extends BaseAdapter {
 
                 }
             });
-            btnPause.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Not working Yet
-                    System.out.println("why not working 1");
-                    if (mediaPlayer !=null) {
-                        System.out.println("why not working 2");
-                        mediaPlayer.release();
-                        mediaPlayer = null;
-                    }
 
-
-                }
-            });
-            btnDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            btnAssignToAlarm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
         }
+        btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer.stop();
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
+        btnAssignToAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return view;
     }
