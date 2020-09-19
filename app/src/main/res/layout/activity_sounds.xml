@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:id="@+id/sounds"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -12,32 +13,26 @@
     <TextView
         android:id="@+id/text"
         style="@style/Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="664dp"
-        android:text="@string/title_activity_sounds" />
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="634dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="7dp"
-        android:gravity="top"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="100dp"
+        android:text="@string/title_activity_sounds"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/buttonAddAudio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-90dp"
+        android:text="Open Audio files" />
+
+    <ListView
+        android:id="@+id/DatabaseSongListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        />
 
 
-        <Button
-            android:id="@+id/buttonAddAudio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:text="Open Audio files" />
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

@@ -2,25 +2,26 @@ package com.example.homeworktackingsoftware;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
+import java.util.ArrayList;
 
 import static com.example.homeworktackingsoftware.RingingTones.song.SONG_NAME;
 import static com.example.homeworktackingsoftware.RingingTones.song.SONG_PATH;
-import static com.example.homeworktackingsoftware.RingingTones.song.TABLE_NAME;
+import static com.example.homeworktackingsoftware.RingingTones.song.TABLE_SONG_NAME;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "salitha2_db";
+    public static final String DATABASE_NAME = "salitha_db";
     public static final int DATABASE_VERSION = 1;
 
-    public static final String CREATE_TABLE = "create table " + TABLE_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB , SONG_PATH String)";
+    public static final String CREATE_SONG_TABLE = "create table " + TABLE_SONG_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB , SONG_PATH String)";
     //"INSERT INTO  " + TABLE3_NAME +  " ( " + COL2_3 +"  )  VALUES (  " + name  + " )" ;
     //public static final ;
 
     //Creating the query - Table - 1
-    public static final String DROP_TABLE = "drop table if exists "+ TABLE_NAME;
+    public static final String DROP_TABLE = "drop table if exists "+ TABLE_SONG_NAME;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -28,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE);
+        db.execSQL(CREATE_SONG_TABLE);
     }
 
     @Override
@@ -43,38 +44,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SONG_NAME , audio);
         contentValues.put(SONG_PATH , path);
-        Long result = db.insert(TABLE_NAME, null, contentValues);
+        Long result = db.insert(TABLE_SONG_NAME, null, contentValues);
         if (result == -1)
             return false;
         else
             return true;
     }
-    /**public ArrayList<String> getAllSubjects() {
+    public ArrayList<SongList> getAllAudios() {
 
-     //Creating the ArrayList and start the database connection
-     ArrayList<String> list = new ArrayList<String>();
-     SQLiteDatabase db = this.getReadableDatabase();
-     db.beginTransaction();
+        //Creating the ArrayList and start the database connection
+        ArrayList<SongList> list = new ArrayList<SongList>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
 
-     //Create the select query to get all the subject names from the database
-     try {
-     String select = "SELECT * FROM " + TABLE_NAME;
-     Cursor cursor = db.rawQuery(select, null);
-     if (cursor.getCount() > 0) { //Check Items are available.
-     //Loop to fill the ArrayList
-     while (cursor.moveToNext()) {
-     String subject_name = cursor.getString(cursor.getColumnIndex(SUBJECT_NAME));
-     list.add(subject_name);
-     }
-     db.setTransactionSuccessful();
-     }
+        while (cursor.moveToNext()) {
+            String song_name = cursor.getString(1);
+            String song_path = cursor.getString(2);
+            SongList songList = new SongList(song_name , song_path);
+            list.add(songList);
+        }
 
-     } catch (Exception e) {
-     e.printStackTrace();
-     } finally {
-     db.endTransaction();
-     db.close();
-     }
-     return list;
-     }**/
+        return list;
+    }
+
 }

@@ -30,10 +30,18 @@ import java.util.ArrayList;
 public class Sounds extends AppCompatActivity {
 
     private Button btn;
+    ListView songList;
+    CustomMusicAdapter adapter;
+    ArrayList<SongList> array;
+    DatabaseHelper databaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sounds);
+        songList = (ListView) findViewById(R.id.DatabaseSongListView);
+        databaseHelper = new DatabaseHelper(this);
+        array = new ArrayList<>();
+        viewAudio();
         btn = findViewById(R.id.buttonAddAudio);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +51,11 @@ public class Sounds extends AppCompatActivity {
             }
         });
     }
-
+    private void viewAudio() {
+        array = databaseHelper.getAllAudios();
+        adapter = new CustomMusicAdapter(this , array);
+        songList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
 
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="215dp"
+        android:layout_height="match_parent"
+        android:text="SongName"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:textSize="8sp"
+        android:text="play" />
+    <Button
+        android:id="@+id/pauseButton"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:textSize="8sp"
+        android:text="pause"
+        />
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:textSize="8sp"
+        android:text="delete"
+        />
+    <Button
+        android:id="@+id/assignToButton"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:textSize="8sp"
+        android:text="assign"
+        />
+</LinearLayout>

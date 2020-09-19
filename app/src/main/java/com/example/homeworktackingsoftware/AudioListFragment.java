@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -64,6 +65,7 @@ public class AudioListFragment extends DialogFragment {
         }
         return v;
     }
+
     public void dostuff() {
         arrayList = new ArrayList<>();
         ContentResolver contentResolver = getActivity().getContentResolver();
@@ -77,8 +79,8 @@ public class AudioListFragment extends DialogFragment {
             do {
                 String currentTitle = songCursor.getString(songtitle);
                 String currentLocation = songCursor.getString(songLocation);
-                //arrayList2.add("Title : " + currentTitle);
-                arrayList.add("Location : " + currentLocation);
+                //arrayList.add(currentTitle);
+                arrayList.add(currentLocation);
                 adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1 , arrayList);
                 myListViewforSongs.setAdapter(adapter);
                 myListViewforSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
