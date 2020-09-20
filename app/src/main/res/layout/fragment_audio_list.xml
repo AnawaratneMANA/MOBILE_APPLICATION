@@ -14,6 +14,11 @@
             android:id="@+id/mySongListView"
             android:layout_width="300dp"
             android:layout_height="600dp" />
+        <Button
+            android:id="@+id/InsertSong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to sounds"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

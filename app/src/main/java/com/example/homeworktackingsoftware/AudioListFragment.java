@@ -2,6 +2,7 @@ package com.example.homeworktackingsoftware;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ public class AudioListFragment extends DialogFragment {
     ArrayAdapter<String> adapter;
     ArrayList<String> arrayList;
     private static final int MY_PERMISSION_REQUEST = 1;
+    Button SoundButton;
     DatabaseHelper myDB;
     @Nullable
     @Override
@@ -48,6 +51,14 @@ public class AudioListFragment extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_audio_list,container,false);
         myListViewforSongs = v.findViewById(R.id.mySongListView);
+        SoundButton = v.findViewById(R.id.InsertSong);
+        SoundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , Sounds.class);
+                startActivity(intent);
+            }
+        });
         myDB = new DatabaseHelper(getActivity());
         if(ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
@@ -91,8 +102,12 @@ public class AudioListFragment extends DialogFragment {
                         boolean inserted = myDB.insertData(title , location);
                         if (inserted == true) {
                             Toast.makeText(getActivity() , "data added" , Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getActivity() , Sounds.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getActivity(), "data declined", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getActivity() , Sounds.class);
+                            startActivity(intent);
                         }
                     }
                 });

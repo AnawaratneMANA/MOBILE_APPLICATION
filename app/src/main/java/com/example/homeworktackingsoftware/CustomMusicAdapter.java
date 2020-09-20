@@ -1,6 +1,7 @@
 package com.example.homeworktackingsoftware;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,6 +89,8 @@ public class CustomMusicAdapter extends BaseAdapter {
                     System.out.println("Why not deleting");
                     System.out.println(songLists.getSongID());
                     int result = mydb.deleteAudios(songLists.getSongID());
+                    Toast.makeText(context , "data deleted" , Toast.LENGTH_LONG).show();
+                    view.getContext().startActivity(new Intent(context, Sounds.class));
                     /**
                      if (status == true){
                      AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
