@@ -1,6 +1,7 @@
 package com.example.homeworktackingsoftware;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,14 +35,22 @@ public class Sounds extends AppCompatActivity {
     CustomMusicAdapter adapter;
     ArrayList<SongList> array;
     DatabaseHelper databaseHelper;
+    Button refreshInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sounds);
+        refreshInterface = findViewById(R.id.refresh);
         songList = (ListView) findViewById(R.id.DatabaseSongListView);
         databaseHelper = new DatabaseHelper(this);
         array = new ArrayList<>();
         viewAudio();
+        refreshInterface.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refreshInterface();
+            }
+        });
         btn = findViewById(R.id.buttonAddAudio);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +60,12 @@ public class Sounds extends AppCompatActivity {
             }
         });
     }
+
+    public void refreshInterface() {
+        Intent intent = new Intent(this , Sounds.class);
+        startActivity(intent);
+    }
+
     private void viewAudio() {
         array = databaseHelper.getAllAudios();
         adapter = new CustomMusicAdapter(this , array);

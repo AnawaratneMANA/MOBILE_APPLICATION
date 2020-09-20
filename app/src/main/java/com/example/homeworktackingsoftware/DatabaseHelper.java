@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import static com.example.homeworktackingsoftware.RingingTones.song.SONG_ID;
 import static com.example.homeworktackingsoftware.RingingTones.song.SONG_NAME;
 import static com.example.homeworktackingsoftware.RingingTones.song.SONG_PATH;
 import static com.example.homeworktackingsoftware.RingingTones.song.TABLE_SONG_NAME;
@@ -58,21 +59,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
 
         while (cursor.moveToNext()) {
+            //added
+            String song_id = cursor.getString(0);
             String song_name = cursor.getString(1);
             String song_path = cursor.getString(2);
-            SongList songList = new SongList(song_name , song_path);
+            //added
+            SongList songList = new SongList(song_id , song_name , song_path);
             list.add(songList);
         }
 
         return list;
     }
-    public Cursor readAudioFIles(SQLiteDatabase database){
-
-        //String Array
-        String [] subject = {SONG_NAME,SONG_PATH};
-
-        //Creating a Cursor object
-        Cursor cursor = database.query(TABLE_SONG_NAME,subject,null,null,null,null,null);
-        return cursor;
+    public int deleteAudios(String id){
+        SQLiteDatabase db = getReadableDatabase();
+        id = " '"+id+"' ";
+        return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
     }
 }
