@@ -122,5 +122,11 @@ public class UpdateSubject extends AppCompatActivity {
 
             }
         });
+
+        //Validations should be made to the update function and the All insert functions
+        //Delete function make sure when there's no ID then show a error message to the user.
+        //Instead using dialog validation use Hint validations for forms
+        //Change the animation transition when open the application make it happen only one time.
+        //Move the animation triggering method from onCreateView to onCreate method.
     }
 }
