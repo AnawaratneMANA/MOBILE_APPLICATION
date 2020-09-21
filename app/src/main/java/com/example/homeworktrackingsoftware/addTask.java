@@ -126,8 +126,21 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                     description.setError("Enter the Description!");
                 }
                 if(Date.contentEquals("")){
-                    date.setError("Enter the date!");
-                } else {
+                    System.out.println("Method is running");
+                    //Show a dialog message when date is not set
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Set the Date before submitting.")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //Create a Instruction Message
+                                    Toast.makeText(getActivity(), "Enter the values again", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else {
                     //Create a object from the SQLiteOpenHelper Class
                     DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
 

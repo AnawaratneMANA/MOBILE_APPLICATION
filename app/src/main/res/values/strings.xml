@@ -18,7 +18,7 @@
     <string name="id">ID</string>
     <string name="task_name">Task Name</string>
     <string name="select_date_reminder">Select Date Reminder</string>
-    <string name="date">Date -</string>
+    <string name="date"></string>
     <string name="welcome">Welcome</string>
     <string name="task_tracker_control_pannel">Task Tracker Control Pannel</string>
     <string name="we_help_you_with_everything">We help you with everything</string>
