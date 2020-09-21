@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +18,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static com.example.homeworktrackingsoftware.Task.TaskEntry.TASK_NAME;
 
 public class UpdateTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -94,9 +99,62 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseHelper dbhelper = new DatabaseHelper(getApplication()); //Check
-                //Calling the Database method Update.
-                boolean status = dbhelper.UpdateDetails(old_name, etname.getText().toString(),etdescription.getText().toString(), selected_subject,  date.getText().toString());
+                boolean status;
+                //Empty textbox validation.
+                if(etname.getText().toString().contentEquals("")){
+                    etname.setError("Enter the Name!");
+                    return; //caution
+                }
+                if (etdescription.getText().toString().contentEquals("")){
+                    etdescription.setError("Enter the Description!");
+                    return;
+                }
+                //TODO: date validation is no needed.
+//                if(Date.contentEquals("")){
+//                    System.out.println("Method is running");
+//                    //Show a dialog message when date is not set
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+//                    builder.setMessage("Set the Date before submitting.")
+//                            .setCancelable(false)
+//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    //Create a Instruction Message
+//                                    Toast.makeText(UpdateTask.this, "Enter the values again", Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                    AlertDialog alert = builder.create();
+//                    alert.show();
+                 else {
+                    DatabaseHelper dbhelper = new DatabaseHelper(getApplication());
+
+                    //Get data from the database
+                    String name_existing = "";
+                    try {
+                        Cursor resultSet = dbhelper.getFromItemID(etname.getText().toString());
+                        resultSet.moveToNext();
+                        name_existing = resultSet.getString(resultSet.getColumnIndex(TASK_NAME));
+                    } catch (CursorIndexOutOfBoundsException e){
+                        System.out.println("ResultSet is empty");
+                    }
+
+                    //Check the Cursor for the name value
+                    if (!(name_existing.contentEquals(old_name))){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+                        builder.setMessage("Subject is already exist in the database.")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //Create a Instruction Message
+                                        Toast.makeText(UpdateTask.this, "Enter the values again", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        //If no  any issues then write to the db
+                        status = dbhelper.UpdateDetails(old_name, etname.getText().toString(),etdescription.getText().toString(), selected_subject,  date.getText().toString());
+                    }
+                }
 
                 //Confirmation.
                 if (true){

@@ -112,18 +112,19 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
             @Override
             public void onClick(View view){
 
-                //Getting String values from the interface
+                //Getting String values from the interface.
                 String Name = name.getText().toString();
                 String Description = description.getText().toString();
                 String Date = date.getText().toString();
                 String Spinner_Sub = subjectSpinner.getSelectedItem().toString();
-                //String validation before submitting.
+                //String null column validation before submitting.
                 if(Name.contentEquals("")){
                     name.setError("Enter the Name!");
                     return;
                 }
                 if (Description.contentEquals("")){
                     description.setError("Enter the Description!");
+                    return;
                 }
                 if(Date.contentEquals("")){
                     System.out.println("Method is running");
@@ -158,7 +159,7 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                         System.out.println("ResultSet is empty");
                     }
 
-                    //Checking the Cursor object is empty or not
+                    //Checking the Cursor contains the name value.
                     if (name_existing.contentEquals(Name)){
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setMessage("The value is exist in the Database")
