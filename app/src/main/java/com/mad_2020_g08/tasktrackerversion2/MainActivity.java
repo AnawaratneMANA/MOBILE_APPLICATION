@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
 
     DbHandler dbHandler;
+    //private ImageView back;
     ArrayList<String> id, title, description;
     CustomAdapter customAdapter;
 
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //back = (ImageView)findViewById(R.id.backg);
+        //back.animate().translationY(-400).setDuration(500).setStartDelay(800);
         recyclerView = findViewById(R.id.recycleView);
         add_button = findViewById(R.id.add_button);
         add_button.setOnClickListener(new View.OnClickListener() {
