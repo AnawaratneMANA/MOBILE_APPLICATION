@@ -278,4 +278,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, SUBJECT_NAME + "=" + name, null) > 0;
 
     }
+
+    //Validation method Insert tasks - Already exist
 }

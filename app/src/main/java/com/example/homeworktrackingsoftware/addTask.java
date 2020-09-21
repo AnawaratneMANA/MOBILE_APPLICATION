@@ -1,11 +1,17 @@
 package com.example.homeworktrackingsoftware;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.service.autofill.Validator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +24,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static com.example.homeworktrackingsoftware.Task.TaskEntry.TASK_NAME;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +48,7 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
     private Spinner subject;
     private TextView date;
 
-    public addTask() {
+    public addTask()   {
         // Required empty public constructor
     }
 
@@ -109,6 +117,8 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                 String Description = description.getText().toString();
                 String Date = date.getText().toString();
                 String Spinner_Sub = subjectSpinner.getSelectedItem().toString();
+                //String validation before submitting.
+
 
                 //Create a object from the SQLiteOpenHelper Class
                 DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
@@ -116,20 +126,46 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                 //Getting writable database from the DBHelper class
                 SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
-                //Calling the Method in the DBClass
-                databaseHelper.addTasks(Name,Description,Spinner_Sub,Date,database);
+                //Valiadate before entering data to the database
+                //Get data from the database.
+                String name_existing = "";
+                try {
+                    Cursor resultSet = databaseHelper.getFromItemID(Name);
+                    resultSet.moveToNext();
+                    name_existing = resultSet.getString(resultSet.getColumnIndex(TASK_NAME));
+                } catch (CursorIndexOutOfBoundsException e){
+                    System.out.println("ResultSet is empty");
+                }
 
-                //Close the DB Connection
-                databaseHelper.close();
+                //Checking the Cursor object is empty or not
+                if (name_existing.contentEquals(Name)){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("The value is exist in the Database")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //Create a Instruction Message
+                                    Toast.makeText(getActivity(), "Enter the values again", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else {
+                    //Calling the Method in the DBClass
+                    databaseHelper.addTasks(Name,Description,Spinner_Sub,Date,database);
 
+                    //Close the DB Connection
+                    databaseHelper.close();
+
+                    //Create Massage for the user
+                    Toast.makeText(getActivity(), "Task saved Successfully...", Toast.LENGTH_SHORT).show();
+                }
                 //Reset the Input fields
                 name.setText("");
                 description.setText("");
                 date.setText("");
                 //subjectSpinner.setSelected(null); How to reset the Spinner?
 
-                //Create Massage for the user
-                Toast.makeText(getActivity(), "Task saved Successfully...", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
