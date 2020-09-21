@@ -118,47 +118,56 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                 String Date = date.getText().toString();
                 String Spinner_Sub = subjectSpinner.getSelectedItem().toString();
                 //String validation before submitting.
-
-
-                //Create a object from the SQLiteOpenHelper Class
-                DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-
-                //Getting writable database from the DBHelper class
-                SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-                //Valiadate before entering data to the database
-                //Get data from the database.
-                String name_existing = "";
-                try {
-                    Cursor resultSet = databaseHelper.getFromItemID(Name);
-                    resultSet.moveToNext();
-                    name_existing = resultSet.getString(resultSet.getColumnIndex(TASK_NAME));
-                } catch (CursorIndexOutOfBoundsException e){
-                    System.out.println("ResultSet is empty");
+                if(Name.contentEquals("")){
+                    name.setError("Enter the Name!");
+                    return;
                 }
-
-                //Checking the Cursor object is empty or not
-                if (name_existing.contentEquals(Name)){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("The value is exist in the Database")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //Create a Instruction Message
-                                    Toast.makeText(getActivity(), "Enter the values again", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                if (Description.contentEquals("")){
+                    description.setError("Enter the Description!");
+                }
+                if(Date.contentEquals("")){
+                    date.setError("Enter the date!");
                 } else {
-                    //Calling the Method in the DBClass
-                    databaseHelper.addTasks(Name,Description,Spinner_Sub,Date,database);
+                    //Create a object from the SQLiteOpenHelper Class
+                    DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
 
-                    //Close the DB Connection
-                    databaseHelper.close();
+                    //Getting writable database from the DBHelper class
+                    SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
-                    //Create Massage for the user
-                    Toast.makeText(getActivity(), "Task saved Successfully...", Toast.LENGTH_SHORT).show();
+                    //Valiadate before entering data to the database
+                    //Get data from the database.
+                    String name_existing = "";
+                    try {
+                        Cursor resultSet = databaseHelper.getFromItemID(Name);
+                        resultSet.moveToNext();
+                        name_existing = resultSet.getString(resultSet.getColumnIndex(TASK_NAME));
+                    } catch (CursorIndexOutOfBoundsException e){
+                        System.out.println("ResultSet is empty");
+                    }
+
+                    //Checking the Cursor object is empty or not
+                    if (name_existing.contentEquals(Name)){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage("The value is exist in the Database")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //Create a Instruction Message
+                                        Toast.makeText(getActivity(), "Enter the values again", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        //Calling the Method in the DBClass
+                        databaseHelper.addTasks(Name,Description,Spinner_Sub,Date,database);
+
+                        //Close the DB Connection
+                        databaseHelper.close();
+
+                        //Create Massage for the user
+                        Toast.makeText(getActivity(), "Task saved Successfully...", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 //Reset the Input fields
                 name.setText("");
