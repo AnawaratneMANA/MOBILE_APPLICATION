@@ -40,7 +40,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
 
+            while (cursor.moveToNext()) {
+                if (audio.equals(cursor.getString(1))) {
+                    return false;
+                }
+                if (path.equals(cursor.getString(2))) {
+                    return false;
+                }
+            }
         //String INSERT_TABLE = "INSERT INTO " + TABLE_NAME + " (" +SONG_NAME+") VALUES ( " + audio + ")";
         ContentValues contentValues = new ContentValues();
         contentValues.put(SONG_NAME , audio);
@@ -75,4 +84,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         id = " '"+id+"' ";
         return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
     }
+
 }

@@ -81,7 +81,7 @@ public class AudioListFragment extends DialogFragment {
         arrayList = new ArrayList<>();
         ContentResolver contentResolver = getActivity().getContentResolver();
         Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Cursor songCursor = contentResolver.query(songUri,null,null,null,null);
+        final Cursor songCursor = contentResolver.query(songUri,null,null,null,null);
         if(songCursor != null && songCursor.moveToFirst()){
             int songtitle = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
 
@@ -99,6 +99,9 @@ public class AudioListFragment extends DialogFragment {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         String title = myListViewforSongs.getItemAtPosition(i).toString();
                         String location = myListViewforSongs.getItemAtPosition(i).toString();
+                       // if (title.equals())
+
+
                         boolean inserted = myDB.insertData(title , location);
                         if (inserted == true) {
                             Toast.makeText(getActivity() , "data added" , Toast.LENGTH_LONG).show();

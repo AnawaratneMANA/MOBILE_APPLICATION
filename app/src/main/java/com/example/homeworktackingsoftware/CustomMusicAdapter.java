@@ -26,15 +26,6 @@ public class CustomMusicAdapter extends BaseAdapter {
     DatabaseHelper mydb;
     private MediaPlayer mediaPlayer;
 
-    /**
-     *
-     *public CustomAdapter(Context context, int custom_adapter, ArrayList<Model> mModel) {
-     *     this.context = context;
-     *     this.mModel = mModel;
-     *     this.custom_adapter = custom_adapter;
-     *     dba = new DatabaseHelper(context);
-     * }
-     */
     public CustomMusicAdapter(Context context, ArrayList<SongList> songList) {
         this.context = context;
         this.songList = songList;
@@ -63,8 +54,9 @@ public class CustomMusicAdapter extends BaseAdapter {
             mydb = new DatabaseHelper(this.context);
             btnAssignToAlarm = (Button) view.findViewById(R.id.assignToButton);
             final SongList songLists = songList.get(i);
-
-            textName.setText(songLists.getSongName());
+            String songname2 = songLists.getSongName();
+            String songname = songname2.substring(songname2.length() - 10);
+            textName.setText(songname);
             //added
             textID.setText(songLists.getSongID());
             btnPlay.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +69,7 @@ public class CustomMusicAdapter extends BaseAdapter {
                         mediaPlayer.start();
 
                     } catch (IOException e) {
+                        System.out.println("not workinng");
                         e.printStackTrace();
                     }
 
@@ -91,35 +84,6 @@ public class CustomMusicAdapter extends BaseAdapter {
                     int result = mydb.deleteAudios(songLists.getSongID());
                     Toast.makeText(context , "data deleted" , Toast.LENGTH_LONG).show();
                     view.getContext().startActivity(new Intent(context, Sounds.class));
-                    /**
-                     if (status == true){
-                     AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
-                     builder.setMessage("Item Successfully Deleted")
-                     .setCancelable(false)
-                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                     public void onClick(DialogInterface dialog, int id) {
-                     //Navigate back to the MainActivity.
-                     Intent headingback = new Intent(getApplication(), MainActivity.class);
-                     startActivity(headingback);
-                     }
-                     });
-                     AlertDialog alert = builder.create();
-                     alert.show();
-                     } else {
-                     AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
-                     builder.setMessage("Error in Deleting the Item!")
-                     .setCancelable(false)
-                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                     public void onClick(DialogInterface dialog, int id) {
-                     //Navigate back to the MainActivity.
-                     Intent headingback = new Intent(getApplication(), MainActivity.class);
-                     startActivity(headingback);
-                     }
-                     });
-                     AlertDialog alert = builder.create();
-                     alert.show();
-                     //
-                     }**/
                 }
             });
 

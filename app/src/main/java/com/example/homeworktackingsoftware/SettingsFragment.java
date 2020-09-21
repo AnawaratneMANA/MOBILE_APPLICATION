@@ -10,11 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 public class SettingsFragment extends Fragment {
     private Ringtone ringtone;
-    private Button button;
     private Button button2;
     private Button button3;
 
@@ -24,7 +24,6 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v1 = inflater.inflate(R.layout.fragment_settings, container, false);
-        button = (Button) v1.findViewById(R.id.buttonNotification);
         button2 = (Button) v1.findViewById(R.id.buttonBackground);
         button3 = (Button) v1.findViewById(R.id.buttonSounds) ;
 
@@ -44,17 +43,7 @@ public class SettingsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationFragment notificationFragment = new NotificationFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainSettingsLayout , notificationFragment).addToBackStack(null);
-                transaction.commit();
-                 //notificationFragment.show(getSupportFragmentManager() , "myFragmentNotifiaction");
 
-            }
-        });
         return v1;
     }
 }
