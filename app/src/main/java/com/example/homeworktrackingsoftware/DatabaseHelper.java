@@ -172,6 +172,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //Method
+    public Cursor readSubjectsName(String name, SQLiteDatabase database){
+        //String Array
+        String SQL  = "SELECT * FROM " + TABLE_NAME;
+
+        //Declare the cursor object
+        Cursor data = database.rawQuery(SQL, null);
+        return data;
+    }
+
+
     //Creating a Method to get the ID when a String name is Given.
     public Cursor getFromItemID(String name){
         //Getting writable database

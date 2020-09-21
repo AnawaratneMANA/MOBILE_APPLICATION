@@ -1,6 +1,9 @@
 package com.example.homeworktrackingsoftware;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -13,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import static com.example.homeworktrackingsoftware.Subject.SubjectEntry.SUBJECT_NAME;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,14 +91,41 @@ public class addSubject extends Fragment implements View.OnClickListener {
                 //Getting the data
                 String name = Name.getText().toString();
 
-                //Create a object from the SQLiteOpenHelper Class
-                DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                //Empty text field validation
+                if(name.contentEquals("")){
+                    Name.setError("Enter the Subject name");
+                } else {
+                    //Database operation should come in this section.
+                    //Duplication avoiding method.
+                    //Create a object from the SQLiteOpenHelper Class
+                    DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+                    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+                    Cursor subjectsSet = databaseHelper.readSubjectsName(name, database);
 
-                //Create a object from the SQLiteDatabase
-                //TODO: warning do not perform database operation with the main thread, Use a background thread to perform DB operations (Async task)
-                SQLiteDatabase database = databaseHelper.getWritableDatabase();
-                databaseHelper.addSubject(name,database);
-                databaseHelper.close();
+                    subjectsSet.moveToNext();
+                    String name_from_DB = subjectsSet.getString(subjectsSet.getColumnIndex(SUBJECT_NAME));
+
+                    //If condition to check the name
+                    if(name_from_DB.contentEquals(name)){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage("Subject is already in the database.")
+                                .setCancelable(false)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //Create a Instruction Message
+                                        Toast.makeText(getActivity(), "Enter the values again", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        //Calling the database if there's no error
+                        databaseHelper.addSubject(name,database);
+                        databaseHelper.close();
+                    }
+
+                }
+
 
                 //Reset the form after adding the information
                 Name.setText("");
