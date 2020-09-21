@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -24,8 +25,21 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DbHandler dbHandler = new DbHandler(AddActivity.this);
+
+                if(!title_input.getText().toString().matches("[a-z,A-Z]*")){
+                    title_input.setError("Enter only characters");
+                    return;
+                }
+                else if(!description_input.getText().toString().matches("[a-z,A-Z]*")){
+                    description_input.setError("Enter only characters");
+                    return;
+                }
+
                 dbHandler.addList(title_input.getText().toString().trim(),
                         description_input.getText().toString().trim());
+
+
+
             }
         });
 

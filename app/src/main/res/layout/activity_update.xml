@@ -8,33 +8,33 @@
     tools:context=".AddActivity"
     android:padding="30dp">
 
-    <EditText
-        android:id="@+id/title_input2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/enter_title_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.368"
-        android:autofillHints="" />
+ <EditText
+     android:id="@+id/title_input2"
+     android:layout_width="324dp"
+     android:layout_height="55dp"
+     android:autofillHints=""
+     android:ems="10"
+     android:hint="@string/enter_title_name"
+     android:inputType="textPersonName"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintVertical_bias="0.368" />
 
-    <EditText
-        android:id="@+id/description2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/enter_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47"
-        android:autofillHints="" />
+ <EditText
+     android:id="@+id/description2"
+     android:layout_width="318dp"
+     android:layout_height="54dp"
+     android:autofillHints=""
+     android:ems="10"
+     android:hint="@string/enter_description"
+     android:inputType="textPersonName"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintVertical_bias="0.47" />
 
     <Button
         android:id="@+id/update_button"
@@ -67,17 +67,19 @@
         app:layout_constraintTop_toBottomOf="@+id/update_button"
         app:layout_constraintVertical_bias="0.085" />
 
-    <ImageView
-        android:layout_width="wrap_content"
+ <ImageView
+     android:layout_width="348dp"
 
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/flower"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+     android:layout_height="661dp"
+     android:contentDescription="@string/todo"
+     android:src="@drawable/flower"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.0"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintVertical_bias="1.0"
+     tools:ignore="MissingConstraints" />
 
  <ImageView
      android:layout_width="121dp"

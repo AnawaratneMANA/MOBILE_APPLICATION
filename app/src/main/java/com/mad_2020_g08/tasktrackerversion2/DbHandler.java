@@ -51,7 +51,20 @@ public class DbHandler extends SQLiteOpenHelper {
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_DES, des);
 
+        if(title.length() == 0){
+            Toast.makeText(context, "Please Enter Title", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+        else if(des.length() == 0){
+            Toast.makeText(context, "Please Enter Description", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
+
         long result = db.insert(TABLE_NAME, null,cv);
+
 
         if(result == -1){
             Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
