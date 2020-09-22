@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.finalmadproject.Settings.SongList;
 
@@ -42,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //TODO: SQL Queries
     //Creating the query - Table - 1
-    public static final String CREATE_TABLE = "create table "+ TABLE_NAME + "(" +
+    public static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" +
             SUBJECT_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT," + SUBJECT_NAME+ " text);"; //Made a change to the key attribute
 
     //Creating the query - Table - 1
@@ -63,11 +64,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Creating the query - Table - 1
     public static final String DROP_TABLE_SL = "drop table if exists "+ TABLE_SONG_NAME;
+    private Context context;
+
+
+    //Taneesha
+    private static final String TABLE_NAME_T = "my_library";
+    private static final String COLUMN_ID = "_id";
+    private static final String COLUMN_TITLE = "list_title";
+    private static final String COLUMN_DES = "list_description";
 
     //Create the constructor
     public DatabaseHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
         //Creating a Massage
         Log.e("Database Operations", "Database Created");
     }
@@ -80,6 +90,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Salitha's Table Creation.
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
+
+        //Taneesha table creation
+        String query = "CREATE TABLE " + TABLE_NAME +
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_TITLE + " TEXT, " +
+                COLUMN_DES + " TEXT);";
+        sqLiteDatabase.execSQL(query);
         Log.d("Database Operation", "Table is created");
     }
 
@@ -92,7 +109,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Salithas Database Related codes.
         sqLiteDatabase.execSQL(DROP_TABLE_SL);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
+
+
     }
 
     //Create a method to put information to the table - Attributes are the columns.
@@ -359,4 +379,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         id = " '"+id+"' ";
         return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
     }
+
+    //taneesha - DB methods
+    public void addList(String title, String des){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_DES, des);
+
+        if(title.length() == 0){
+            Toast.makeText(context, "Please Enter Title", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+        else if(des.length() == 0){
+            Toast.makeText(context, "Please Enter Description", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
+
+        long result = db.insert(TABLE_NAME_T, null,cv);
+
+
+        if(result == -1){
+            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context,"Added Successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public Cursor readAllData(){
+        String query = "SELECT * FROM " + TABLE_NAME_T;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public void updateData(String row_id,String title, String description){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_DES,description);
+
+        long result = db.update(TABLE_NAME_T,cv, "_id=?",new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context,"Failed to update.",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME_T, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }
