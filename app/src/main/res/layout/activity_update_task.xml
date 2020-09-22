@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addTask">
+
+    <ImageView
+        android:layout_width="282dp"
+        android:layout_height="433dp"
+        android:src="@drawable/flower"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/add_new_task"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subheading"
+        android:layout_width="236dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:gravity="center"
+        android:text="Task Details"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/TaskName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bginput"
+        android:ems="10"
+        android:fontFamily="@font/sf_pro_display_medium_italic"
+        android:hint="Enter Task Name"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subheading" />
+
+    <EditText
+        android:id="@+id/DescriptionId"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bginput"
+        android:ems="10"
+        android:fontFamily="@font/sf_pro_display_medium_italic"
+        android:gravity="start|top"
+        android:hint="Enter Task ID"
+        android:inputType="textMultiLine"
+        android:paddingLeft="20dp"
+        android:paddingTop="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionNameId" />
+
+    <TextView
+        android:id="@+id/DescriptionNameId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:gravity="center"
+        android:text="@string/description"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TaskName" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SubjectNameId">
+
+
+        <Spinner
+            android:fontFamily="@font/sf_pro_display_medium_italic"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:id="@+id/SubjectSpinner"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/bgspinner"
+            tools:layout_editor_absoluteX="55dp"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="458dp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignStart="@+id/SubjectSpinner"
+            android:layout_alignLeft="@+id/SubjectSpinner"
+            android:layout_alignEnd="@+id/SubjectSpinner"
+            android:layout_alignRight="@+id/SubjectSpinner"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="240dp"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="-6dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/dropdownicon" />
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/SubjectNameId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:gravity="center"
+        android:text="@string/select_subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionId" />
+
+    <Button
+        android:id="@+id/taskUpdate"
+        android:layout_width="139dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bgbtn"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/update"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datetextview"
+        app:layout_constraintVertical_bias="0.456" />
+
+    <Button
+        android:id="@+id/taskDelete"
+        android:layout_width="139dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bgbtn"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/delete"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/taskUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/datetextview"
+        app:layout_constraintVertical_bias="0.456" />
+
+    <Button
+        android:id="@+id/OpenDate"
+        android:layout_width="139dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bgbtn"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/select_date_reminder"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <TextView
+        android:id="@+id/datetextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OpenDate" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

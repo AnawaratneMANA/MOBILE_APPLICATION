@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="content_size">24sp</dimen>
+    <dimen name="switch_size">310dp</dimen>
+    <dimen name="layout_marginEnd">65dp</dimen>
+    //settings
+    <dimen name="layout_marginEnd_topic_settings">200dp</dimen>
+    //notification
+    <dimen name="layout_marginEnd_topic_Notification">127dp</dimen>
+    //Sounds
+    <dimen name="layout_marginEnd_topic_Sounds">140dp</dimen>
+    //Background
+    <dimen name="layout_marginEnd_topic_Background">113dp</dimen>
+</resources>

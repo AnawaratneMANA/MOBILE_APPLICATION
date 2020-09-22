@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings.SettingsFragment"
+    android:gravity="center_horizontal"
+    android:background="@drawable/flower"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="@string/title_activity_Settings"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/buttonSounds"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/rounded_corners"
+        android:key="Ringtone"
+        android:text="@string/title_activity_sounds"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/content_size" />
+
+    <Button
+        android:id="@+id/buttonBackground"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/rounded_corners"
+        android:text="@string/title_activity_Background"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/content_size" />
+
+</LinearLayout>
