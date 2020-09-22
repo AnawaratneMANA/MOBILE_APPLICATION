@@ -73,4 +73,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    //checking the Username and password
+    public Boolean UNPW(String UN, String PW){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from user where UN =?  and PW =? ", new String[] {UN,PW});
+        if(cursor.getCount()>0) return true;
+        else return false;
+    }
+
 }
