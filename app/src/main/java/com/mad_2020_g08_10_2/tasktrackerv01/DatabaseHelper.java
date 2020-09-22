@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String CREATE_TABLE_Login = "create table user (UID PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
+    public static final String CREATE_TABLE_Login = "create table user (UID INTEGER PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
 
     public static final String DROP_TABLE_Login = "drop table if exists user";
     //Variables
