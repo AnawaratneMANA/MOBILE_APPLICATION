@@ -46,15 +46,15 @@
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:padding="15dp"
-        android:fontFamily="@font/roboto_regular"
-        android:inputType="textPassword"
         android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="15dp"
         android:textSize="15sp" />
 
     <Button
@@ -87,5 +87,19 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="200dp"
+        android:layout_height="19dp"
+        android:layout_below="@+id/btn_login"
+        android:layout_alignBottom="@+id/swipeRight"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="103dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="136dp"
+        android:text="No of Incorrect attempts : " />
 
 </RelativeLayout>

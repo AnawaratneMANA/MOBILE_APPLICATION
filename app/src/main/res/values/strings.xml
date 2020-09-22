@@ -5,7 +5,7 @@
     <string name="swipe_left_for_register">Swipe Left for Register</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="e_mail">Email</string>
+    <string name="e_mail">UserName</string>
     <string name="tag">Let\'s join us and \nOrganized your list.</string>
     <string name="swipe_right_for_login">Swipe Right for Login</string>
     <string name="register">Register</string>
