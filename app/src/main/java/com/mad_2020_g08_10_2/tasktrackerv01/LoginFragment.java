@@ -33,10 +33,11 @@ public class LoginFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
 
         //for login
         //db = new DatabaseHelper(this);
@@ -45,6 +46,8 @@ public class LoginFragment extends Fragment {
         PW = view.findViewById(R.id.et_password);
         b1 = view.findViewById(R.id.btn_login);
         Info = view.findViewById(R.id.tvInfo);
+
+
 
         Info.setText(" ");
         b1.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +60,9 @@ public class LoginFragment extends Fragment {
                 Boolean chk = db.UNPW(e1, e2);
                 if(chk == true){
                     Toast.makeText(getContext(),"successfully Login", Toast.LENGTH_SHORT).show();
+
+                    Intent st = new Intent(getActivity(),home.class);
+                    startActivity(st);
 
 
                 }else{
