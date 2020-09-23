@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".List.UpdateActivity" />
+        <activity
+            android:name=".List.AddActivity"
+            android:label="Add list"
+            android:parentActivityName=".List.MainActivity_List"/>
+        <activity android:name=".List.Splash">
+        </activity>
 
         <activity android:name=".Settings.CommonLayoutActivity">
             <intent-filter>

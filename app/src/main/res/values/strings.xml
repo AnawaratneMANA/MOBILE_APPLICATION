@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Final Mad Project</string>
     <string name="title_activity_sounds">Sounds</string>
     <string name="title_activity_Notification">Notification</string>
@@ -35,4 +35,19 @@
     <string name="delete">Delete</string>
     <string name="deletesubject">delete</string>
     <string name="updateSubjectlbl">Update Subject</string>
+
+    <!-- List Manager String values -->
+
+    <string name="enter_title_name" tools:ignore="DuplicateDefinition">Enter Title Name</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="_1">1</string>
+    <string name="title_1">Title 1</string>
+    <string name="task_manager">Task Manager</string>
+    <string name="we_help_you_manage_everything">We help you manage everything</string>
+
+    <string name="todo2" tools:ignore="DuplicateDefinition">TODO</string>
+    <string name="opps_empty">OPPS! Empty</string>
+    <string name="you_have_no_current_tasks">You have no current tasks.....</string>
+    <string name="todo">TODO</string>
+
 </resources>
