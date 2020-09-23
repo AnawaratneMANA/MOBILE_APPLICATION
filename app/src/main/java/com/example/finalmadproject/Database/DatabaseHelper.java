@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import static com.example.finalmadproject.Settings.RingingTones.song.SONG_STATUS;
 import static com.example.finalmadproject.Settings.RingingTones.song.TABLE_SONG_NAME;
 import static com.example.finalmadproject.TaskManagement.Subject.SubjectEntry.SUBJECT_ID;
 import static com.example.finalmadproject.TaskManagement.Subject.SubjectEntry.SUBJECT_NAME;
@@ -40,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Variables
     public static final String DATABASE_NAME = "homework_db";
     public static final int DATABASE_VERSION = 1;
+    public static final String notstatus = "Not Selected";
 
     //TODO: SQL Queries
     //Creating the query - Table - 1
@@ -58,7 +60,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DROP_TABLE2 = "drop table if exists "+ TABLE2_NAME;
 
     //Salitha's Final String declarations
-    public static final String CREATE_SONG_TABLE = "create table " + TABLE_SONG_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB , SONG_PATH String)";
+    //changed----------------------
+    public static final String CREATE_SONG_TABLE = "create table " + TABLE_SONG_NAME + " (SONG_ID INTEGER PRIMARY KEY AUTOINCREMENT, SONG_NAME BLOB , SONG_STATUS BOOLEAN , SONG_PATH String)";
+
     //"INSERT INTO  " + TABLE3_NAME +  " ( " + COL2_3 +"  )  VALUES (  " + name  + " )" ;
     //public static final ;
 
@@ -350,6 +354,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SONG_NAME , audio);
         contentValues.put(SONG_PATH , path);
+
+        //added
+        contentValues.put(SONG_STATUS , notstatus);
         Long result = db.insert(TABLE_SONG_NAME, null, contentValues);
         if (result == -1)
             return false;
@@ -367,9 +374,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //added
             String song_id = cursor.getString(0);
             String song_name = cursor.getString(1);
-            String song_path = cursor.getString(2);
+            //added changed
+            String song_status = cursor.getString(2);
+            String song_path = cursor.getString(3);
             //added
-            SongList songList = new SongList(song_id , song_name , song_path);
+            SongList songList = new SongList(song_id , song_name , song_status ,  song_path);
             list.add(songList);
         }
 
@@ -379,6 +388,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         id = " '"+id+"' ";
         return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
+    }
+    //---------------newly added by salitha----------------------------
+    //added
+    public void updateSelectedStatus(String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        ContentValues cv1 = new ContentValues();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
+
+        while (cursor.moveToNext()) {
+            System.out.println("1");
+            if (cursor.getString(2).equals(status)) {
+                System.out.println("2");
+                String oldstatusid = cursor.getString(0);
+                System.out.println("3");
+                cv.put(SONG_STATUS, notstatus);
+                try {
+                    db.update(TABLE_SONG_NAME, cv, "SONG_ID=?", new String[]{oldstatusid});
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    //added
+    public void updateStatus(String songID, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        ContentValues cv1 = new ContentValues();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
+
+        while (cursor.moveToNext()) {
+
+            System.out.println("13");
+            if (cursor.getString(0).equals(songID)){
+
+                System.out.println("14");
+                cv1.put(SONG_STATUS, status);
+                try{
+                    System.out.println("11");
+                    db.update(TABLE_SONG_NAME,cv1, "song_id=?",new String[]{songID});
+                    System.out.println("12");
+                    return;
+                } catch (SQLException e) {
+                    System.out.println("salitha");
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
     //taneesha - DB methods ------------------------------------------------------------------------
