@@ -23,7 +23,7 @@ public class RegisterFragment extends Fragment {
     private DatabaseHelper db ;
     //declaring objects for registration;
     EditText fN, uN, pW, pW2;
-    Button b1;
+    Button b1,b2;
 
     //Declare String variables
     String s1,s2,s3,s4;
@@ -45,9 +45,17 @@ public class RegisterFragment extends Fragment {
         pW = view.findViewById(R.id.et_password);
         pW2 = view.findViewById(R.id.et_repassword);
         b1 = view.findViewById(R.id.btn_register);
+        b2 = view.findViewById(R.id.reset);
 
-        s1 = fN.getText().toString();
-
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fN.setText("");
+                uN.setText("");
+                pW.setText("");
+                pW2.setText("");
+            }
+        });
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
