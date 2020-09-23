@@ -1,9 +1,12 @@
 package com.mad_2020_g08_10_2.tasktrackerv01;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,8 +67,9 @@ public class RegisterFragment extends Fragment {
                             Boolean insert = db.insert(s1, s2, s3);
                             if (insert == true) {
                                 Toast.makeText(getContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
-//                                Intent i = new Intent (RegisterFragment.this, LoginFragment.class);
-//                                startActivity(i);
+
+                                //automatically going to login fragment
+
                             }
                         } else {
                             Toast.makeText(getContext(), "User Name already exist", Toast.LENGTH_SHORT).show();
@@ -74,7 +78,6 @@ public class RegisterFragment extends Fragment {
                         Toast.makeText(getContext(), "Password dose not matching", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
         });
         return view;
