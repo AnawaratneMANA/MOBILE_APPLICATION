@@ -32,6 +32,8 @@
         <activity android:name=".TaskManagement.MainActivity"></activity>
         <activity android:name=".Settings.MainActivity_sl"></activity>
         <activity android:name=".Settings.Sounds"></activity>
+        <activity android:name=".List.MainActivity_List"></activity>
+
 
 
         <!--Testing Running code-->

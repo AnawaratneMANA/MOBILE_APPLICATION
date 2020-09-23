@@ -73,6 +73,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_TITLE = "list_title";
     private static final String COLUMN_DES = "list_description";
 
+    private static final String query = "CREATE TABLE " + TABLE_NAME_T +
+            " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_TITLE + " TEXT, " +
+            COLUMN_DES + " TEXT);";
+
     //Create the constructor
     public DatabaseHelper(Context context)
     {
@@ -92,10 +97,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
 
         //Taneesha table creation
-        String query = "CREATE TABLE " + TABLE_NAME +
-                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_TITLE + " TEXT, " +
-                COLUMN_DES + " TEXT);";
         sqLiteDatabase.execSQL(query);
         Log.d("Database Operation", "Table is created");
     }
@@ -332,7 +333,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    //Saliths DB handling Methods
+    //Saliths DB handling Methods ------------------------------------------------------------------
     public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
@@ -380,7 +381,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
     }
 
-    //taneesha - DB methods
+    //taneesha - DB methods ------------------------------------------------------------------------
     public void addList(String title, String des){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
+import com.example.finalmadproject.List.MainActivity_List;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.TaskManagement.MainActivity;
 //Register all the elements
@@ -17,6 +18,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
     //Declare elements
     private Button settings;
     private Button home;
+    private Button list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //Register elements
         settings = findViewById(R.id.button_settings);
         home = findViewById(R.id.button_task_manager);
+        list = findViewById(R.id.button_list);
 
         //set on click listener to the buttons
         settings.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +44,14 @@ public class CommonLayoutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent navtask = new Intent(CommonLayoutActivity.this, MainActivity.class);
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                startActivity(navtask);
+            }
+        });
+
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent navtask = new Intent(CommonLayoutActivity.this, MainActivity_List.class);
                 startActivity(navtask);
             }
         });
