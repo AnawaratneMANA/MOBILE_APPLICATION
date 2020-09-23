@@ -69,7 +69,8 @@ public class RegisterFragment extends Fragment {
                                 Toast.makeText(getContext(), "Registered Successfully", Toast.LENGTH_SHORT).show();
 
                                 //automatically going to login fragment
-
+                                Intent st = new Intent(getActivity(),MainActivity.class);
+                                startActivity(st);
                             }
                         } else {
                             Toast.makeText(getContext(), "User Name already exist", Toast.LENGTH_SHORT).show();
