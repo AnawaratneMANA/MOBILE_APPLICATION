@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.ContactsContract;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,9 @@ public class LoginFragment extends Fragment {
         b1 = view.findViewById(R.id.btn_login);
         Info = view.findViewById(R.id.tvInfo);
 
-
+        //function called to disable the button if values are not entered.
+        UN.addTextChangedListener(loginTextWatcher);
+        PW.addTextChangedListener(loginTextWatcher);
 
         Info.setText(" ");
         b1.setOnClickListener(new View.OnClickListener() {
@@ -89,4 +93,24 @@ public class LoginFragment extends Fragment {
         });
       return view;
     }
+
+    private TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String usernameinput = UN.getText().toString().trim();
+            String passwordinput = PW.getText().toString().trim();
+
+            b1.setEnabled(!usernameinput.isEmpty()  && !passwordinput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 }
