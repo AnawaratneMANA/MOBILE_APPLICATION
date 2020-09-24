@@ -109,24 +109,9 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
                     etdescription.setError("Enter the Description!");
                     return;
                 }
-                //TODO: date validation is no needed.
-//                if(Date.contentEquals("")){
-//                    System.out.println("Method is running");
-//                    //Show a dialog message when date is not set
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
-//                    builder.setMessage("Set the Date before submitting.")
-//                            .setCancelable(false)
-//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    //Create a Instruction Message
-//                                    Toast.makeText(UpdateTask.this, "Enter the values again", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                    AlertDialog alert = builder.create();
-//                    alert.show();
+
                  else {
                     DatabaseHelper dbhelper = new DatabaseHelper(getApplication());
-
                     //Get data from the database
                     String name_existing = "";
                     try {
