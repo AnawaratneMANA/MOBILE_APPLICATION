@@ -11,14 +11,21 @@
         android:textSize="15sp" />
     <TextView
         android:id="@+id/textName"
-        android:layout_width="185dp"
+        android:layout_width="145dp"
+        android:layout_height="match_parent"
+        android:text="SongName"
+        android:textSize="15sp" />
+    //added
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
         android:text="SongName"
         android:textSize="15sp" />
 
     <Button
         android:id="@+id/playButton"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:background="@drawable/play"
         android:radius="100dp"
@@ -26,21 +33,21 @@
 
     <Button
         android:id="@+id/pauseButton"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:background="@drawable/stop"
         android:textSize="8sp" />
 
     <Button
         android:id="@+id/deleteButton"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:background="@drawable/delete"
         android:textSize="8sp" />
 
     <Button
         android:id="@+id/assignToButton"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
         android:background="@drawable/assign"
         android:textSize="8sp" />

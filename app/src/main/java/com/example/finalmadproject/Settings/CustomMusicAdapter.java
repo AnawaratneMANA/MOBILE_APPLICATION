@@ -21,7 +21,8 @@ public class CustomMusicAdapter extends BaseAdapter {
     private Context context;
     ArrayList<SongList> songList;
     //added
-    TextView textName , textID;
+    //added
+    TextView textName , textID , textStatus;
     Button btnPlay , btnPause , btnDelete , btnAssignToAlarm;
     private int layout;
     DatabaseHelper mydb;
@@ -49,6 +50,8 @@ public class CustomMusicAdapter extends BaseAdapter {
             //added
             textID = (TextView) view.findViewById(R.id.textID);
             textName = (TextView) view.findViewById(R.id.textName);
+            //added
+            textStatus = (TextView) view.findViewById(R.id.textStatus);
             btnPlay = (Button) view.findViewById(R.id.playButton);
             btnPause = (Button) view.findViewById(R.id.pauseButton);
             btnDelete = (Button) view.findViewById(R.id.deleteButton);
@@ -60,6 +63,7 @@ public class CustomMusicAdapter extends BaseAdapter {
             textName.setText(songname);
             //added
             textID.setText(songLists.getSongID());
+            textStatus.setText(songLists.getStatus());
             btnPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -88,6 +92,17 @@ public class CustomMusicAdapter extends BaseAdapter {
                 }
             });
 
+            btnAssignToAlarm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //all are added
+                    String selectStatus = "Selected";
+                    mydb.updateSelectedStatus(selectStatus);
+                    mydb.updateStatus(songLists.getSongID() , selectStatus);
+                    Toast.makeText(context , "Status updated" , Toast.LENGTH_LONG).show();
+                    view.getContext().startActivity(new Intent(context, Sounds.class));
+                }
+            });
 
         }
 
@@ -96,13 +111,6 @@ public class CustomMusicAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 mediaPlayer.stop();
-
-            }
-        });
-
-        btnAssignToAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
             }
         });
