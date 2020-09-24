@@ -90,18 +90,18 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/reset"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/buttonhover"
-            android:fontFamily="@font/roboto_regular"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
-            android:layout_centerInParent="true"
-            android:textColor="@android:color/white"
-            android:onClick="sample"
-            android:text="@string/register"/>
+            android:background="@drawable/buttonhover"
+            android:fontFamily="@font/roboto_regular"
+            android:enabled="false"
+            android:text="RESET"
+            android:textColor="@android:color/white" />
 
         <ImageView
             android:layout_width="30dp"
@@ -122,19 +122,21 @@
             android:layout_marginBottom="20dp"/>
 
         <Button
-            android:id="@+id/reset"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_register"
+            android:layout_above="@+id/reset"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="sample"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/buttonhover"
-            android:textColor="@android:color/white"
             android:fontFamily="@font/roboto_regular"
-            android:text="Reset" />
+            android:text="@string/register"
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 

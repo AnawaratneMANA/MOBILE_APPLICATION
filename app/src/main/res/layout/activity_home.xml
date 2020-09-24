@@ -7,10 +7,11 @@
     tools:context=".home">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="home"
         tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="347dp" />
+        tools:layout_editor_absoluteY="347dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

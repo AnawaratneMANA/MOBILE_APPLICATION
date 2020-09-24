@@ -53,6 +53,10 @@ public class LoginFragment extends Fragment {
         UN.addTextChangedListener(loginTextWatcher);
         PW.addTextChangedListener(loginTextWatcher);
 
+
+        //sending values
+        
+
         Info.setText(" ");
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +70,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(),"successfully Login", Toast.LENGTH_SHORT).show();
 
                     Intent st = new Intent(getActivity(),home.class);
+
                     startActivity(st);
 
 

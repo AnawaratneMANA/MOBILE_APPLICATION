@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +30,6 @@ public class RegisterFragment extends Fragment {
     //Declare String variables
     String s1,s2,s3,s4;
 
-
-
-
-
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +43,12 @@ public class RegisterFragment extends Fragment {
         pW2 = view.findViewById(R.id.et_repassword);
         b1 = view.findViewById(R.id.btn_register);
         b2 = view.findViewById(R.id.reset);
+
+
+        //function called to disable the button if values are not entered.
+        fN.addTextChangedListener(registerTextWatcher);
+        uN.addTextChangedListener(registerTextWatcher);
+
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,5 +94,25 @@ public class RegisterFragment extends Fragment {
         });
         return view;
     }
+
+    private TextWatcher registerTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String firstnameinput = fN.getText().toString().trim();
+            String usernameinput = uN.getText().toString().trim();
+
+            b2.setEnabled(!usernameinput.isEmpty()  && !firstnameinput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
 }
