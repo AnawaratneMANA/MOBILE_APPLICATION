@@ -105,19 +105,25 @@ public class addSubject extends Fragment implements View.OnClickListener {
                     //Create a object from the SQLiteOpenHelper Class
                     DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
                     SQLiteDatabase database = databaseHelper.getWritableDatabase();
-                    Cursor subjectsSet = databaseHelper.readSubjectsName(name, database);
+                    Cursor subjectsSet = databaseHelper.readSubjects(database);
 
                     String name_from_DB= "";
+                    int flag = 0;
                     try{
-                        subjectsSet.moveToNext();
-                        name_from_DB = subjectsSet.getString(subjectsSet.getColumnIndex(SUBJECT_NAME));
+                        while(subjectsSet.moveToNext()){
+                            name_from_DB = subjectsSet.getString(subjectsSet.getColumnIndex(SUBJECT_NAME));
+                            if(name_from_DB.contentEquals(name)){
+                                flag++;
+                                break;
+                            }
+                        }
                     } catch(CursorIndexOutOfBoundsException e){
                         e.printStackTrace();
                     }
 
 
                     //If condition to check the name
-                    if(name_from_DB.contentEquals(name)){
+                    if(flag == 1){
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setMessage("Subject is already in the database.")
                                 .setCancelable(false)
@@ -132,16 +138,15 @@ public class addSubject extends Fragment implements View.OnClickListener {
                     } else {
                         //Calling the database if there's no error
                         databaseHelper.addSubject(name,database);
+                        Toast.makeText(getActivity(), "Subject saved Successfully...", Toast.LENGTH_SHORT).show();
                         databaseHelper.close();
                     }
 
                 }
-
-
                 //Reset the form after adding the information
                 Name.setText("");
 
-                Toast.makeText(getActivity(), "Subject saved Successfully...", Toast.LENGTH_SHORT).show();
+
             }
         });
 

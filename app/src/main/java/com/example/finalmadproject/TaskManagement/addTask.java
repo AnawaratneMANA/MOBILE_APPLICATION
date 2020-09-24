@@ -150,16 +150,23 @@ public class addTask extends Fragment implements DatePickerDialog.OnDateSetListe
                     //Valiadate before entering data to the database
                     //Get data from the database.
                     String name_existing = "";
+                    int flag = 0;
                     try {
-                        Cursor resultSet = databaseHelper.getFromItemID(Name);
-                        resultSet.moveToNext();
-                        name_existing = resultSet.getString(resultSet.getColumnIndex(TASK_NAME));
+                        Cursor resultSet = databaseHelper.readTasks(database);
+                        while(resultSet.moveToNext()){
+                            name_existing = resultSet.getString(resultSet.getColumnIndex(TASK_NAME));
+                            if(name_existing.contentEquals(Name)){
+                                flag++;
+                                break;
+                            }
+                        }
+
                     } catch (CursorIndexOutOfBoundsException e){
                         System.out.println("ResultSet is empty");
                     }
 
                     //Checking the Cursor contains the name value.
-                    if (name_existing.contentEquals(Name)){
+                    if (flag == 1){
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setMessage("The value is exist in the Database")
                                 .setCancelable(false)
