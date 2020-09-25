@@ -15,6 +15,10 @@ import android.widget.Toast;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.Settings.CommonLayoutActivity;
+<<<<<<< HEAD
+=======
+import com.example.finalmadproject.TaskManagement.MainActivity;
+>>>>>>> origin/temp_final_1
 
 import androidx.fragment.app.Fragment;
 
@@ -71,6 +75,10 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(),"successfully Login", Toast.LENGTH_SHORT).show();
 
                     Intent st = new Intent(getActivity(), CommonLayoutActivity.class);
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/temp_final_1
                     startActivity(st);
 
 

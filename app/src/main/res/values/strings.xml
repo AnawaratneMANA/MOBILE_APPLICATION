@@ -49,6 +49,7 @@
     <string name="opps_empty">OPPS! Empty</string>
     <string name="you_have_no_current_tasks">You have no current tasks.....</string>
     <string name="todo">TODO</string>
+    <string name="view_tasks">View Tasks</string>
 
     <!-- Tan part String values -->
     <string name="swipe_left_for_register">Swipe Left for Register</string>

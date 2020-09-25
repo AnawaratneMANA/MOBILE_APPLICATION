@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class MainActivity_List extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FloatingActionButton add_button;
+    Button viewButton;
 
     DatabaseHelper dbHandler;
     //private ImageView back;
@@ -57,6 +59,19 @@ public class MainActivity_List extends AppCompatActivity {
         customAdapter = new CustomAdapter(MainActivity_List.this,this,id,title,description);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity_List.this));
+
+        viewButton = findViewById(R.id.btnView);
+
+        //nevigated all the tsk details page
+       /* viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity_List.this, ViewAllTasks.class);
+                    startActivity(intent);
+            }
+        });*/
+
+
     }
 
     @Override
@@ -101,5 +116,11 @@ public class MainActivity_List extends AppCompatActivity {
 
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void viewButtonClick(View view){
+        Intent intent = new Intent(MainActivity_List.this, ViewAllTasks.class);
+        startActivity(intent);
+
     }
 }
