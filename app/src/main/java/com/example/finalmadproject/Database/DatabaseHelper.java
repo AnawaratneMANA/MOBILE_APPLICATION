@@ -553,4 +553,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return false;
     }
 
+    //Last Added content Tan's Database methods - Comment checkpoint
+
 }
