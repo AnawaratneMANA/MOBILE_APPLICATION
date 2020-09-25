@@ -23,12 +23,9 @@ import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 public class CommonLayoutActivity extends AppCompatActivity {
 
     //Declare elements
-    private Button settings;
-    private Button home;
-    private Button list;
-    private Button tempList;
     private TextView txt_na;
     public static String string_name;
+    private Button bt,bt1;
 
     // initializing variable
     //implemented by tandin
@@ -49,13 +46,32 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
         //opening the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
+        bt = findViewById(R.id.AddProject);//add tanish akki link
+        bt1 =findViewById(R.id.AddTask);//add akash link
+
+        //linking to tanish akki part
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newI = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(newI);
+            }
+        });
+
+        //linking to akash part
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newI = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(newI);
+            }
+        });
+
+
+
         //end of implementation
 
         //Register elements
-        settings = findViewById(R.id.button_settings);
-        home = findViewById(R.id.button_task_manager);
-        list = findViewById(R.id.button_list);
-        tempList = findViewById(R.id.button_LIst);
 
         txt_na = findViewById(R.id.txt_name);
         //getting the value of FN from UN
@@ -75,42 +91,6 @@ public class CommonLayoutActivity extends AppCompatActivity {
        // System.out.println(string_name);
 
 
-
-        //set on click listener to the buttons
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent updateTask = new Intent(CommonLayoutActivity.this, MainActivity_sl.class);
-                startActivity(updateTask);
-            }
-        });
-
-        //set on click listener to the home button
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent navtask = new Intent(CommonLayoutActivity.this, MainActivity.class);
-                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                startActivity(navtask);
-            }
-        });
-
-        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent navtask = new Intent(CommonLayoutActivity.this, MainActivity_List.class);
-                startActivity(navtask);
-            }
-        });
-
-        //Create a temporary Listener for connecting the List view
-        tempList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent tempList = new Intent(CommonLayoutActivity.this, ReadTaksSelectable.class);
-                startActivity(tempList);
-            }
-        });
 
     }
 

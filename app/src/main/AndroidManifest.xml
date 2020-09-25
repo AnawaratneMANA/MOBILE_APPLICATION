@@ -12,21 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".List.ViewAllTasks"></activity>
+        <activity android:name=".TanPart.Project_panel"></activity>
+        <activity android:name=".TanPart.Task_panel" />
+        <activity android:name=".List.ViewAllTasks" />
         <activity android:name=".TaskManagement.ReadTaksSelectable" />
         <activity android:name=".List.UpdateActivity" />
-
-        <activity android:name=".TanPart.StaticActivity"></activity>
-        <activity android:name=".TanPart.home"></activity>
-        <activity android:name=".TanPart.UserAction"></activity>
+        <activity android:name=".TanPart.StaticActivity" />
+        <activity android:name=".TanPart.home" />
+        <activity android:name=".TanPart.UserAction" />
         <activity
             android:name=".List.AddActivity"
             android:label="Add list"
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash" />
-        <activity android:name=".Settings.CommonLayoutActivity">
-
-        </activity>
+        <activity android:name=".Settings.CommonLayoutActivity" />
         <activity
             android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
