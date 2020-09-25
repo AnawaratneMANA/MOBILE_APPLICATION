@@ -553,13 +553,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return false;
     }
 
-    public Cursor getName(SQLiteDatabase database, String name){
+    public Cursor readAlltasks(){
+        String query = "SELECT * FROM " + TABLE2_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
 
-        //SQL
-        String sql = "SELECT * FROM user where UN  = "+ " '" +name+"' ";
-        Cursor data = database.rawQuery(sql, null);
-        return data;
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
-    //Last Added content Tan's Database methods - Comment checkpoint
 
 }
