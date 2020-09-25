@@ -6,28 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".List.ViewAllTasks">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="75dp"
-        android:layout_height="66dp"
-        android:layout_marginBottom="72dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="273dp"
         android:layout_height="68dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="16dp"
         android:text="@string/view_tasks"
         android:textColorHighlight="#2196F3"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="411dp"
+        android:layout_height="492dp"
+        android:paddingLeft="20dp"
+        tools:layout_editor_absoluteY="107dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnaddTask"
+        android:layout_width="116dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="40dp"
+        android:background="@color/colorAccent"
+        android:onClick="moveToTaskApplication"
+        android:text="Add Tasks"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
