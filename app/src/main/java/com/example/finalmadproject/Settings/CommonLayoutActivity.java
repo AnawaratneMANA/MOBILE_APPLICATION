@@ -1,6 +1,8 @@
 //This class is temporary class should be removed afterwards
 package com.example.finalmadproject.Settings;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,16 +23,28 @@ public class CommonLayoutActivity extends AppCompatActivity {
     private Button home;
     private Button list;
     private Button tempList;
+
+
+    // initializing variable
+    //implemented by tandin
+    DrawerLayout drawerLayout;
+    //end of implementation
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commonlayout);
+
+        //implemented by tandin
+        drawerLayout = findViewById(R.id.drawerLayout);
+        //end of implementation
 
         //Register elements
         settings = findViewById(R.id.button_settings);
         home = findViewById(R.id.button_task_manager);
         list = findViewById(R.id.button_list);
         tempList = findViewById(R.id.button_LIst);
+
 
 
         //set on click listener to the buttons
@@ -69,5 +83,37 @@ public class CommonLayoutActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //tandin implementation
+    public void ClickMenu(View view){
+        //open drawer
+        openDrawer(drawerLayout);
+    }
+
+    private static void openDrawer(DrawerLayout drawerLayout) {
+        //open drawer layout
+
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogo(View view){
+        //close drawer
+        closeDrawer(drawerLayout);
+    }
+
+    private static void closeDrawer(DrawerLayout drawerLayout) {
+        //closing the layout
+        //check conditon
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            //when drawer is open
+            //close the drawer
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickHome(View view){
+        //recreate activity
+        recreate();
     }
 }
