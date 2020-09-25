@@ -82,6 +82,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_TITLE + " TEXT, " +
             COLUMN_DES + " TEXT);";
 
+    //tan's DB part
+
+    public static final String CREATE_TABLE_Login = "create table user (UID INTEGER PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
+    public static final String DROP_TABLE_Login = "drop table if exists user";
+
     //Create the constructor
     public DatabaseHelper(Context context)
     {
@@ -94,11 +99,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Create new tables
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
+        //tan's Table creation
+        sqLiteDatabase.execSQL(CREATE_TABLE_Login);
+
+
         sqLiteDatabase.execSQL(CREATE_TABLE);
         sqLiteDatabase.execSQL(CREATE_TABLE2); //Testing
 
         //Salitha's Table Creation.
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
+
 
         //Taneesha table creation
         sqLiteDatabase.execSQL(query);
@@ -108,6 +119,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Update tables
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+        //tan's Data
+        sqLiteDatabase.execSQL(DROP_TABLE_Login);
+
+
         sqLiteDatabase.execSQL(DROP_TABLE);
         sqLiteDatabase.execSQL(DROP_TABLE2);
         onCreate(sqLiteDatabase);
@@ -115,6 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Salithas Database Related codes.
         sqLiteDatabase.execSQL(DROP_TABLE_SL);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+
         onCreate(sqLiteDatabase);
 
 
@@ -317,7 +334,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " SET " + SUBJECT_NAME + " = " + new_name +
                 " WHERE " + SUBJECT_NAME + " = " + old_name;
 
-        //Excute the statement
+        //Excute the statementsqLiteDatabase.execSQL(CREATE_TABLE_Login);
         try{
             db.execSQL(SQL);
             return true;
@@ -505,6 +522,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+
+    //tandin's DB
+    public boolean insert(String FN, String UN, String PW){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("FN",FN );
+        contentValues.put("UN",UN );
+        contentValues.put("PW",PW );
+        long ins = db.insert("user", null,contentValues);
+
+        if(ins == -1) return false;
+        else return true;
+    }
+    //checking if UN exists
+    public Boolean chkUN(String UN){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from user where UN = ?",new String[]{UN});
+        if(cursor.getCount()>0) return false;
+        else return true;
+    }
+
+    //checking the Username and password
+    public Boolean UNPW(String UN, String PW){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from user where UN =?  and PW =? ", new String[] {UN,PW});
+        if(cursor.getCount()>0) return true;
+        else return false;
     }
 
 }

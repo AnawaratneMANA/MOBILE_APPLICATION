@@ -14,12 +14,21 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TaskManagement.ReadTaksSelectable"></activity>
         <activity android:name=".List.UpdateActivity" />
+
+        <activity android:name=".TanPart.StaticActivity"></activity>
+        <activity android:name=".TanPart.home"></activity>
+        <activity android:name=".TanPart.UserAction"></activity>
         <activity
             android:name=".List.AddActivity"
             android:label="Add list"
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash"></activity>
         <activity android:name=".Settings.CommonLayoutActivity">
+
+        </activity>
+        <activity
+            android:name=".TanPart.T_MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
