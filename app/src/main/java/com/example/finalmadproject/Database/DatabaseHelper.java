@@ -552,7 +552,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) return true;
         else return false;
     }
+    public Cursor getName(SQLiteDatabase database, String name){
 
+        //SQL
+        String sql = "SELECT * FROM user where UN  = "+ " '" +name+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
+    }
     public Cursor readAlltasks(){
         String query = "SELECT * FROM " + TABLE2_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
