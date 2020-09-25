@@ -1,6 +1,8 @@
-package com.example.finalmadproject.List;
+package com.example.finalmadproject.List ;
+
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
+import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 import com.example.finalmadproject.R;
 
 import androidx.appcompat.app.ActionBar;
@@ -17,7 +20,7 @@ import com.example.finalmadproject.R;
 public class UpdateActivity extends AppCompatActivity {
 
     EditText title_input,description;
-    Button update_button,del_button;
+    Button update_button,del_button , taskTravelButton;
 
     String id,title,des;
 
@@ -30,6 +33,15 @@ public class UpdateActivity extends AppCompatActivity {
         description = findViewById(R.id.description2);
         update_button = findViewById(R.id.update_button);
         del_button = findViewById(R.id.delete_button);
+        taskTravelButton = findViewById(R.id.add_task);
+
+        taskTravelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateActivity.this, ReadTaksSelectable.class);
+                startActivity(intent);
+            }
+        });
 
         getAndSetIntentData();
 
