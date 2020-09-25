@@ -24,18 +24,20 @@ public class ReadTaksSelectable extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_taks_selectable);
-
+        //Call the method
+        readTasks();
         //Register Items
         list = findViewById(R.id.listView);
     }
 
-    //Creating method to read the takss and add them to the list
+    //Creating method to read the Tasks and add them to the list
     public void readTasks(){
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
         //Create this process in a separate thread.
         SQLiteDatabase database = databaseHelper.getReadableDatabase();
 
         Cursor cursor = databaseHelper.readTasks(database);
+        list = findViewById(R.id.listView);
 
         //Loop to iterate the entire cursor object
         String string = "";
@@ -45,20 +47,13 @@ public class ReadTaksSelectable extends AppCompatActivity {
         {
             //String id = Integer.toString(cursor.getColumnIndex(TASK_ID));
             String name = cursor.getString(cursor.getColumnIndex(TASK_NAME));
-            //String description = cursor.getString(cursor.getColumnIndex(TASK_DESCRIPTION));
-            //subject = cursor.getString(cursor.getColumnIndex(TASK_SUBJECT));
-            //String date = cursor.getString(cursor.getColumnIndex(TASK_DATE));
-            //Add files to the ArrayList
-            listName.add(name);
-            //listDescription.add(description);
 
-            //concatenate the text into a variable
-            /*string = string + "\n\n" + "TASK ID - " +id+  "\nTASK NAME - " +name+
-                    "\nTASK DESCRIPTION - " + description+ "\nTASK SUBJECT - " +subject+ "\nTASK DATE - " +date;*/
+            listName.add(name);
+            System.out.println(name); //Testing
         }
 
         //Creating a ListAdapter and pass the arrayList
-        ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,listName);
+        ListAdapter adapter = new ArrayAdapter<>(ReadTaksSelectable.this, android.R.layout.simple_list_item_1,listName);
         list.setAdapter(adapter); //Creating Update function on DialogFragment.
     }
 }
