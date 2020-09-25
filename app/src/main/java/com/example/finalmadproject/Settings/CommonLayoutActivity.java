@@ -6,6 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -64,7 +65,11 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
         Cursor name = db.getName(database, variable);
         name.moveToNext();
-        string_name = name.getString(name.getColumnIndex("FN"));
+        try {
+            string_name = name.getString(name.getColumnIndex("FN"));
+        }catch (CursorIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
         txt_na.setText("Hello, "+ String.valueOf(string_name));
        //used for testing purpose
        // System.out.println(string_name);

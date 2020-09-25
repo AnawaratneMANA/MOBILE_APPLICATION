@@ -74,6 +74,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(),"successfully Login", Toast.LENGTH_SHORT).show();
 
                     Intent st = new Intent(getActivity(), CommonLayoutActivity.class);
+                    //sending data to make it a session
                     Bundle bundle = new Bundle();
                     st.putExtra("name", e1);
                     startActivity(st);
