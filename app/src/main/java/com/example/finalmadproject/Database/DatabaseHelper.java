@@ -147,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.insert(TABLE2_NAME, null, contentValues);
         Log.d("Database Operations", "One Task inserted");
     }
+
     //Adding Another method to populate the spinner
     public ArrayList<String> getAllSubjects() {
 
@@ -219,7 +220,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    //Method
+    //Method to read single data in the database.
     public Cursor readSubjectsName(String name, SQLiteDatabase database){
         //String Array
         String SQL  = "SELECT * FROM " + TABLE_NAME;
