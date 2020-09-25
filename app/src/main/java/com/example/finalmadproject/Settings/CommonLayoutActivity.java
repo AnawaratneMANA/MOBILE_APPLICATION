@@ -116,4 +116,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //recreate activity
         recreate();
     }
+
+    @Override
+    public void onBackPressed(){
+
+    }
 }
