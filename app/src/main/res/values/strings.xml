@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Final Mad Project</string>
+    <string name="app_name">Task Tracker</string>
     <string name="title_activity_sounds">Sounds</string>
     <string name="title_activity_Notification">Notification</string>
     <string name="title_activity_Background">Background</string>
@@ -50,5 +50,32 @@
     <string name="you_have_no_current_tasks">You have no current tasks.....</string>
     <string name="todo">TODO</string>
     <string name="view_tasks">View Tasks</string>
+
+    <!-- Tan part String values -->
+    <string name="swipe_left_for_register">Swipe Left for Register</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">UserName</string>
+    <string name="tag">Let\'s join us and \nOrganized your list.</string>
+    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
+
+    <!-- components for activity_user_action-->
+    <string name="btn_flag">Flag</string>
+    <string name="btn_remind">Remind</string>
+    <string name="btn_temporary">Temporary</string>
+
+    <!-- component for static activity -->
+    <string name="u_name">Mr.X</string>
+    <string name="time">13:54</string>
+    <string name="week">Monday</string>
+
+    <!-- component for home panel-->
+    <string name="app_info">This is the app to keep your reminders and task of subjects</string>
+    <string name="TtoD">use the dynamic app to keep track of your assignments and dues</string>
+    <string name="Feedback">Contact Us at :</string>
+
 
 </resources>
