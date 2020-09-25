@@ -12,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TaskManagement.ReadTaksSelectable"></activity>
+        <activity android:name=".List.ViewAllTasks"></activity>
+        <activity android:name=".TaskManagement.ReadTaksSelectable" />
         <activity android:name=".List.UpdateActivity" />
         <activity
             android:name=".List.AddActivity"
             android:label="Add list"
             android:parentActivityName=".List.MainActivity_List" />
-        <activity android:name=".List.Splash"></activity>
+        <activity android:name=".List.Splash" />
         <activity android:name=".Settings.CommonLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
