@@ -553,4 +553,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return false;
     }
 
+    public Cursor readAlltasks(){
+        String query = "SELECT * FROM " + TABLE2_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
 }
