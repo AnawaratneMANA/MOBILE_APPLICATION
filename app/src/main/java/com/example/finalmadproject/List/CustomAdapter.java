@@ -24,6 +24,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     Activity activity;
     private ArrayList id, title, description;
+    ArrayList idFiltered, titleFiltered, descriptionFiltered;
     ArrayList<String> arrayList;
 
     Animation translate_anim;
@@ -37,9 +38,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.id = id;
         this.title = title;
         this.description = description;
-        arrayList = new ArrayList<>(title);
-        //this.arrayList = new ArrayList<>(title);
-        //this.arrayList = new ArrayList<>(description);
+        this.idFiltered = id;
+        this.titleFiltered = title;
+        this.descriptionFiltered = description;
 
 
     }
@@ -56,16 +57,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         this.position = position;
 
-        holder.id.setText(String.valueOf(id.get(position)));
-        holder.title.setText(String.valueOf(title.get(position)));
-        holder.description.setText(String.valueOf(description.get(position)));
+        holder.id.setText(String.valueOf(idFiltered.get(position)));
+        holder.title.setText(String.valueOf(titleFiltered.get(position)));
+        holder.description.setText(String.valueOf(descriptionFiltered.get(position)));
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,UpdateActivity.class);
-                intent.putExtra("id",String.valueOf(id.get(position)));
-                intent.putExtra("title",String.valueOf(title.get(position)));
-                intent.putExtra("description",String.valueOf(description.get(position)));
+                intent.putExtra("id",String.valueOf(idFiltered.get(position)));
+                intent.putExtra("title",String.valueOf(titleFiltered.get(position)));
+                intent.putExtra("description",String.valueOf(descriptionFiltered.get(position)));
                 //context.startActivity(intent);
                 activity.startActivityForResult(intent,1);
             }
@@ -74,50 +75,46 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return id.size();
+
+        return idFiltered.size();
     }
 
     //Search data
     @Override
     public Filter getFilter() {
-        return filter;
-    }
-
-    final Filter filter = new Filter() {
-        //run on background thread
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-
-            ArrayList<String> filteredList = new ArrayList<>();
-
-            if (charSequence.toString().isEmpty()) {
-                filteredList.addAll(arrayList);
-            } else {
-                for (String result : arrayList) {
-                    if (result.toLowerCase().contains(charSequence.toString().toLowerCase())) {
-                        filteredList.add(result);
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    idFiltered = id;
+                    titleFiltered = title;
+                    descriptionFiltered = description;
+                } else {
+                    ArrayList filteredId = new ArrayList();
+                    ArrayList filteredTitle = new ArrayList();
+                    ArrayList filteredDescription = new ArrayList();
+                    for (int i = 0; i < title.size(); i++) {
+                        if (((String) title.get(i)).toLowerCase().contains(charString.toLowerCase())) {
+                            filteredId.add((String) id.get(i));
+                            filteredTitle.add((String) title.get(i));
+                            filteredDescription.add((String) description.get(i));
+                        }
                     }
-
+                    idFiltered = filteredId;
+                    titleFiltered = filteredTitle;
+                    descriptionFiltered = filteredDescription;
                 }
-
-
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = titleFiltered;
+                return filterResults;
             }
-
-            FilterResults filterResults = new FilterResults();
-            filterResults.values = filteredList;
-
-            return filterResults;
-        }
-
-        //run on UI thread
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            arrayList.clear();
-            arrayList.addAll((ArrayList<String>) filterResults.values);
-            //arrayList.addAll((Collection<? extends String>) filterResults.values);
-            notifyDataSetChanged();
-        }
-    };
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                notifyDataSetChanged();
+            }
+        };
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
