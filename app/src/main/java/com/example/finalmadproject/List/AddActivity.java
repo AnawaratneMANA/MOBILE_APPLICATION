@@ -1,5 +1,6 @@
 package com.example.finalmadproject.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import com.example.finalmadproject.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
+import com.example.finalmadproject.Settings.Sounds;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -39,7 +41,8 @@ public class AddActivity extends AppCompatActivity {
                 dbHandler.addList(title_input.getText().toString().trim(),
                         description_input.getText().toString().trim());
 
-
+                Intent intent = new Intent(AddActivity.this, MainActivity_List.class);
+                startActivity(intent);
 
             }
         });
