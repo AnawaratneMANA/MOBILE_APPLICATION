@@ -5,9 +5,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.List.MainActivity_List;
@@ -23,7 +26,8 @@ public class CommonLayoutActivity extends AppCompatActivity {
     private Button home;
     private Button list;
     private Button tempList;
-
+    private TextView txt_na;
+    public static String string_name;
 
     // initializing variable
     //implemented by tandin
@@ -36,6 +40,13 @@ public class CommonLayoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commonlayout);
 
         //implemented by tandin
+        //Getting data from login
+        Intent i = getIntent();
+        String variable = i.getStringExtra("name");
+        //used for testing purpose
+        //System.out.println(variable);
+
+        //opening the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
         //end of implementation
 
@@ -44,6 +55,19 @@ public class CommonLayoutActivity extends AppCompatActivity {
         home = findViewById(R.id.button_task_manager);
         list = findViewById(R.id.button_list);
         tempList = findViewById(R.id.button_LIst);
+
+        txt_na = findViewById(R.id.txt_name);
+        //getting the value of FN from UN
+        DatabaseHelper db = new DatabaseHelper(this);
+        SQLiteDatabase database = db.getReadableDatabase();
+
+
+        Cursor name = db.getName(database, variable);
+        name.moveToNext();
+        string_name = name.getString(name.getColumnIndex("FN"));
+        txt_na.setText("Hello, "+ String.valueOf(string_name));
+       //used for testing purpose
+       // System.out.println(string_name);
 
 
 
@@ -112,10 +136,6 @@ public class CommonLayoutActivity extends AppCompatActivity {
         }
     }
 
-    public void ClickHome(View view){
-        //recreate activity
-        recreate();
-    }
 
     @Override
     public void onBackPressed(){
