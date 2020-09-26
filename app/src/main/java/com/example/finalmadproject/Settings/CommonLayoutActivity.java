@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.List.MainActivity_List;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TaskManagement.MainActivity;
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 //Register all the elements
@@ -125,5 +127,19 @@ public class CommonLayoutActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
+    }
+    public void openProfile(View view){
+        //redirectProfile(getActivity() , MainActivity_sl.class);
+    }
+    public void signout(View view){
+        redirectProfile(this , T_MainActivity.class);
+    }
+    public void openSettings(View view){
+        redirectProfile(this , MainActivity_sl.class);
+    }
+    //not working -------------------
+    public static void redirectProfile(Activity activity , Class aclass){
+        Intent intent = new Intent(activity , aclass);
+        activity.startActivity(intent);
     }
 }

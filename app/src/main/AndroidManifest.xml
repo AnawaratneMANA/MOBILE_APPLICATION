@@ -30,11 +30,7 @@
             android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".TaskManagement.UpdateTask" />
@@ -42,8 +38,16 @@
         <activity android:name=".TaskManagement.MainActivity" >
 
         </activity>
-        <activity android:name=".Settings.MainActivity_sl" />
-        <activity android:name=".Settings.Sounds" />
+        <activity android:name=".Settings.MainActivity_sl" >
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".Settings.Sounds" >
+
+        </activity>
         <activity android:name=".List.MainActivity_List" >
 
         </activity>
