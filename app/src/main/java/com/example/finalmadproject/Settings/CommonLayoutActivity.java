@@ -51,16 +51,16 @@ public class CommonLayoutActivity extends AppCompatActivity {
         bt = findViewById(R.id.AddProject);//add tanish akki link
         bt1 =findViewById(R.id.AddTask);//add akash link
 
-        //linking to tanish akki part
+        //Link to List Management.
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newI = new Intent(getApplicationContext(), MainActivity.class);
+                Intent newI = new Intent(getApplicationContext(), MainActivity_List.class);
                 startActivity(newI);
             }
         });
 
-        //linking to akash part
+        //Link to Task Manager
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
