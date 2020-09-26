@@ -559,8 +559,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = database.rawQuery(sql, null);
         return data;
     }
+    //Read Task Taneesha
     public Cursor readAlltasks(){
-        String query = "SELECT * FROM " + TABLE2_NAME;
+        String query = "SELECT " + TASK_NAME + " FROM " + TABLE2_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -569,5 +570,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    //Tasks Adding part Taneesha.
+
+
 
 }

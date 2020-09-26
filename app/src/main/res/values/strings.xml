@@ -76,6 +76,18 @@
     <string name="app_info">This is the app to keep your reminders and task of subjects</string>
     <string name="TtoD">use the dynamic app to keep track of your assignments and dues</string>
     <string name="Feedback">Contact Us at :</string>
+    <string name="ok_label">OK</string>
+    <string name="dismiss_label">Dismiss</string>
+    <string name="clear_all_label">Clear all</string>
+    <string name="dialog_title">All Tasks</string>
 
+    <!--Temp tasks-->
+    <string-array name="Tasks">
+        <item>Task1</item>
+        <item>Task2</item>
+        <item>Task3</item>
+        <item>Task4</item>
+        <item>Task5</item>
+    </string-array>
 
 </resources>

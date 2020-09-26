@@ -28,6 +28,7 @@
         <activity android:name=".Settings.CommonLayoutActivity" />
 
         <!--Main Page -->
+        <!--
         <activity android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -35,7 +36,7 @@
             <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        -->
         <!-- Normal Pages-->
         <activity android:name=".TaskManagement.UpdateTask" />
         <activity android:name=".TaskManagement.UpdateSubject" />
@@ -49,7 +50,10 @@
 
         </activity>
         <activity android:name=".List.MainActivity_List" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
