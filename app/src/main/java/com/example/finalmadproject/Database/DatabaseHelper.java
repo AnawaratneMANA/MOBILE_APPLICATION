@@ -462,24 +462,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void addList(String title, String des){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_DES, des);
-
+        
         if(title.length() == 0){
             Toast.makeText(context, "Please Enter Title", Toast.LENGTH_SHORT).show();
             return;
-
         }
         else if(des.length() == 0){
             Toast.makeText(context, "Please Enter Description", Toast.LENGTH_SHORT).show();
             return;
-
         }
 
-
         long result = db.insert(TABLE_NAME_T, null,cv);
-
 
         if(result == -1){
             Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
@@ -521,7 +516,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else{
             Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
