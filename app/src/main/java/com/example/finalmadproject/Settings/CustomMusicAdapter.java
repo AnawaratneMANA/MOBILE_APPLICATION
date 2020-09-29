@@ -86,9 +86,15 @@ public class CustomMusicAdapter extends BaseAdapter {
                     //added
                     System.out.println("Why not deleting");
                     System.out.println(songLists.getSongID());
-                    int result = mydb.deleteAudios(songLists.getSongID());
-                    Toast.makeText(context , "data deleted" , Toast.LENGTH_LONG).show();
-                    view.getContext().startActivity(new Intent(context, Sounds.class));
+                    boolean result = mydb.deleteAudios(songLists.getSongID());
+                    if (result == true){
+                        Toast.makeText(context , "data deleted" , Toast.LENGTH_LONG).show();
+                        view.getContext().startActivity(new Intent(context, Sounds.class));
+                    }else{
+                        Toast.makeText(context , "data not deleted" , Toast.LENGTH_LONG).show();
+                        view.getContext().startActivity(new Intent(context, Sounds.class));
+                    }
+
                 }
             });
 

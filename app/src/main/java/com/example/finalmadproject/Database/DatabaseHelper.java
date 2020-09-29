@@ -402,10 +402,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return list;
     }
-    public int deleteAudios(String id){
+    public boolean deleteAudios(String id){
         SQLiteDatabase db = getReadableDatabase();
         id = " '"+id+"' ";
-        return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
+        return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) > 0 ;
     }
     //---------------newly added by salitha----------------------------
     //added
