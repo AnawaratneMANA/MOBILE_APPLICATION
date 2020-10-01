@@ -94,12 +94,13 @@ public class ExampleInstrumentedTest {
         //Getting the data for testing
         String name3 = " '"+name1+"' ";
         //Update the subject name
-        //boolean status
+        boolean status = database.UpdateSubject(name1, name2);
+        //Checking assert
+        assertTrue(status);
     }
 
     //IT19121048 - Ekanayaka E.M.S.G
     //added
-
     @Test
     public void InsertAudioFiles() throws CursorIndexOutOfBoundsException {
         //Create data
@@ -130,7 +131,8 @@ public class ExampleInstrumentedTest {
         boolean result = database.updateSelectedStatus(status);
         assertFalse(result);
     }
-    //IT19099514
+
+    //IT19099514 - Taneesha
     @Test
     public void InsertListItems() throws CursorIndexOutOfBoundsException {
         //Create data
