@@ -418,8 +418,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     //---------------newly added by salitha----------------------------
     //added
-    public void updateSelectedStatus(String status) {
+    public boolean updateSelectedStatus(String status) {
         SQLiteDatabase db = this.getWritableDatabase();
+        long st = 0;
+        if(status != "Selected" && status != "Not Selected"){
+            return false;
+        }
         ContentValues cv = new ContentValues();
         ContentValues cv1 = new ContentValues();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
@@ -431,12 +435,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String oldstatusid = cursor.getString(0);
                 System.out.println("3");
                 cv.put(SONG_STATUS, notstatus);
-                try {
-                    db.update(TABLE_SONG_NAME, cv, "SONG_ID=?", new String[]{oldstatusid});
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                st = db.update(TABLE_SONG_NAME, cv, "SONG_ID=?", new String[]{oldstatusid});
+
             }
+        }
+        if (st == -1) {
+            return false;
+        }
+        else {
+            return true;
         }
     }
     //added

@@ -104,10 +104,13 @@ public class CustomMusicAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     //all are added
                     String selectStatus = "Selected";
-                    mydb.updateSelectedStatus(selectStatus);
+                    boolean value = mydb.updateSelectedStatus(selectStatus);
                     mydb.updateStatus(songLists.getSongID() , selectStatus);
-                    Toast.makeText(context , "Status updated" , Toast.LENGTH_LONG).show();
-                    view.getContext().startActivity(new Intent(context, Sounds.class));
+                    if(value == true){
+                        Toast.makeText(context , "Status updated" , Toast.LENGTH_LONG).show();
+                        view.getContext().startActivity(new Intent(context, Sounds.class));
+                    }
+
                 }
             });
 

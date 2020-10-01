@@ -94,6 +94,19 @@ public class ExampleInstrumentedTest {
         boolean result = database.deleteAudios(id);
         assertTrue(result);
     }
-
+    @Test
+    public void UpdateAudioStatus() throws CursorIndexOutOfBoundsException {
+        //if we add status = "Selected" this is true
+        String status = "Selected";
+        boolean result = database.updateSelectedStatus(status);
+        assertTrue(result);
+    }
+    @Test
+    public void UpdateFalseAudioStatus() throws CursorIndexOutOfBoundsException {
+        //if we add status = "xxxxxx" assert becomes true since i passed assertFalse statement
+        String status = "xxxxxx";
+        boolean result = database.updateSelectedStatus(status);
+        assertFalse(result);
+    }
     //ITXX
 }
