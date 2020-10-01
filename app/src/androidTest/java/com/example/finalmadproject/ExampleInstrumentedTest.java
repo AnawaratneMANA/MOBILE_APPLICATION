@@ -56,6 +56,9 @@ public class ExampleInstrumentedTest {
         //Initial testing for Null databases.
         assertNotNull(database);
     }
+
+    //Individual Test cases
+    //IT19086408 - Task Manager DB test cases.
     @Test
     public void addRetriveData() throws CursorIndexOutOfBoundsException {
         //Create data
@@ -71,4 +74,9 @@ public class ExampleInstrumentedTest {
         assertEquals(name, obj.getString(obj.getColumnIndex(SUBJECT_NAME)));
 
     }
+
+    //ITXX
+
+
+    //ITXX
 }
