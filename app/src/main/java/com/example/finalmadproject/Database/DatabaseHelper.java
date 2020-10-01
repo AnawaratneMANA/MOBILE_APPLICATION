@@ -409,7 +409,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean deleteAudios(String id){
         SQLiteDatabase db = getReadableDatabase();
         id = " '"+id+"' ";
-        return db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) > 0 ;
+        long result = db.delete(TABLE_SONG_NAME, SONG_ID + "=" + id, null) ;
+        if(result == -1){
+            return false;
+        }
+        else
+            return true;
     }
     //---------------newly added by salitha----------------------------
     //added
@@ -442,19 +447,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
 
         while (cursor.moveToNext()) {
-
-            System.out.println("13");
             if (cursor.getString(0).equals(songID)){
-
-                System.out.println("14");
                 cv1.put(SONG_STATUS, status);
                 try{
-                    System.out.println("11");
                     db.update(TABLE_SONG_NAME,cv1, "song_id=?",new String[]{songID});
-                    System.out.println("12");
                     return;
                 } catch (SQLException e) {
-                    System.out.println("salitha");
                     e.printStackTrace();
                 }
             }

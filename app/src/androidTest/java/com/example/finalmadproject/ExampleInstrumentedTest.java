@@ -75,8 +75,25 @@ public class ExampleInstrumentedTest {
 
     }
 
-    //ITXX
+    //IT19121048 - Ekanayaka E.M.S.G
+    //added
 
+    @Test
+    public void InsertAudioFiles() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String name = "audio1";
+        String path = "path1";
+        boolean result = database.insertData(name , path);
+        assertTrue(result);
+    }
+    //added
+    @Test
+    public void DeleteAudioFiles() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String id = "1";
+        boolean result = database.deleteAudios(id);
+        assertTrue(result);
+    }
 
     //ITXX
 }
