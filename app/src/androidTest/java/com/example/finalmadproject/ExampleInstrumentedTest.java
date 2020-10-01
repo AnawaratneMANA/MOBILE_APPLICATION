@@ -72,7 +72,29 @@ public class ExampleInstrumentedTest {
         //Testing
         obj.moveToNext();
         assertEquals(name, obj.getString(obj.getColumnIndex(SUBJECT_NAME)));
-
+    }
+    @Test
+    public void deleteDataValidation(){
+        //Adding Data to delete
+        String name = "Testing Subject for Delete";
+        //Calling the method
+        database.addSubject(name, db2);
+        //Delete the subject.
+        boolean status = database.DeleteSubject(name);
+        //Check
+        assertTrue(status);
+    }
+    @Test
+    public void updateValidation(){
+        //Adding Data to delete
+        String name1 = "Testing Subject for Update";
+        String name2 = "File Updated";
+        //Calling the method
+        database.addSubject(name1, db2);
+        //Getting the data for testing
+        String name3 = " '"+name1+"' ";
+        //Update the subject name
+        //boolean status
     }
 
     //IT19121048 - Ekanayaka E.M.S.G
