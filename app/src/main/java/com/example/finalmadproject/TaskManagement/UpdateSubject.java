@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
@@ -52,6 +53,8 @@ public class UpdateSubject extends AppCompatActivity {
         id.moveToNext();
         try{
             old_id = Integer.parseInt(id.getString(id.getColumnIndex(SUBJECT_ID)));
+            //Testing Old id
+            System.out.println("This is the Old Id -------------------------- " + old_id);
         } catch(java.lang.NumberFormatException e){
             e.printStackTrace();
         }
@@ -91,26 +94,36 @@ public class UpdateSubject extends AppCompatActivity {
                 boolean status = false;
 
                 //Calling the update query. -- Check this one again.
-                if((flag == 1 && old_id != database_id)){
-                    status = false;
-                    System.out.println("1-------------------------------");
-                }else if((flag == 1 && old_id == database_id)){
-                    //Update the same value with the same name.
-                    status = databaseHelper.UpdateSubject(new_name, old_name);
-                    System.out.println("2-------------------------------");
-                } else if(flag == 0) {
-                    obj.moveToFirst();
-                    database_name = obj.getString(obj.getColumnIndex(SUBJECT_NAME));
-                    if(database_name.contentEquals(new_name)){
-                        System.out.println("3E-------------------------------");
-                    } else {
-                        System.out.println("3-------------------------------");
-                        //Safe Update when such value is not there.
-                        status = databaseHelper.UpdateSubject(new_name, old_name);
-                        System.out.println(new_name + "   " + database_name);
-                    }
+                //Old Validation Technique.
+//                if((flag == 1 && old_id != database_id)){
+//                    status = false;
+//                    System.out.println("1-------------------------------");
+//                }else if((flag == 1 && old_id == database_id)){
+//                    //Update the same value with the same name.
+//                    status = databaseHelper.UpdateSubject(new_name, old_name);
+//                    System.out.println("2-------------------------------");
+//                } else if(flag == 0) {
+//                    obj.moveToFirst();
+//                    database_name = obj.getString(obj.getColumnIndex(SUBJECT_NAME));
+//                    if(database_name.contentEquals(new_name)){
+//                        System.out.println("3E-------------------------------");
+//                    } else {
+//                        System.out.println("3-------------------------------");
+//                        //Safe Update when such value is not there.
+//                        status = databaseHelper.UpdateSubject(new_name, old_name);
+//                        System.out.println(new_name + "   " + database_name);
+//                    }
+//
+//                }
 
+                //New Validation Technique
+                if(flag == 1){
+                    status = false;
+                } else if(flag == 0) {
+                    status = databaseHelper.UpdateSubject(new_name, old_name);
+                    System.out.println("Database Updated successfully");
                 }
+
 
                 //Confirmation
                 if (status == true){
@@ -132,9 +145,9 @@ public class UpdateSubject extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    //Navigate back to the MainActivity.
-                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
-                                    startActivity(headingback);
+                                    //Create a Toast Message.
+                                    Toast.makeText(UpdateSubject.this, "Enter the values again", Toast.LENGTH_SHORT).show();
+
                                 }
                             });
                     AlertDialog alert = builder.create();

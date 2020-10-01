@@ -40,7 +40,12 @@
         <activity android:name=".TaskManagement.UpdateTask" />
         <activity android:name=".TaskManagement.UpdateSubject" />
         <activity android:name=".TaskManagement.MainActivity" >
-
+            <!-- Temporary enable Task Manager as the main windows.
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".Settings.MainActivity_sl" >
 

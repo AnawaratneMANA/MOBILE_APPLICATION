@@ -239,11 +239,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Method to read single data in the database.
     public Cursor readSubjectsName(String name, SQLiteDatabase database){
+        //String formatting
+        name = " '"+name+"' ";
+
         //String Array
-        String SQL  = "SELECT * FROM " + TABLE_NAME;
+        String SQL1  = "SELECT * FROM " + TABLE_NAME;
+        String SQL2  = "SELECT * FROM " + TABLE_NAME + " WHERE " + SUBJECT_NAME + " = " + name ;
 
         //Declare the cursor object
-        Cursor data = database.rawQuery(SQL, null);
+        Cursor data = database.rawQuery(SQL2, null);
         return data;
     }
 
