@@ -3,7 +3,8 @@
     package="com.example.finalmadproject">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,40 +12,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".TanPart.Project_panel"></activity>
+        <activity android:name=".TanPart.Task_panel" />
+        <activity android:name=".List.ViewAllTasks" />
+        <activity android:name=".TaskManagement.ReadTaksSelectable" />
         <activity android:name=".List.UpdateActivity" />
+        <activity android:name=".TanPart.StaticActivity" />
+        <activity android:name=".TanPart.home" />
+        <activity android:name=".TanPart.UserAction" />
         <activity
             android:name=".List.AddActivity"
             android:label="Add list"
-            android:parentActivityName=".List.MainActivity_List"/>
-        <activity android:name=".List.Splash">
-        </activity>
+            android:parentActivityName=".List.MainActivity_List" />
+        <activity android:name=".List.Splash" />
+        <activity android:name=".Settings.CommonLayoutActivity" />
 
-        <activity android:name=".Settings.CommonLayoutActivity">
+        <!--Main Page -->
+        <activity android:name=".TanPart.T_MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TaskManagement.UpdateTask"></activity>
-        <activity android:name=".TaskManagement.UpdateSubject"></activity>
-        <activity android:name=".TaskManagement.MainActivity"></activity>
-        <activity android:name=".Settings.MainActivity_sl"></activity>
-        <activity android:name=".Settings.Sounds"></activity>
 
-
-        <!--Testing Running code-->
-        <!--
-        <activity android:name=".Settings.MainActivity">
+        <!-- Normal Pages-->
+        <activity android:name=".TaskManagement.UpdateTask" />
+        <activity android:name=".TaskManagement.UpdateSubject" />
+        <activity android:name=".TaskManagement.MainActivity" >
+            <!-- Temporary enable Task Manager as the main windows.
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            -->
         </activity>
-        -->
+        <activity android:name=".Settings.MainActivity_sl" >
 
+        </activity>
+        <activity android:name=".Settings.Sounds" >
+
+        </activity>
+        <activity android:name=".List.MainActivity_List" >
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
     </application>
 
 </manifest>

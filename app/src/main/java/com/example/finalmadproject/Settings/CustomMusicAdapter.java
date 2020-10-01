@@ -21,7 +21,8 @@ public class CustomMusicAdapter extends BaseAdapter {
     private Context context;
     ArrayList<SongList> songList;
     //added
-    TextView textName , textID;
+    //added
+    TextView textName , textID , textStatus;
     Button btnPlay , btnPause , btnDelete , btnAssignToAlarm;
     private int layout;
     DatabaseHelper mydb;
@@ -49,6 +50,8 @@ public class CustomMusicAdapter extends BaseAdapter {
             //added
             textID = (TextView) view.findViewById(R.id.textID);
             textName = (TextView) view.findViewById(R.id.textName);
+            //added
+            textStatus = (TextView) view.findViewById(R.id.textStatus);
             btnPlay = (Button) view.findViewById(R.id.playButton);
             btnPause = (Button) view.findViewById(R.id.pauseButton);
             btnDelete = (Button) view.findViewById(R.id.deleteButton);
@@ -56,10 +59,12 @@ public class CustomMusicAdapter extends BaseAdapter {
             btnAssignToAlarm = (Button) view.findViewById(R.id.assignToButton);
             final SongList songLists = songList.get(i);
             String songname2 = songLists.getSongName();
-            String songname = songname2.substring(songname2.length() - 10);
-            textName.setText(songname);
+            //updated due to sudden problem
+            //String songname = songname2.substring(songname2.length() - 10);
+            textName.setText(songname2);
             //added
             textID.setText(songLists.getSongID());
+            textStatus.setText(songLists.getStatus());
             btnPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -82,12 +87,32 @@ public class CustomMusicAdapter extends BaseAdapter {
                     //added
                     System.out.println("Why not deleting");
                     System.out.println(songLists.getSongID());
-                    int result = mydb.deleteAudios(songLists.getSongID());
-                    Toast.makeText(context , "data deleted" , Toast.LENGTH_LONG).show();
-                    view.getContext().startActivity(new Intent(context, Sounds.class));
+                    boolean result = mydb.deleteAudios(songLists.getSongID());
+                    if (result == true){
+                        Toast.makeText(context , "data deleted" , Toast.LENGTH_LONG).show();
+                        view.getContext().startActivity(new Intent(context, Sounds.class));
+                    }else{
+                        Toast.makeText(context , "data not deleted" , Toast.LENGTH_LONG).show();
+                        view.getContext().startActivity(new Intent(context, Sounds.class));
+                    }
+
                 }
             });
 
+            btnAssignToAlarm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //all are added
+                    String selectStatus = "Selected";
+                    boolean value = mydb.updateSelectedStatus(selectStatus);
+                    mydb.updateStatus(songLists.getSongID() , selectStatus);
+                    if(value == true){
+                        Toast.makeText(context , "Status updated" , Toast.LENGTH_LONG).show();
+                        view.getContext().startActivity(new Intent(context, Sounds.class));
+                    }
+
+                }
+            });
 
         }
 
@@ -96,13 +121,6 @@ public class CustomMusicAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 mediaPlayer.stop();
-
-            }
-        });
-
-        btnAssignToAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
             }
         });

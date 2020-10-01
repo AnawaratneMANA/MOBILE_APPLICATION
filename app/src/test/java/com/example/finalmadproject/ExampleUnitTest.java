@@ -1,6 +1,12 @@
 package com.example.finalmadproject;
 
+import com.example.finalmadproject.Database.DatabaseHelper;
+
+import junit.framework.TestSuite;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 
 import static org.junit.Assert.*;
 
@@ -9,9 +15,20 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class ExampleUnitTest  {
+
+
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
+    //Individual Test Cases
+    //Akash
+
+
+    //Salitha
+    //Tannesha
+    //Tandin
 }

@@ -1,13 +1,17 @@
 package com.example.finalmadproject.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.finalmadproject.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
+import com.example.finalmadproject.Settings.Sounds;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -36,10 +40,30 @@ public class AddActivity extends AppCompatActivity {
                     return;
                 }
 
-                dbHandler.addList(title_input.getText().toString().trim(),
+                if(title_input.getText().toString() == null){
+                    title_input.setError("Enter data");
+                    return;
+                }
+                else if(description_input.getText().toString() == null){
+                    description_input.setError("Enter Description");
+                    return;
+                }
+
+                boolean result = dbHandler.addList(title_input.getText().toString().trim(),
                         description_input.getText().toString().trim());
 
+                if(result == true){
+                    Intent intent = new Intent(AddActivity.this, MainActivity_List.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Added Successfully!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(AddActivity.this, MainActivity_List.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
+                }
 
+                //Intent intent = new Intent(AddActivity.this, MainActivity_List.class);
+                //startActivity(intent);
 
             }
         });

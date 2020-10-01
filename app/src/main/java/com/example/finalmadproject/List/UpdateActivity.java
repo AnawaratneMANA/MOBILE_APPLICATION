@@ -1,6 +1,8 @@
-package com.example.finalmadproject.List;
+package com.example.finalmadproject.List ;
+
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
+import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 import com.example.finalmadproject.R;
 
 import androidx.appcompat.app.ActionBar;
@@ -17,7 +20,7 @@ import com.example.finalmadproject.R;
 public class UpdateActivity extends AppCompatActivity {
 
     EditText title_input,description;
-    Button update_button,del_button;
+    Button update_button,del_button , taskTravelButton;
 
     String id,title,des;
 
@@ -30,6 +33,15 @@ public class UpdateActivity extends AppCompatActivity {
         description = findViewById(R.id.description2);
         update_button = findViewById(R.id.update_button);
         del_button = findViewById(R.id.delete_button);
+        taskTravelButton = findViewById(R.id.add_task);
+
+        taskTravelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateActivity.this, ReadTaksSelectable.class);
+                startActivity(intent);
+            }
+        });
 
         getAndSetIntentData();
 
@@ -45,7 +57,13 @@ public class UpdateActivity extends AppCompatActivity {
                 DatabaseHelper dbHandler = new DatabaseHelper(UpdateActivity.this);
                 title = title_input.getText().toString().trim();
                 des = description.getText().toString().trim();
-                dbHandler.updateData(id,title,des);
+                boolean result = dbHandler.updateData(id,title,des);
+
+                if(result == true){
+                    Toast.makeText(getApplicationContext(),"Updated Successfully!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
@@ -86,7 +104,12 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DatabaseHelper dbHandler = new DatabaseHelper(UpdateActivity.this);
-                dbHandler.deleteOneRow(id);
+               boolean result =  dbHandler.deleteOneRow(id);
+               if(result == true){
+                   Toast.makeText(getApplicationContext(), "Failed to delete", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(getApplicationContext(),"Successfully Deleted", Toast.LENGTH_SHORT).show();
+               }
                 finish();
             }
         });

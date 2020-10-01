@@ -41,6 +41,7 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
     String Date;
     int Id_number;
     TextView date;
+    int flag = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,7 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
             @Override
             public void onClick(View view) {
                 boolean status;
+
                 //Empty textbox validation.
                 if(etname.getText().toString().contentEquals("")){
                     etname.setError("Enter the Name!");
@@ -109,24 +111,9 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
                     etdescription.setError("Enter the Description!");
                     return;
                 }
-                //TODO: date validation is no needed.
-//                if(Date.contentEquals("")){
-//                    System.out.println("Method is running");
-//                    //Show a dialog message when date is not set
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
-//                    builder.setMessage("Set the Date before submitting.")
-//                            .setCancelable(false)
-//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    //Create a Instruction Message
-//                                    Toast.makeText(UpdateTask.this, "Enter the values again", Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                    AlertDialog alert = builder.create();
-//                    alert.show();
+
                  else {
                     DatabaseHelper dbhelper = new DatabaseHelper(getApplication());
-
                     //Get data from the database
                     String name_existing = "";
                     try {
@@ -139,25 +126,27 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
 
                     //Check the Cursor for the name value
                     if (!(name_existing.contentEquals(old_name))){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
-                        builder.setMessage("Subject is already exist in the database.")
-                                .setCancelable(false)
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        //Create a Instruction Message
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
+//                        builder.setMessage("Subject is already exist in the database.")
+//                                .setCancelable(false)
+//                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int id) {
+//                                        //Create a Instruction Message
                                         Toast.makeText(UpdateTask.this, "Enter the values again", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                        AlertDialog alert = builder.create();
-                        alert.show();
+                                        flag--;
+//                                    }
+//                                });
+//                        AlertDialog alert = builder.create();
+//                        alert.show();
                     } else {
                         //If no  any issues then write to the db
                         status = dbhelper.UpdateDetails(old_name, etname.getText().toString(),etdescription.getText().toString(), selected_subject,  date.getText().toString());
+                        flag++;
                     }
                 }
 
                 //Confirmation.
-                if (true){
+                if (flag == 3){
                     AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
                     builder.setMessage("Item Successfully Updated")
                             .setCancelable(false)
@@ -170,15 +159,15 @@ public class UpdateTask extends AppCompatActivity implements DatePickerDialog.On
                             });
                     AlertDialog alert = builder.create();
                     alert.show();
-                } else {
+                } else if(flag == 1) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(UpdateTask.this);
                     builder.setMessage("Error in Updating the Item!")
                             .setCancelable(false)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     //Navigate back to the MainActivity.
-                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
-                                    startActivity(headingback);
+//                                    Intent headingback = new Intent(getApplication(), MainActivity.class);
+//                                    startActivity(headingback);
                                 }
                             });
                     AlertDialog alert = builder.create();
