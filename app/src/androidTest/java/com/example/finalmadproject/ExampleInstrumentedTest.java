@@ -108,5 +108,41 @@ public class ExampleInstrumentedTest {
         boolean result = database.updateSelectedStatus(status);
         assertFalse(result);
     }
-    //ITXX
+    //IT19099514
+    @Test
+    public void InsertListItems() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String title = "title1";
+        String description = "des1";
+        boolean result = database.addList(title,description);
+        assertTrue(result);
+    }
+    @Test
+    public void InsertListItemsFalseValidation() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String title = "";
+        String description = "des1";
+        boolean result = database.addList(title,description);
+        assertFalse(result);
+    }
+
+    @Test
+    public void UpdateListItems() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String id = "6";
+        String title = "title2";
+        String description = "des2";
+        boolean result = database.updateData(id,title,description);
+        assertTrue(result);
+    }
+
+    @Test
+    public void DeleteListItems() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String id = "7";
+        boolean result = database.deleteOneRow(id);
+        assertTrue(result);
+    }
+
+
 }
