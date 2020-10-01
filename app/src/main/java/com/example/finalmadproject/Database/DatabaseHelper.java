@@ -468,27 +468,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //taneesha - DB methods ------------------------------------------------------------------------
-    public void addList(String title, String des){
+    public boolean addList(String title, String des){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, title);
         cv.put(COLUMN_DES, des);
         
-        if(title.length() == 0){
-            Toast.makeText(context, "Please Enter Title", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else if(des.length() == 0){
-            Toast.makeText(context, "Please Enter Description", Toast.LENGTH_SHORT).show();
-            return;
-        }
+       if(title.length() == 0){
+           //Toast.makeText(context, "Please Enter Title", Toast.LENGTH_SHORT).show();
+           return false;
+       }
+       else if(des.length() == 0){
+        //    Toast.makeText(context, "Please Enter Description", Toast.LENGTH_SHORT).show();
+          return false;
+       }
 
         long result = db.insert(TABLE_NAME_T, null,cv);
 
         if(result == -1){
-            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show();
+
+            return false;
         }else{
-            Toast.makeText(context,"Added Successfully!", Toast.LENGTH_SHORT).show();
+
+            return true;
         }
     }
 
@@ -503,7 +505,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void updateData(String row_id,String title, String description){
+    public boolean updateData(String row_id,String title, String description){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, title);
@@ -511,19 +513,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long result = db.update(TABLE_NAME_T,cv, "_id=?",new String[]{row_id});
         if(result == -1){
-            Toast.makeText(context,"Failed to update.",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Failed to update.",Toast.LENGTH_SHORT).show();
+            return false;
         }else{
-            Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
+            return true;
         }
     }
 
-    public void deleteOneRow(String row_id){
+    public boolean deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME_T, "_id=?", new String[]{row_id});
         if(result == -1){
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+            return false;
         }else{
-            Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"Successfully Deleted", Toast.LENGTH_SHORT).show();
+            return true;
         }
     }
 
