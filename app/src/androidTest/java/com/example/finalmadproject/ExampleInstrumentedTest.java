@@ -81,8 +81,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void InsertAudioFiles() throws CursorIndexOutOfBoundsException {
         //Create data
-        String name = "audio1";
-        String path = "path1";
+        String name = "audio2";
+        String path = "path2";
         boolean result = database.insertData(name , path);
         assertTrue(result);
     }
@@ -108,5 +108,42 @@ public class ExampleInstrumentedTest {
         boolean result = database.updateSelectedStatus(status);
         assertFalse(result);
     }
-    //ITXX
+
+
+    //IT19099514-Taneesha
+    @Test
+    public void InsertListItems() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String title = "title1";
+        String description = "des1";
+        boolean result = database.addList(title , description);
+        assertTrue(result);
+    }
+    @Test
+    public void InsertListItemsFalseMassege() throws CursorIndexOutOfBoundsException {
+        //when pass null value assert will be false
+        String title = "";
+        String description = "des1";
+        boolean result = database.addList(title , description);
+        assertFalse(result);
+    }
+    @Test
+    public void UpdateListItems() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String id = "rowid";
+        String title = "title2";
+        String description = "des2";
+        boolean result = database.updateData(id, title , description);
+        assertTrue(result);
+    }
+
+    @Test
+    public void DeleteListItems() throws CursorIndexOutOfBoundsException {
+        //Create data
+        String id = "2";
+        boolean result = database.deleteOneRow(id);
+        assertTrue(result);
+    }
+
+
 }

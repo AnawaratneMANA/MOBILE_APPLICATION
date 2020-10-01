@@ -57,7 +57,13 @@ public class UpdateActivity extends AppCompatActivity {
                 DatabaseHelper dbHandler = new DatabaseHelper(UpdateActivity.this);
                 title = title_input.getText().toString().trim();
                 des = description.getText().toString().trim();
-                dbHandler.updateData(id,title,des);
+                boolean result = dbHandler.updateData(id,title,des);
+
+                if(result == true){
+                    Toast.makeText(getApplicationContext(),"Updated Successfully!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
@@ -98,7 +104,12 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DatabaseHelper dbHandler = new DatabaseHelper(UpdateActivity.this);
-                dbHandler.deleteOneRow(id);
+               boolean result =  dbHandler.deleteOneRow(id);
+               if(result == true){
+                   Toast.makeText(getApplicationContext(), "Failed to delete", Toast.LENGTH_SHORT).show();
+               }else{
+                   Toast.makeText(getApplicationContext(),"Successfully Deleted", Toast.LENGTH_SHORT).show();
+               }
                 finish();
             }
         });
