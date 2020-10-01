@@ -104,6 +104,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void InsertAudioFiles() throws CursorIndexOutOfBoundsException {
         //Create data
+        //when we add same name and path again this will case an error because
+        //I have added some duplicate validations
         String name = "audio1";
         String path = "path1";
         boolean result = database.insertData(name , path);
