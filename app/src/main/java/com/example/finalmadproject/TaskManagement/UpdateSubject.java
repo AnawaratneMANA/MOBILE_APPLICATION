@@ -112,7 +112,6 @@ public class UpdateSubject extends AppCompatActivity {
 
                 }
 
-
                 //Confirmation
                 if (status == true){
                     AlertDialog.Builder builder = new AlertDialog.Builder(UpdateSubject.this);
