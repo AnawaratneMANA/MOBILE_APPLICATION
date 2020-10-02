@@ -1,7 +1,10 @@
 package com.example.finalmadproject.Settings;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +13,26 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
+
+import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION;
+import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAME;
 
 
 public class BackgroundFragment extends Fragment {
 
-    Switch darkMode ;
+    Switch notification;
     Button profile;
     Button signout;
     ImageView settingsTravel;
+    DatabaseHelper mydb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +44,32 @@ public class BackgroundFragment extends Fragment {
         profile = v2.findViewById(R.id.ProfilesettingsButton);
         signout = v2.findViewById(R.id.Signout);
         settingsTravel = v2.findViewById(R.id.setIcon);
+        notification = v2.findViewById(R.id.notification);
+        mydb = new DatabaseHelper(this.getContext());
+        notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean enableTrue) {
+                if(enableTrue){
+                    String enable = "enable";
+                    boolean value = mydb.updateEnableStatus(enable);
+                    if(value == true){
+                        Toast.makeText(getContext() , "Status is updating" , Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getContext() , "error occured" , Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    boolean value = mydb.updateDisableStatus();
+                    if(value == true){
+                        Toast.makeText(getContext() , "wow" , Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getContext() , "error occured" , Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            }
+        });
 
         settingsTravel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,18 +94,7 @@ public class BackgroundFragment extends Fragment {
                  */
             }
         });
-         darkMode = (Switch)  v2.findViewById(R.id.switchDarkMode);
-        darkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean turnToDark) {
-                if(turnToDark){
-                    /**AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    saveNightModeS**/
-                }else{
 
-                }
-            }
-        });
 
         return v2;
     }
