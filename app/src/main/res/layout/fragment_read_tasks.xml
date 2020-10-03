@@ -16,7 +16,7 @@
         android:textSize="14sp"
         android:textStyle="bold" />
         -->
-
+    <!--List view Added but not showing in the emulator -->
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

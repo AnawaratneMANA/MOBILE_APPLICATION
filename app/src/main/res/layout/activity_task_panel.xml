@@ -26,7 +26,7 @@
         android:textStyle="bold" />
 
 
-    <!-- Commented the section
+
     <TextView
         android:id="@+id/Task_txt"
         android:layout_width="match_parent"
@@ -38,12 +38,12 @@
         android:fontFamily="@font/roboto_regular"
         android:text="Task List"
         android:textSize="17sp" />
-        -->
+
     <!--Where the Task items get displayed.-->
     <ListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         />
 </LinearLayout>

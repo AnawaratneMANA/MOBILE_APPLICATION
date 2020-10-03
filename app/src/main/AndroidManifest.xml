@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TanPart.Project_panel"></activity>
-        <activity android:name=".TanPart.Task_panel" >
+        <activity android:name=".TanPart.Task_panel">
             <!--Testing Part
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
