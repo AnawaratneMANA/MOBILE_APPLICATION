@@ -396,6 +396,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    //Join method to combine all task details and List details. -- MAKE THE CHANGERS.
+//    public Cursor displayListed(String id){
+//        //Creating the join query
+//        String sql = "";
+//    }
+
     //Saliths DB handling Methods ------------------------------------------------------------------
     public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
