@@ -91,9 +91,10 @@ public class AudioListFragment extends DialogFragment {
                         String title = myListViewforSongs.getItemAtPosition(i).toString();
                         String location = myListViewforSongs.getItemAtPosition(i).toString();
                        // if (title.equals())
+                        String songname = title.substring(title.length() - 10);
 
 
-                        boolean inserted = myDB.insertData(title , location);
+                        boolean inserted = myDB.insertData(songname , location);
                         if (inserted == true) {
                             Toast.makeText(getActivity() , "data added" , Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity() , Sounds.class);

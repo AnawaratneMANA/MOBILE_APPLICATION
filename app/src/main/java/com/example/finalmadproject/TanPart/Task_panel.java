@@ -28,24 +28,27 @@ public class Task_panel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        bt = findViewById(R.id.AddTask);
-        list = findViewById(R.id.listView);
+        //bt = findViewById(R.id.AddTask);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_panel);
 
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent newI = new Intent(Task_panel.this, MainActivity.class);
-                startActivity(newI);
-            }
-        });
+//        bt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent newI = new Intent(Task_panel.this, MainActivity.class);
+//                startActivity(newI);
+//            }
+//        });
 
         //Akash --- Edtied to display the List view.
         DatabaseHelper database = new DatabaseHelper(getApplicationContext());
         SQLiteDatabase db = database.getReadableDatabase();
         Cursor cursor = database.readTasks(db);
+
+        //List View
+        list = findViewById(R.id.listView);
 
         //ArrayList.
         ArrayList<String> listName = new ArrayList<String>();

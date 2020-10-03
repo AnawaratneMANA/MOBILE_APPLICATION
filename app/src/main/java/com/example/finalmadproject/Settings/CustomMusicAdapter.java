@@ -58,9 +58,11 @@ public class CustomMusicAdapter extends BaseAdapter {
             mydb = new DatabaseHelper(this.context);
             btnAssignToAlarm = (Button) view.findViewById(R.id.assignToButton);
             final SongList songLists = songList.get(i);
+
             String songname2 = songLists.getSongName();
-            //updated due to sudden problem
-            //String songname = songname2.substring(songname2.length() - 10);
+            /**
+            String songname = songname2.substring(songname2.length() - 10);\
+             **/
             textName.setText(songname2);
             //added
             textID.setText(songLists.getSongID());
