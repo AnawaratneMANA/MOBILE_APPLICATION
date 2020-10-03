@@ -182,6 +182,4 @@ public class ExampleInstrumentedTest {
         boolean result = database.updateData(FN, UN, PW);
         assertTrue(result);
     }
-
-
 }

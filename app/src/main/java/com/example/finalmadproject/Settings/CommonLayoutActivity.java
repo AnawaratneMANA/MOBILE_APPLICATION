@@ -3,6 +3,9 @@ package com.example.finalmadproject.Settings;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +23,8 @@ import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TaskManagement.MainActivity;
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
+
+import java.util.ArrayList;
 //Register all the elements
 
 public class CommonLayoutActivity extends AppCompatActivity {
@@ -60,6 +65,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
             }
         });
 
+
         //Link to Task Manager
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +99,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
        // System.out.println(string_name);
 
 
+    //tan's implementation
 
     }
 
@@ -142,4 +149,5 @@ public class CommonLayoutActivity extends AppCompatActivity {
         Intent intent = new Intent(activity , aclass);
         activity.startActivity(intent);
     }
+
 }
