@@ -2,6 +2,7 @@ package com.example.finalmadproject.TaskManagement;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -38,7 +41,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private LinearLayout Headinglo, menu;
 
     //Button Registration
-    private ImageView Addtask, Addsub, Showtask;
+    private ImageView Addtask, Addsub, Showtask, companyLogo;
 
     //Creating a instance from the interface
     ControlOpListener controlOpListener;
@@ -106,11 +109,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Addtask = view.findViewById(R.id.buttontask);
         Addsub = view.findViewById(R.id.buttonsub);
         Showtask = view.findViewById(R.id.buttonshow);
+        companyLogo =view.findViewById(R.id.company_logo);
 
        //Add Onclick listeners to the buttons
         Addsub.setOnClickListener(this);
         Addtask.setOnClickListener(this);
         Showtask.setOnClickListener(this);
+
+        //Set onClick Listenter to the Logo
+        companyLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent home = new Intent(getActivity(), CommonLayoutActivity.class);
+                startActivity(home);
+            }
+        });
 
 
 
