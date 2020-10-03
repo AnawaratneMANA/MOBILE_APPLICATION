@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TanPart.Project_panel"></activity>
-        <activity android:name=".TanPart.Task_panel">
+
+        <activity android:name=".TanPart.profile"></activity>
+        <activity android:name=".TanPart.Project_panel" />
+        <activity android:name=".TanPart.Task_panel" >
+
             <!--Testing Part
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,36 +36,33 @@
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash" />
         <activity android:name=".Settings.CommonLayoutActivity" />
-
-        <!--Main Page -->
-        <activity android:name=".TanPart.T_MainActivity"
+        <!-- Main Page -->
+        <activity
+            android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!-- Normal Pages-->
+         <!-- Normal Pages -->
         <activity android:name=".TaskManagement.UpdateTask" />
         <activity android:name=".TaskManagement.UpdateSubject" />
-        <activity android:name=".TaskManagement.MainActivity" >
-            <!-- Temporary enable Task Manager as the main windows.
+        <activity android:name=".TaskManagement.MainActivity">
+
+            <!--
+            Temporary enable Task Manager as the main windows.
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             -->
         </activity>
-        <activity android:name=".Settings.MainActivity_sl" >
+        <activity android:name=".Settings.MainActivity_sl"></activity>
+        <activity android:name=".Settings.Sounds"></activity>
+        <activity android:name=".List.MainActivity_List">
 
-        </activity>
-        <activity android:name=".Settings.Sounds" >
-
-        </activity>
-        <activity android:name=".List.MainActivity_List" >
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
