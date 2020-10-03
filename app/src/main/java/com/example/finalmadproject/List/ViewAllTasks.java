@@ -33,11 +33,14 @@ public class ViewAllTasks extends AppCompatActivity {
     Button addView;
     TextView taskSelected;
     DatabaseHelper mydb;
+    private String message;
     String[] listItems;
     String[] list2; //Testing
     boolean[] checkedItems;
     private ListView layout;
     ArrayList<Integer> userItems = new ArrayList<>();
+    int count ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,28 +67,8 @@ public class ViewAllTasks extends AppCompatActivity {
         //listItems = getResources().getStringArray(R.array.Tasks);
 
         //Getting data from the DB.
-        DatabaseHelper db = new DatabaseHelper(this);
-        SQLiteDatabase database = db.getReadableDatabase();
-        Cursor object = db.readTasks(database);
-        int count2 = 0;
-        //Testing
-        while (object.moveToNext()){
 
-            count2++;
-        }
-
-        //Create String Array
-        //List<String> list = new ArrayList<>();
-        list2 = new String[count2];
-        int count = 0;
-        for(object.moveToFirst(); !object.isAfterLast(); object.moveToNext()){
-            list2[count] = object.getString(object.getColumnIndex(TASK_NAME));
-            //System.out.println(list2[count]);
-            count++;
-        }
-
-
-
+        setSelectedTasks();
         checkedItems = new boolean[count];
 
         addView.setOnClickListener(new View.OnClickListener() {
@@ -109,11 +92,13 @@ public class ViewAllTasks extends AppCompatActivity {
                         if(isChecked){
                             userItems.add(position);
                             Intent intent = getIntent();
-                            String message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
+                            message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
                             String tasks = list2[position];
+                            String s = "1";
                             System.out.println(tasks);
-
-                            boolean result = mydb.insertListTaskData(message , tasks);
+                            String task_2 = mydb.getTaskID(tasks);
+                            System.out.println(task_2);
+                            boolean result = mydb.insertListTaskData(message , task_2);
                         }else{
                             userItems.remove((Integer.valueOf(position)));
                         }
@@ -163,9 +148,31 @@ public class ViewAllTasks extends AppCompatActivity {
     }
 
 
+    public void setSelectedTasks(){
+        DatabaseHelper db = new DatabaseHelper(this);
+        SQLiteDatabase database = db.getReadableDatabase();
+        Cursor object = db.readTasks(database);
+        int count2 = 0;
+        //Testing
+        while (object.moveToNext()){
+
+            count2++;
+        }
+
+        //Create String Array
+        //List<String> list = new ArrayList<>();
+        list2 = new String[count2];
+        count = 0;
+        for(object.moveToFirst(); !object.isAfterLast(); object.moveToNext()){
+            list2[count] = object.getString(object.getColumnIndex(TASK_NAME));
+            //System.out.println(list2[count]);
+            count++;
+        }
+
+    }
 
     //new Method
-   /* void storeTaskInArrays(){
+   /*void storeTaskInArrays(){
         Cursor cursor = dbHandler.readAlltasks();
         if(cursor.getCount() == 0){
             Toast.makeText(this,"No data", Toast.LENGTH_SHORT).show();
