@@ -639,6 +639,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) return true;
         else return false;
     }
+
     public Cursor getName(SQLiteDatabase database, String name){
 
         //SQL
@@ -647,6 +648,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
     //Read Task Taneesha
+    /**
     public Cursor readAlltasks(){
         String query = "SELECT " + TASK_NAME + " FROM " + TABLE2_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -657,6 +659,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+     **/
 
     //Tasks Adding part Taneesha.
 

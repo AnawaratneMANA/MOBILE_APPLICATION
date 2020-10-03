@@ -41,7 +41,30 @@ public class Task_panel extends AppCompatActivity {
 //                startActivity(newI);
 //            }
 //        });
+        //Akash --- Edtied to display the List view.
+        DatabaseHelper database = new DatabaseHelper(getApplicationContext());
+        SQLiteDatabase db = database.getReadableDatabase();
+        Cursor cursor = database.readTasks(db);
 
+        //List View
+        list = findViewById(R.id.listView);
+
+        //ArrayList.
+        ArrayList<String> listName = new ArrayList<String>();
+        while(cursor.moveToNext())
+        {
+            String name = cursor.getString(cursor.getColumnIndex(TASK_NAME));
+            listName.add(name);
+        }
+        //Setting the Adapter
+        ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,listName);
+        list.setAdapter(adapter);
+
+        System.out.println("-----------------------------------------------------------Hello");
+    }
+
+    //Calling the list view to create.
+    public void createView(){
         //Akash --- Edtied to display the List view.
         DatabaseHelper database = new DatabaseHelper(getApplicationContext());
         SQLiteDatabase db = database.getReadableDatabase();

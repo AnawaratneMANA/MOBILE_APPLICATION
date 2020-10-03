@@ -18,6 +18,7 @@ import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.List.MainActivity_List;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
+import com.example.finalmadproject.TanPart.Task_panel;
 import com.example.finalmadproject.TaskManagement.MainActivity;
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 //Register all the elements
@@ -93,7 +94,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
        // System.out.println(string_name);
 
 
-
+        //Creating the List view by calling the method
+        Task_panel panel = new Task_panel();
+        panel.createView();
     }
 
     //tandin implementation
