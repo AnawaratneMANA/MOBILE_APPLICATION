@@ -15,10 +15,8 @@
 
         <activity android:name=".TanPart.profile"></activity>
         <activity android:name=".TanPart.Project_panel" />
-        <activity android:name=".TanPart.Task_panel" />
+        <activity android:name=".TanPart.Task_panel" >
 
-        <activity android:name=".TanPart.Project_panel"></activity>
-        <activity android:name=".TanPart.Task_panel">
             <!--Testing Part
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,22 +35,18 @@
             android:label="Add list"
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash" />
-        <activity android:name=".Settings.CommonLayoutActivity" /> <!-- Main Page -->
+        <activity android:name=".Settings.CommonLayoutActivity" />
+        <!-- Main Page -->
         <activity
             android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Normal Pages -->
+         <!-- Normal Pages -->
         <activity android:name=".TaskManagement.UpdateTask" />
         <activity android:name=".TaskManagement.UpdateSubject" />
         <activity android:name=".TaskManagement.MainActivity">
