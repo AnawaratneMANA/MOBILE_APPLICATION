@@ -402,14 +402,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         //String formatting
         id = " '"+id+"' ";
-        //Creating the join query
+        //Creating the join query - Testing
         String sql1 = "SELECT\n" +
                 "  Task_infor.Task_name as Task_name \n" +
                 " FROM \n" +
                 " Task_infor \n" +
                 " LEFT JOIN task_display_table ON task_display_table.display_task_id = Task_info.Task_id" +
                 " WHERE task_display_table.display_task_id = " + id;
-
+        //Final Temporary
         String sql = " SELECT t.Task_name" +
                 " FROM " + " Task_infor t" + ", task_display_table tt " +
                 " WHERE " + " t.Task_id = tt.display_task_id AND " + " tt.display_list_id = " +id;

@@ -40,7 +40,9 @@ public class ViewAllTasks extends AppCompatActivity {
     private ListView layout;
     ArrayList<Integer> userItems = new ArrayList<>();
     int count ;
-
+    private Intent intent;
+    private String[] list3;
+    int count5;
 
 
     @Override
@@ -65,6 +67,9 @@ public class ViewAllTasks extends AppCompatActivity {
         //Append the items to the list.
         //-------------------------------
 
+        //Testing - Populating the View using database information
+        ListPopulate();
+
         //listItems = getResources().getStringArray(R.array.Tasks);
 
         //Getting data from the DB.
@@ -75,20 +80,15 @@ public class ViewAllTasks extends AppCompatActivity {
         addView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("1a");
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ViewAllTasks.this);
+                System.out.println("2a");
                 mBuilder.setTitle(R.string.dialog_title);
+                System.out.println("3a");
                 mBuilder.setMultiChoiceItems(list2, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-
-                       if (isChecked) {
-                           if (!userItems.contains(position)) {
-                              userItems.add(position);
-                           }
-                       } else if (userItems.contains(position)) {
-                          userItems.remove(position);
-                     }
-
+                        System.out.println("4a");
                         /**
                         //if (isChecked) {
                            if (!userItems.contains(position)) {
@@ -102,7 +102,7 @@ public class ViewAllTasks extends AppCompatActivity {
 
                         if(isChecked){
                             userItems.add(position);
-                            Intent intent = getIntent();
+                            intent = getIntent();
                             message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
                             String tasks = list2[position];
                             String s = "1";
@@ -121,8 +121,9 @@ public class ViewAllTasks extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
 
 
-                        ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,list2);
-                        layout.setAdapter(adapter);
+                        //ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,list2);
+                        //layout.setAdapter(adapter);
+                        ListPopulate();
 //                        String item = "";
 //                        for (int i = 0; i < userItems.size(); i++) {
 //                            item = item + listItems[userItems.get(i)];
@@ -159,7 +160,7 @@ public class ViewAllTasks extends AppCompatActivity {
     }
 
     //Method to populate the List.
-    public String[] setSelectedTasks(){
+    public void setSelectedTasks(){
         DatabaseHelper db = new DatabaseHelper(this);
         SQLiteDatabase database = db.getReadableDatabase();
         //Cursor object1 = db.displayListed("1");
@@ -180,7 +181,42 @@ public class ViewAllTasks extends AppCompatActivity {
             //System.out.println(list2[count]);
             count++;
         }
-        return list2;
+
+
+    }
+
+    public void ListPopulate(){
+        DatabaseHelper db = new DatabaseHelper(this);
+        SQLiteDatabase database = db.getReadableDatabase();
+        //Cursor object1 = db.displayListed("1");
+        intent = getIntent();
+        message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
+        System.out.println("--------------------------------------------------");
+        System.out.println("This is a message yo: " + message);
+        Cursor object = db.displayListed(message);
+
+        int count1 = 0;
+        //Testing loop
+        while(object.moveToNext()){
+            System.out.println("--------------------------------------------------");
+            System.out.println(object.getString(object.getColumnIndex(TASK_NAME)));
+            count1++;
+        }
+        list3 = new String[count1];
+        try {
+            int count2 = 0;
+            for(object.moveToFirst(); !object.isAfterLast(); object.moveToNext()){
+                list3[count2] = object.getString(object.getColumnIndex(TASK_NAME));
+                //System.out.println(list2[count]);
+                count2++;
+            }
+        } catch (ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+
+        ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,list3);
+        layout.setAdapter(adapter);
 
     }
 
