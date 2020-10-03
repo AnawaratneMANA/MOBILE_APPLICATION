@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.finalmadproject.AlarmandNotification.Alarm;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.List.MainActivity_List;
 import com.example.finalmadproject.R;
@@ -130,7 +131,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
     }
     public void openProfile(View view){
-        //redirectProfile(getActivity() , MainActivity_sl.class);
+        redirectProfile(this , Alarm.class);
     }
     public void signout(View view){
         redirectProfile(this , T_MainActivity.class);

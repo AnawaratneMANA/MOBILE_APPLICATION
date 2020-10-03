@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
+import com.example.finalmadproject.Settings.Sounds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ import static android.os.Build.ID;
 public class MainActivity_List extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FloatingActionButton add_button;
+    FloatingActionButton add_button , home_button;
     Button viewButton;
 
     DatabaseHelper dbHandler;
@@ -40,7 +42,14 @@ public class MainActivity_List extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_2);
-
+        home_button = findViewById(R.id.add_buttonHome);
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity_List.this, CommonLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
         //back = (ImageView)findViewById(R.id.backg);
         //back.animate().translationY(-400).setDuration(500).setStartDelay(800);
         recyclerView = findViewById(R.id.recycleView);
