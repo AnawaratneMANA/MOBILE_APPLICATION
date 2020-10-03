@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.print.PrintManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -92,8 +93,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_TITLE + " TEXT, " +
             COLUMN_DES + " TEXT);";
 
-
-    //public static final String CREATE_TASK_DISPLAY_TABLE = "CREATE TABLE " + TABLE_TASK_DISPLAY_NAME + " ( " + DISPLAY_LIST_ID + ", " + DISPLAY_TASK_ID;
+    public static final String LIST_TASK_TABLE = "create table " + TABLE_TASK_DISPLAY_NAME + "(" +
+            DISPLAY_LIST_ID+ " text "+ ", " + DISPLAY_TASK_ID+ " text , PRIMARY KEY( "+ DISPLAY_LIST_ID + ", " + DISPLAY_TASK_ID + " )" + ")" ;
     public static final String DROP_TASK_DISPLAY_TABLE = "drop table if exists "+ TABLE_TASK_DISPLAY_NAME;
 
 
@@ -128,7 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_NOTIFICATION_TABLE);
 
         //Taneesha table creation
-        //sqLiteDatabase.execSQL(CREATE_TASK_DISPLAY_TABLE);
+        sqLiteDatabase.execSQL(LIST_TASK_TABLE);
         sqLiteDatabase.execSQL(query);
         Log.d("Database Operation", "Table is created");
     }
@@ -150,9 +151,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_TABLE_NOTIFICATION);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
+        //Taneesha akkas table creation.
+        sqLiteDatabase.execSQL(LIST_TASK_TABLE);
         onCreate(sqLiteDatabase);
-
-
     }
 
     //Create a method to put information to the table - Attributes are the columns.
@@ -652,7 +653,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) return true;
         else return false;
     }
-
     public Cursor getName(SQLiteDatabase database, String name){
 
         //SQL
@@ -661,7 +661,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
     //Read Task Taneesha
-    /**
     public Cursor readAlltasks(){
         String query = "SELECT " + TASK_NAME + " FROM " + TABLE2_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -672,7 +671,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
-     **/
 
     //Tasks Adding part Taneesha.
     public boolean insertListTaskData(String listid , String taskid){
