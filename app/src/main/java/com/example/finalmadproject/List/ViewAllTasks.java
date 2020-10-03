@@ -79,7 +79,7 @@ public class ViewAllTasks extends AppCompatActivity {
                 mBuilder.setMultiChoiceItems(list2, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-<<<<<<< HEAD
+
                        if (isChecked) {
                            if (!userItems.contains(position)) {
                               userItems.add(position);
@@ -87,7 +87,7 @@ public class ViewAllTasks extends AppCompatActivity {
                        } else if (userItems.contains(position)) {
                           userItems.remove(position);
                      }
-=======
+
                         /**
                         //if (isChecked) {
                            if (!userItems.contains(position)) {
@@ -97,7 +97,6 @@ public class ViewAllTasks extends AppCompatActivity {
                         userItems.remove(position);
                       }
                          **/
->>>>>>> ba8de49a499b95166ec88f5a1d712924404907c2
 
                         if(isChecked){
                             userItems.add(position);
