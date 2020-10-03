@@ -45,9 +45,6 @@ public class ViewAllTasks extends AppCompatActivity {
         setContentView(R.layout.activity_view_all_tasks);
         mydb = new DatabaseHelper(this);
         //Pass list ID to the List View page
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
-        System.out.println("ID: " + message);
 
         //System.out.println(message);
         //dbHandler = new DatabaseHelper(ViewAllTasks.this);
@@ -97,19 +94,21 @@ public class ViewAllTasks extends AppCompatActivity {
                 mBuilder.setMultiChoiceItems(list2, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                      //  if (isChecked) {
-                          // if (!userItems.contains(position)) {
-                             //  userItems.add(position);
-                          // }
-                       // } else if (userItems.contains(position)) {
-                          //  userItems.remove(position);
-                     //  }
+                        if (isChecked) {
+                           if (!userItems.contains(position)) {
+                               userItems.add(position);
+                           }
+                        } else if (userItems.contains(position)) {
+                        userItems.remove(position);
+                      }
 
                         if(isChecked){
                             userItems.add(position);
-                            String tasks = list2[0];
+                            Intent intent = getIntent();
+                            String message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
+                            String tasks = "1";
                             System.out.println(tasks);
-                            //boolean result = mydb.insertListTaskData()
+                            boolean result = mydb.insertListTaskData(message , tasks);
                         }else{
                             userItems.remove((Integer.valueOf(position)));
                         }
