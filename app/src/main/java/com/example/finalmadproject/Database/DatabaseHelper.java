@@ -92,6 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_TITLE + " TEXT, " +
             COLUMN_DES + " TEXT);";
 
+
     //public static final String CREATE_TASK_DISPLAY_TABLE = "CREATE TABLE " + TABLE_TASK_DISPLAY_NAME + " ( " + DISPLAY_LIST_ID + ", " + DISPLAY_TASK_ID;
     public static final String DROP_TASK_DISPLAY_TABLE = "drop table if exists "+ TABLE_TASK_DISPLAY_NAME;
 
