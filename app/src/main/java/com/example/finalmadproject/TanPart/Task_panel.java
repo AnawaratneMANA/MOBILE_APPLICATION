@@ -25,30 +25,32 @@ public class Task_panel extends AppCompatActivity {
     private Button bt;
     private ListView list;
 
+    //Create a constructor
+    public Task_panel(){
+    super();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //bt = findViewById(R.id.AddTask);
-
-
+        bt = findViewById(R.id.AddTask);
+        list =findViewById(R.id.listView);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_panel);
 
-//        bt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent newI = new Intent(Task_panel.this, MainActivity.class);
-//                startActivity(newI);
-//            }
-//        });
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newI = new Intent(Task_panel.this, MainActivity.class);
+                startActivity(newI);
+            }
+        });
+    }
 
-        //Akash --- Edtied to display the List view.
-        DatabaseHelper database = new DatabaseHelper(getApplicationContext());
-        SQLiteDatabase db = database.getReadableDatabase();
+    //Create a method to recreate the list view
+    public void createView(DatabaseHelper database, SQLiteDatabase db){
+        //Calling the database method.
         Cursor cursor = database.readTasks(db);
-
-        //List View
-        list = findViewById(R.id.listView);
 
         //ArrayList.
         ArrayList<String> listName = new ArrayList<String>();
@@ -58,7 +60,7 @@ public class Task_panel extends AppCompatActivity {
             listName.add(name);
         }
         //Setting the Adapter
-        ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,listName);
+        ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listName);
         list.setAdapter(adapter);
     }
 
