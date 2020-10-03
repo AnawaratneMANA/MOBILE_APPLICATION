@@ -15,6 +15,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION;
+import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION_ID;
+import static com.example.finalmadproject.Settings.Notification.notification.TABLE_NOTIFICATION_NAME;
 import static com.example.finalmadproject.Settings.RingingTones.song.SONG_STATUS;
 import static com.example.finalmadproject.Settings.RingingTones.song.TABLE_SONG_NAME;
 import static com.example.finalmadproject.TaskManagement.Subject.SubjectEntry.SUBJECT_ID;
@@ -42,6 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "homework_db";
     public static final int DATABASE_VERSION = 1;
     public static final String notstatus = "Not Selected";
+    public static final String disable = "disable";
 
     //TODO: SQL Queries
     //Creating the query - Table - 1
@@ -68,6 +72,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Creating the query - Table - 1
     public static final String DROP_TABLE_SL = "drop table if exists "+ TABLE_SONG_NAME;
+    //added newly
+    public static final String CREATE_NOTIFICATION_TABLE = "create table " + TABLE_NOTIFICATION_NAME + " (NOTIFICATION_ID INTEGER PRIMARY KEY AUTOINCREMENT, NOTIFICATION String)";
+    public static final String DROP_TABLE_NOTIFICATION = "drop table if exists "+ TABLE_NOTIFICATION_NAME;
     private Context context;
 
 
@@ -109,7 +116,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Salitha's Table Creation.
         sqLiteDatabase.execSQL(CREATE_SONG_TABLE);
-
+        //added newly
+        sqLiteDatabase.execSQL(CREATE_NOTIFICATION_TABLE);
 
         //Taneesha table creation
         sqLiteDatabase.execSQL(query);
@@ -130,6 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //Salithas Database Related codes.
         sqLiteDatabase.execSQL(DROP_TABLE_SL);
+        sqLiteDatabase.execSQL(DROP_TABLE_NOTIFICATION);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
         onCreate(sqLiteDatabase);
@@ -466,7 +475,76 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
     }
+    //added
+    public boolean updateEnableStatus(String signal){
+        long value = -1;
+        SQLiteDatabase db = this.getWritableDatabase();
+        if(signal != "enable" && signal != "disable"){
+            return false;
+        }
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTIFICATION_NAME, null);
+        System.out.println(cursor.getCount());
+        if (cursor.getCount() == 0) {
+            System.out.println("22");
+            ContentValues contentValues = new ContentValues();
+            System.out.println("23");
+            contentValues.put(NOTIFICATION , signal);
+            System.out.println("24");
+            value = db.insert(TABLE_NOTIFICATION_NAME, null, contentValues);
+            System.out.println("25");
+        }else {
+            while (cursor.moveToNext()) {
+                if (cursor.getString(1).equals(disable)) {
+                    System.out.println("6");
+                    ContentValues contentValues1 = new ContentValues();
+                    System.out.println("7");
+                    contentValues1.put(NOTIFICATION , signal);
+                    System.out.println("8");
+                    String id = cursor.getString(0);
+                    System.out.println("9");
+                    value = db.update(TABLE_NOTIFICATION_NAME, contentValues1, "NOTIFICATION_ID=?", new String[]{id});
+                }
+            }
+        }
 
+
+        System.out.println("0");
+
+        if (value == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+    //added
+    public boolean updateDisableStatus(){
+        long value = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTIFICATION_NAME, null);
+        while (cursor.moveToNext()) {
+                ContentValues contentValues2 = new ContentValues();
+                contentValues2.put(NOTIFICATION , disable);
+                String id = cursor.getString(0);
+                value = db.update(TABLE_NOTIFICATION_NAME, contentValues2, "NOTIFICATION_ID=?", new String[]{id});
+        }
+        if (value == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public Cursor readNotification(SQLiteDatabase db)
+    {
+        //String Array with all the attribute names
+        String [] notifications = {NOTIFICATION_ID , NOTIFICATION};
+
+        //Creating a Cursor Object
+        Cursor cursor = db.query(TABLE_NOTIFICATION_NAME,notifications,null,null,null,null,null);
+        return cursor;
+    }
     //taneesha - DB methods ------------------------------------------------------------------------
     public boolean addList(String title, String des){
         SQLiteDatabase db = this.getWritableDatabase();

@@ -104,6 +104,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void InsertAudioFiles() throws CursorIndexOutOfBoundsException {
         //Create data
+        //when we add same name and path again this will case an error because
+        //I have added some duplicate validations
         String name = "audio1";
         String path = "path1";
         boolean result = database.insertData(name , path);
@@ -165,6 +167,19 @@ public class ExampleInstrumentedTest {
         //Create data
         String id = "7";
         boolean result = database.deleteOneRow(id);
+        assertTrue(result);
+    }
+
+
+    //IT19098838 - Wangchen.T
+    @Test
+    //testing to check whether the registration db works or not
+    public void Regval() throws CursorIndexOutOfBoundsException{
+        //create data
+        String UN = "testcase234";
+        String FN = "testcase";
+        String PW = "1234";
+        boolean result = database.updateData(FN, UN, PW);
         assertTrue(result);
     }
 

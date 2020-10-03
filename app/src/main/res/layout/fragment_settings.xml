@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".Settings.SettingsFragment"
     android:gravity="center_horizontal"
-    android:background="@drawable/flower"
     android:orientation="vertical">
 
     <TextView
@@ -36,5 +35,13 @@
         android:text="Other Settings "
         android:textColor="#ffffff"
         android:textSize="@dimen/content_size" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="750dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/flower"
+        android:layout_marginTop="-440dp"
+        tools:ignore="MissingConstraints" />
 
 </LinearLayout>
