@@ -35,8 +35,13 @@
             android:label="Add list"
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash" />
-        <activity android:name=".Settings.CommonLayoutActivity" />
-        <!-- Main Page -->
+        <activity android:name=".Settings.CommonLayoutActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Main Page commented testing
         <activity
             android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -45,6 +50,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        -->
 
          <!-- Normal Pages -->
         <activity android:name=".TaskManagement.UpdateTask" />
@@ -63,12 +69,13 @@
         <activity android:name=".Settings.Sounds"></activity>
         <activity android:name=".List.MainActivity_List">
 
-            <!--
+            <!-- Testing
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             -->
+
         </activity>
     </application>
 

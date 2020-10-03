@@ -42,6 +42,7 @@ public class ViewAllTasks extends AppCompatActivity {
     int count ;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +90,7 @@ public class ViewAllTasks extends AppCompatActivity {
                       }
                          **/
 
+
                         if(isChecked){
                             userItems.add(position);
                             Intent intent = getIntent();
@@ -109,7 +111,7 @@ public class ViewAllTasks extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
 
-                        //Set the list to the Adapter
+
                         ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,list2);
                         layout.setAdapter(adapter);
 //                        String item = "";
@@ -148,9 +150,10 @@ public class ViewAllTasks extends AppCompatActivity {
     }
 
     //Method to populate the List.
-    public void setSelectedTasks(){
+    public String[] setSelectedTasks(){
         DatabaseHelper db = new DatabaseHelper(this);
         SQLiteDatabase database = db.getReadableDatabase();
+        //Cursor object1 = db.displayListed("1");
         Cursor object = db.readTasks(database);
         int count2 = 0;
         //Testing
@@ -168,6 +171,7 @@ public class ViewAllTasks extends AppCompatActivity {
             //System.out.println(list2[count]);
             count++;
         }
+        return list2;
 
     }
 
