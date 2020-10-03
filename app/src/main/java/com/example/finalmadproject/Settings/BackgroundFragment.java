@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
+import com.example.finalmadproject.TanPart.profile;
 
 import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION;
 import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAME;
@@ -29,7 +30,7 @@ import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAM
 public class BackgroundFragment extends Fragment {
 
     Switch notification;
-    Button profile;
+    Button profilee;
     Button signout;
     ImageView settingsTravel;
     DatabaseHelper mydb;
@@ -42,7 +43,7 @@ public class BackgroundFragment extends Fragment {
 
 
         View v2 = inflater.inflate(R.layout.fragment_background, container, false);
-        profile = v2.findViewById(R.id.ProfilesettingsButton);
+        profilee = v2.findViewById(R.id.ProfilesettingsButton);
         signout = v2.findViewById(R.id.Signout);
         settingsTravel = v2.findViewById(R.id.setIcon);
         notification = v2.findViewById(R.id.notification);
@@ -95,13 +96,13 @@ public class BackgroundFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        profile.setOnClickListener(new View.OnClickListener() {
+        profilee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**
-                Intent intent = new Intent(getActivity() , MainActivity_sl.class);
+
+                Intent intent = new Intent(getActivity() , profile.class);
                 startActivity(intent);
-                 */
+
             }
         });
 

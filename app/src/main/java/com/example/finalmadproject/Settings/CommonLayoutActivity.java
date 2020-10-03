@@ -3,6 +3,9 @@ package com.example.finalmadproject.Settings;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,8 +23,11 @@ import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TanPart.Task_panel;
 import com.example.finalmadproject.TaskManagement.MainActivity;
-//Register all the elements
 
+import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
+
+import java.util.ArrayList;
+//Register all the elements
 public class CommonLayoutActivity extends AppCompatActivity {
 
     //Declare elements
@@ -60,6 +66,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
             }
         });
 
+
         //Link to Task Manager
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,11 +91,12 @@ public class CommonLayoutActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         txt_na.setText("Hello, "+ String.valueOf(string_name));
+      
        //used for testing purpose
        // System.out.println(string_name);
        // Call the method from the database to populate the list. -- Akash Testing.
-        //Task_panel panel = new Task_panel();
-        //panel.createView(db, database);
+       //Task_panel panel = new Task_panel();
+       //panel.createView(db, database);
     }
 
     //tandin implementation

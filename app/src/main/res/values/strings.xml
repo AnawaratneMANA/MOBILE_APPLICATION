@@ -80,6 +80,7 @@
     <string name="dismiss_label">Dismiss</string>
     <string name="clear_all_label">Clear all</string>
     <string name="dialog_title">All Tasks</string>
+    <string name="deletevalue">Once deleted, cannot retrive back your information</string>
 
     <!--Temp tasks-->
     <string-array name="Tasks">
