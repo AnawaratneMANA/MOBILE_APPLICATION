@@ -378,8 +378,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     //Create a Method to get the Task Id when
-    public void getTaskID(String name){
-
+    public String getTaskID(String name){
+        String id = "";
+        //Create DB instances
+        SQLiteDatabase db = getReadableDatabase();
+        //String formatting.
+        name = " '"+name+"' ";
+        //SQL Query to find the ID
+        String sql = "SELECT " + TASK_ID + " FROM " + TABLE2_NAME + " WHERE " + TASK_NAME + " = " + name;
+        //Execute query.
+        Cursor data = db.rawQuery(sql, null);
+        //Fina the Id value
+        while(data.moveToNext()){
+            id = data.getString(data.getColumnIndex(TASK_ID));
+        }
+        //return the value
+        return id;
     }
 
     //Saliths DB handling Methods ------------------------------------------------------------------
