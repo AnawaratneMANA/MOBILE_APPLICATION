@@ -23,7 +23,7 @@
         android:fontFamily="@font/roboto_regular"
         android:text="Personal Task"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 
     <!-- Commented the section
@@ -42,11 +42,8 @@
     <!--Where the Task items get displayed.-->
     <ListView
         android:id="@+id/listView"
-        android:paddingLeft="20dp"
-        android:layout_width="228dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
+        android:paddingLeft="20dp"
         />
 </LinearLayout>

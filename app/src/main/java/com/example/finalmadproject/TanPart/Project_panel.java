@@ -24,7 +24,7 @@ public class Project_panel extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //put tanesha akki destanition
+                //put List view destination.
                 Intent newI = new Intent(Project_panel.this, MainActivity.class);
                 startActivity(newI);
             }

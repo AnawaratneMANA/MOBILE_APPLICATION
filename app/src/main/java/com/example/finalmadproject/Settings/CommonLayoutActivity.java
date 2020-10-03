@@ -20,7 +20,6 @@ import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TanPart.Task_panel;
 import com.example.finalmadproject.TaskManagement.MainActivity;
-import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 //Register all the elements
 
 public class CommonLayoutActivity extends AppCompatActivity {
@@ -70,14 +69,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
             }
         });
 
-
-
-        //end of implementation
-
         //Register elements
-
         txt_na = findViewById(R.id.txt_name);
-        //getting the value of FN from UN
+        //getting the value of FN from UN --- Once these method are uncommented program do not open.
         DatabaseHelper db = new DatabaseHelper(this);
         SQLiteDatabase database = db.getReadableDatabase();
 
@@ -92,11 +86,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
         txt_na.setText("Hello, "+ String.valueOf(string_name));
        //used for testing purpose
        // System.out.println(string_name);
-
-
-        //Creating the List view by calling the method
+       // Call the method from the database to populate the list. -- Akash Testing.
         Task_panel panel = new Task_panel();
-        panel.createView();
+        panel.createView(db, database);
     }
 
     //tandin implementation
