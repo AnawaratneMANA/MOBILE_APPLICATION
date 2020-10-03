@@ -87,8 +87,8 @@ public class CommonLayoutActivity extends AppCompatActivity {
        //used for testing purpose
        // System.out.println(string_name);
        // Call the method from the database to populate the list. -- Akash Testing.
-        Task_panel panel = new Task_panel();
-        panel.createView(db, database);
+        //Task_panel panel = new Task_panel();
+        //panel.createView(db, database);
     }
 
     //tandin implementation
