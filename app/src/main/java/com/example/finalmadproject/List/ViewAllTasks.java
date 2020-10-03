@@ -147,7 +147,7 @@ public class ViewAllTasks extends AppCompatActivity {
         });
     }
 
-
+    //Method to populate the List.
     public void setSelectedTasks(){
         DatabaseHelper db = new DatabaseHelper(this);
         SQLiteDatabase database = db.getReadableDatabase();
@@ -187,4 +187,7 @@ public class ViewAllTasks extends AppCompatActivity {
         }
     }
     */
+
+
+   //Comment - Remove the statement given. in the dialog box ok button and then add them to the database.
 }
