@@ -92,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_TITLE + " TEXT, " +
             COLUMN_DES + " TEXT);";
 
-    public static final String CREATE_TASK_DISPLAY_TABLE = "create table " + TABLE_TASK_DISPLAY_NAME + " (DISPLAY_LIST_ID PRIMARY KEY, DISPLAY_TASK_ID PRIMARY KEY)";
+    //public static final String CREATE_TASK_DISPLAY_TABLE = "CREATE TABLE " + TABLE_TASK_DISPLAY_NAME + " ( " + DISPLAY_LIST_ID + ", " + DISPLAY_TASK_ID;
     public static final String DROP_TASK_DISPLAY_TABLE = "drop table if exists "+ TABLE_TASK_DISPLAY_NAME;
 
 
@@ -127,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_NOTIFICATION_TABLE);
 
         //Taneesha table creation
-        sqLiteDatabase.execSQL(CREATE_TASK_DISPLAY_TABLE);
+        //sqLiteDatabase.execSQL(CREATE_TASK_DISPLAY_TABLE);
         sqLiteDatabase.execSQL(query);
         Log.d("Database Operation", "Table is created");
     }
@@ -375,7 +375,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, SUBJECT_NAME + "=" + name, null) > 0;
 
     }
-    //Create
+    //Create a Method to get the Task Id when
+    public void getTaskID(String name){
+
+    }
 
     //Saliths DB handling Methods ------------------------------------------------------------------
     public boolean insertData(String audio , String path){
