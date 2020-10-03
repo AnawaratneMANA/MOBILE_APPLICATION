@@ -97,13 +97,13 @@ public class ViewAllTasks extends AppCompatActivity {
                 mBuilder.setMultiChoiceItems(list2, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                      //  if (isChecked) {
-                          // if (!userItems.contains(position)) {
-                             //  userItems.add(position);
-                          // }
-                       // } else if (userItems.contains(position)) {
-                          //  userItems.remove(position);
-                     //  }
+                       if (isChecked) {
+                           if (!userItems.contains(position)) {
+                              userItems.add(position);
+                           }
+                       } else if (userItems.contains(position)) {
+                          userItems.remove(position);
+                     }
 
                         if(isChecked){
                             userItems.add(position);
