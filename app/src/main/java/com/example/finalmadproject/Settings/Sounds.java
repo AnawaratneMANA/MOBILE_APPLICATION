@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class Sounds extends AppCompatActivity {
 
     private Button btn;
-
+    ImageView logo;
     ListView songList;
     CustomMusicAdapter adapter;
     ArrayList<SongList> array;
@@ -31,7 +32,14 @@ public class Sounds extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         array = new ArrayList<>();
         viewAudio();
-
+        logo = findViewById(R.id.company_logo);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Sounds.this, CommonLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
         btn = findViewById(R.id.buttonAddAudio);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
