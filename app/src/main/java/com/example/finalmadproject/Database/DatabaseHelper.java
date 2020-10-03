@@ -367,6 +367,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME, SUBJECT_NAME + "=" + name, null) > 0;
 
     }
+    //Create
 
     //Saliths DB handling Methods ------------------------------------------------------------------
     public boolean insertData(String audio , String path){

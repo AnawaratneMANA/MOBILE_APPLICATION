@@ -60,7 +60,8 @@ public class Task_panel extends AppCompatActivity {
             listName.add(name);
         }
         //Setting the Adapter
-        ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listName);
+        Task_panel task = new Task_panel();
+        ListAdapter adapter = new ArrayAdapter<>(task,android.R.layout.simple_list_item_1,listName);
         list.setAdapter(adapter);
     }
 
