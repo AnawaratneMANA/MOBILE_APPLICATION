@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
@@ -26,8 +27,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private ArrayList id, title, description;
     ArrayList idFiltered, titleFiltered, descriptionFiltered;
     ArrayList<String> arrayList;
+    Button viewTaskBtn;
 
     Animation translate_anim;
+
+    public static final String EXTRA_ID = "com.example.finalmadproject.List.EXTRA_ID";
 
     int position;
 
@@ -49,13 +53,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
+        this.position = position;
         View view = inflater.inflate(R.layout.my_row,parent,false);
+        viewTaskBtn = view.findViewById(R.id.btnView);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         this.position = position;
+        //final String msg = String.valueOf(idFiltered.get(position));
 
         holder.id.setText(String.valueOf(idFiltered.get(position)));
         holder.title.setText(String.valueOf(titleFiltered.get(position)));
@@ -69,6 +76,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("description",String.valueOf(descriptionFiltered.get(position)));
                 //context.startActivity(intent);
                 activity.startActivityForResult(intent,1);
+            }
+        });
+
+
+        final String msg = String.valueOf(idFiltered.get(position));
+        viewTaskBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(context.getApplicationContext(), ViewAllTasks.class);
+                intent1.putExtra(EXTRA_ID,msg).toString();
+                System.out.println("ll : " + msg);
+                view.getContext().startActivity(intent1);
             }
         });
     }
@@ -133,4 +152,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             mainLayout.setAnimation(translate_anim);
         }
     }
+
+
 }

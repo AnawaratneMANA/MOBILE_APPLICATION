@@ -34,6 +34,7 @@ public class BackgroundFragment extends Fragment {
     Button signout;
     ImageView settingsTravel;
     DatabaseHelper mydb;
+    ImageView logo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +47,16 @@ public class BackgroundFragment extends Fragment {
         signout = v2.findViewById(R.id.Signout);
         settingsTravel = v2.findViewById(R.id.setIcon);
         notification = v2.findViewById(R.id.notification);
+
         mydb = new DatabaseHelper(this.getContext());
+        logo = v2.findViewById(R.id.company_logo);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , CommonLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
         notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean enableTrue) {
@@ -100,6 +110,5 @@ public class BackgroundFragment extends Fragment {
         return v2;
     }
     //not working -------------------
-
 
 }

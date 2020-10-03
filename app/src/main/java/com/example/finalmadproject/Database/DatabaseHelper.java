@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.print.PrintManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,6 +16,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import static com.example.finalmadproject.List.AllTaskView.display_task.DISPLAY_LIST_ID;
+import static com.example.finalmadproject.List.AllTaskView.display_task.DISPLAY_TASK_ID;
+import static com.example.finalmadproject.List.AllTaskView.display_task.TABLE_TASK_DISPLAY_NAME;
 import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION;
 import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION_ID;
 import static com.example.finalmadproject.Settings.Notification.notification.TABLE_NOTIFICATION_NAME;
@@ -89,6 +93,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_TITLE + " TEXT, " +
             COLUMN_DES + " TEXT);";
 
+    public static final String LIST_TASK_TABLE = "create table " + TABLE_TASK_DISPLAY_NAME + "(" +
+            DISPLAY_LIST_ID+ " text "+ ", " + DISPLAY_TASK_ID+ " text , PRIMARY KEY( "+ DISPLAY_LIST_ID + ", " + DISPLAY_TASK_ID + " )" + ")" ;
+    public static final String DROP_TASK_DISPLAY_TABLE = "drop table if exists "+ TABLE_TASK_DISPLAY_NAME;
+
+
     //tan's DB part
 
     public static final String CREATE_TABLE_Login = "create table user (UID INTEGER PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
@@ -120,6 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_NOTIFICATION_TABLE);
 
         //Taneesha table creation
+        sqLiteDatabase.execSQL(LIST_TASK_TABLE);
         sqLiteDatabase.execSQL(query);
         Log.d("Database Operation", "Table is created");
     }
@@ -141,9 +151,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DROP_TABLE_NOTIFICATION);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
 
+        //Taneesha akkas table creation.
+        sqLiteDatabase.execSQL(LIST_TASK_TABLE);
         onCreate(sqLiteDatabase);
-
-
     }
 
     //Create a method to put information to the table - Attributes are the columns.
@@ -366,6 +376,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Create a Delete Statement and Execute.
         return db.delete(TABLE_NAME, SUBJECT_NAME + "=" + name, null) > 0;
 
+    }
+    //Create a Method to get the Task Id when
+    public String getTaskID(String name){
+        String id = "";
+        //Create DB instances
+        SQLiteDatabase db = getReadableDatabase();
+        //String formatting.
+        name = " '"+name+"' ";
+        //SQL Query to find the ID
+        String sql = "SELECT " + TASK_ID + " FROM " + TABLE2_NAME + " WHERE " + TASK_NAME + " = " + name;
+        //Execute query.
+        Cursor data = db.rawQuery(sql, null);
+        //Fina the Id value
+        while(data.moveToNext()){
+            id = data.getString(data.getColumnIndex(TASK_ID));
+        }
+        //return the value
+        return id;
     }
 
     //Saliths DB handling Methods ------------------------------------------------------------------
@@ -659,6 +687,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Tasks Adding part Taneesha.
+    public boolean insertListTaskData(String listid , String taskid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_TASK_DISPLAY_NAME, null);
+        //String INSERT_TABLE = "INSERT INTO " + TABLE_NAME + " (" +SONG_NAME+") VALUES ( " + audio + ")";
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DISPLAY_LIST_ID , listid);
+        contentValues.put(DISPLAY_TASK_ID , taskid);
+        Long result = db.insert(TABLE_TASK_DISPLAY_NAME, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
 
 
 
