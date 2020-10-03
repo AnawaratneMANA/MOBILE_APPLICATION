@@ -21,6 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import static android.os.Build.ID;
+
 public class MainActivity_List extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -31,6 +33,8 @@ public class MainActivity_List extends AppCompatActivity {
     //private ImageView back;
     ArrayList<String> id, title, description;
     CustomAdapter customAdapter;
+
+    //public static final String EXTRA_ID = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,9 @@ public class MainActivity_List extends AppCompatActivity {
 
         dbHandler = new DatabaseHelper(MainActivity_List.this);
         id = new ArrayList<>();
+        System.out.println(id);
+        String ID = id.toString();
+        System.out.println(ID);
         title = new ArrayList<>();
         description = new ArrayList<>();
 
@@ -118,9 +125,10 @@ public class MainActivity_List extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void viewButtonClick(View view){
+   /* public void viewButtonClick(View view){
         Intent intent = new Intent(MainActivity_List.this, ViewAllTasks.class);
-        startActivity(intent);
+        //intent.putExtra(EXTRA_ID, ID);
+        //startActivity(intent);
 
-    }
+    }*/
 }

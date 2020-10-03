@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.TaskManagement.MainActivity;
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class ViewAllTasks extends AppCompatActivity {
     //DatabaseHelper dbHandler;
     Button addView;
     TextView taskSelected;
-
+    DatabaseHelper mydb;
     String[] listItems;
     String[] list2; //Testing
     boolean[] checkedItems;
@@ -42,7 +43,13 @@ public class ViewAllTasks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_tasks);
+        //mydb = new DatabaseHelper()
+        //Pass list ID to the List View page
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
+        System.out.println("ID: " + message);
 
+        //System.out.println(message);
         //dbHandler = new DatabaseHelper(ViewAllTasks.this);
         //new one
         //storeTaskInArrays();
