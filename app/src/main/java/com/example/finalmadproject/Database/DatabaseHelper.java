@@ -15,6 +15,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import static com.example.finalmadproject.List.AllTaskView.display_task.DISPLAY_LIST_ID;
+import static com.example.finalmadproject.List.AllTaskView.display_task.DISPLAY_TASK_ID;
+import static com.example.finalmadproject.List.AllTaskView.display_task.TABLE_TASK_DISPLAY_NAME;
 import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION;
 import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION_ID;
 import static com.example.finalmadproject.Settings.Notification.notification.TABLE_NOTIFICATION_NAME;
@@ -89,6 +92,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_TITLE + " TEXT, " +
             COLUMN_DES + " TEXT);";
 
+    //public static final String CREATE_TASK_DISPLAY_TABLE = "CREATE TABLE " + TABLE_TASK_DISPLAY_NAME + " ( " + DISPLAY_LIST_ID + ", " + DISPLAY_TASK_ID;
+    public static final String DROP_TASK_DISPLAY_TABLE = "drop table if exists "+ TABLE_TASK_DISPLAY_NAME;
+
+
     //tan's DB part
 
     public static final String CREATE_TABLE_Login = "create table user (UID INTEGER PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
@@ -120,6 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_NOTIFICATION_TABLE);
 
         //Taneesha table creation
+        //sqLiteDatabase.execSQL(CREATE_TASK_DISPLAY_TABLE);
         sqLiteDatabase.execSQL(query);
         Log.d("Database Operation", "Table is created");
     }
@@ -365,6 +373,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         name = " '"+name+"' ";
         //Create a Delete Statement and Execute.
         return db.delete(TABLE_NAME, SUBJECT_NAME + "=" + name, null) > 0;
+
+    }
+    //Create a Method to get the Task Id when
+    public void getTaskID(String name){
 
     }
 
@@ -662,6 +674,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      **/
 
     //Tasks Adding part Taneesha.
+    public boolean insertListTaskData(String listid , String taskid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_TASK_DISPLAY_NAME, null);
+        //String INSERT_TABLE = "INSERT INTO " + TABLE_NAME + " (" +SONG_NAME+") VALUES ( " + audio + ")";
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DISPLAY_LIST_ID , listid);
+        contentValues.put(DISPLAY_TASK_ID , taskid);
+        Long result = db.insert(TABLE_TASK_DISPLAY_NAME, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
 
 
 
