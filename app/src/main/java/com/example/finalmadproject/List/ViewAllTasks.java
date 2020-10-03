@@ -43,7 +43,7 @@ public class ViewAllTasks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_tasks);
-        //mydb = new DatabaseHelper()
+        mydb = new DatabaseHelper(this);
         //Pass list ID to the List View page
         Intent intent = getIntent();
         String message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
@@ -107,6 +107,9 @@ public class ViewAllTasks extends AppCompatActivity {
 
                         if(isChecked){
                             userItems.add(position);
+                            String tasks = list2[0];
+                            System.out.println(tasks);
+                            //boolean result = mydb.insertListTaskData()
                         }else{
                             userItems.remove((Integer.valueOf(position)));
                         }
