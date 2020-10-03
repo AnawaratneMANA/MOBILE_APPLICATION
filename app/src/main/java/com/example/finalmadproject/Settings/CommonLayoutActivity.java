@@ -117,8 +117,6 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //closing the layout
         //check conditon
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            //when drawer is open
-            //close the drawer
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
@@ -142,4 +140,5 @@ public class CommonLayoutActivity extends AppCompatActivity {
         Intent intent = new Intent(activity , aclass);
         activity.startActivity(intent);
     }
+
 }

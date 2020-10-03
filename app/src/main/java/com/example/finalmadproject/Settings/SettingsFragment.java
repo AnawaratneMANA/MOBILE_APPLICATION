@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,6 +19,7 @@ public class SettingsFragment extends Fragment {
     private Ringtone ringtone;
     private Button button2;
     private Button button3;
+    ImageView logo;
 
 
     @Override
@@ -27,7 +29,14 @@ public class SettingsFragment extends Fragment {
         View v1 = inflater.inflate(R.layout.fragment_settings, container, false);
         button2 = (Button) v1.findViewById(R.id.buttonBackground);
         button3 = (Button) v1.findViewById(R.id.buttonSounds) ;
-
+        logo = v1.findViewById(R.id.company_logo);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , CommonLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
