@@ -28,8 +28,7 @@ import static com.example.finalmadproject.TaskManagement.Subject.SubjectEntry.SU
 public class Project_panel extends AppCompatActivity {
     //Button bt;
     ListView listview;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> arrayList;
+
     DatabaseHelper databaseHelper;
 
     @Override
@@ -39,7 +38,7 @@ public class Project_panel extends AppCompatActivity {
         //bt = (Button) findViewById(R.id.AddProject);
         listview = (ListView) findViewById(R.id.displayListMain);
         databaseHelper = new DatabaseHelper(Project_panel.this);
-        readListName();
+
         /**
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,23 +50,6 @@ public class Project_panel extends AppCompatActivity {
         });
          **/
     }
-    public void readListName(){
-        final Cursor cursor = databaseHelper.readAllData();
-        //Creating an ArrayList
-        arrayList = new ArrayList<>();
-        String list_name;
-        //Loop
-        while(cursor.moveToNext()){
-            list_name = cursor.getString(1);
-            arrayList.add(list_name);
-            adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,arrayList);
-            listview.setAdapter(adapter);
-        }
 
-        //Creating an ArrayAdapter
-
-
-
-    }
 
 }

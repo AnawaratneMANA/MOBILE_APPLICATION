@@ -42,9 +42,11 @@ public class CommonLayoutActivity extends AppCompatActivity {
     private TextView txt_na;
     public static String string_name;
     private Button bt,bt1;
-    private ListView TaskPanel;
+    private ListView TaskPanel , ListPanel;
     private DatabaseHelper database;
     private SQLiteDatabase db;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> arrayList;
 
     // initializing variable
     //implemented by tandin
@@ -72,16 +74,17 @@ public class CommonLayoutActivity extends AppCompatActivity {
         bt = findViewById(R.id.AddProject);//add tanish akki link
         bt1 =findViewById(R.id.AddTask);//add akash link
         TaskPanel = findViewById(R.id.taskPanel);
+        ListPanel = findViewById(R.id.listPanel);
 
 
         //Panel populating methods
         createView(database, db);
-
+        readListName();
         //Link to List Management.
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newI = new Intent(getApplicationContext(), MainActivity_List.class);
+                Intent newI = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(newI);
             }
         });
@@ -91,7 +94,8 @@ public class CommonLayoutActivity extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newI = new Intent(getApplicationContext(), MainActivity.class);
+
+                Intent newI = new Intent(getApplicationContext(), MainActivity_List.class);
                 startActivity(newI);
             }
         });
@@ -179,6 +183,23 @@ public class CommonLayoutActivity extends AppCompatActivity {
         Task_panel task = new Task_panel();
         ListAdapter adapter = new ArrayAdapter<>(CommonLayoutActivity.this,android.R.layout.simple_list_item_1,listName);
         TaskPanel.setAdapter(adapter);
+    }
+    public void readListName(){
+        final Cursor cursor = database.readAllData();
+        //Creating an ArrayList
+        arrayList = new ArrayList<>();
+        String list_name;
+        //Loop
+        while(cursor.moveToNext()){
+            list_name = cursor.getString(1);
+            arrayList.add(list_name);
+            adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,arrayList);
+            ListPanel.setAdapter(adapter);
+        }
+
+        //Creating an ArrayAdapter
+
+
 
     }
 

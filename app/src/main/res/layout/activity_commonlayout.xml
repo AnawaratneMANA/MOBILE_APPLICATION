@@ -48,6 +48,7 @@
             android:id="@+id/listPanel"
             android:layout_width="1010px"
             android:layout_height="160dp"
+            android:textColor="#FF0000"
             android:background="@drawable/panel_rounded_corners"
             android:theme="@style/ListFont"
             />
