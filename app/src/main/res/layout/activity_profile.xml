@@ -32,20 +32,23 @@
         android:layout_marginLeft="35dp"
         />
 
-    <TextView android:layout_height="50dp"
+    <EditText android:layout_height="50dp"
+        android:id="@+id/npwd"
         android:layout_width="223dp"
         android:layout_gravity="start"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="35dp"/>
+        android:layout_marginLeft="35dp"
+        android:inputType="textPassword" />
+
     <Button
-        android:id="@+id/resetpw"
+        android:id="@+id/rpw"
         android:layout_width="75dp"
         android:layout_height="50dp"
         android:layout_gravity="end"
         android:layout_marginTop="-53dp"
         android:layout_marginRight="35dp"
         android:clickable="true"
-        android:onClick="resetpw"
+        android:onClick="rpw"
         android:text="Reset" />
 
     <Button
@@ -74,6 +77,7 @@
         android:src="@drawable/flower"
         android:layout_marginTop="-490dp"
         tools:ignore="MissingConstraints" />
+
 
 
 </LinearLayout>
