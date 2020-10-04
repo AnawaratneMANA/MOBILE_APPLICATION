@@ -719,6 +719,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
     }
+    //updating the user
+    public Boolean updateUserpwd(String name, String pwd){
+        //Get a readable database
+        SQLiteDatabase db = getReadableDatabase();
+        System.out.println("this is in db :"+pwd+" name :"+name);
+
+        //String formatting
+        name = " '"+name+"' ";
+        pwd = " '"+pwd+"' ";
+        //SQL
+        String SQL = "UPDATE user" +
+                " SET PW = " + pwd +
+                " WHERE UN = " + name;
+        try{
+            db.execSQL(SQL);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     //Read Task Taneesha
     public Cursor readAlltasks(){
         String query = "SELECT " + TASK_NAME + " FROM " + TABLE2_NAME;

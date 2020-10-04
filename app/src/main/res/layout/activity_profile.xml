@@ -36,6 +36,7 @@
         android:id="@+id/npwd"
         android:layout_width="223dp"
         android:layout_gravity="start"
+        android:hint="Reset your password"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="35dp"
         android:inputType="textPassword" />
