@@ -55,7 +55,7 @@
         android:layout_gravity="start">
 
         <include
-            layout="@layout/fragment_background"
+            layout="@layout/fragment_blankground_settings"
             />
 
     </RelativeLayout>

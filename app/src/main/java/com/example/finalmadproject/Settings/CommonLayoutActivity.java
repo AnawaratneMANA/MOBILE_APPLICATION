@@ -23,6 +23,7 @@ import com.example.finalmadproject.List.MainActivity_List;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TanPart.Task_panel;
+import com.example.finalmadproject.TanPart.profile;
 import com.example.finalmadproject.TaskManagement.MainActivity;
 
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
@@ -131,6 +132,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
     }
     public void openProfile(View view){
+        redirectProfile(this , profile.class);
+    }
+    public void openAlarm(View view){
         redirectProfile(this , Alarm.class);
     }
     public void signout(View view){

@@ -555,6 +555,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     System.out.println("9");
                     value = db.update(TABLE_NOTIFICATION_NAME, contentValues1, "NOTIFICATION_ID=?", new String[]{id});
                 }
+                if(cursor.getString(1).equals("enable")){
+                    value = 1;
+                }
             }
         }
 

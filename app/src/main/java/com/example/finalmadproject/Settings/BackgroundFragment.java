@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.finalmadproject.AlarmandNotification.Alarm;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.T_MainActivity;
@@ -32,7 +33,6 @@ public class BackgroundFragment extends Fragment {
     Switch notification;
     Button profilee;
     Button signout;
-    ImageView settingsTravel;
     DatabaseHelper mydb;
     ImageView logo;
 
@@ -45,7 +45,6 @@ public class BackgroundFragment extends Fragment {
         View v2 = inflater.inflate(R.layout.fragment_background, container, false);
         profilee = v2.findViewById(R.id.ProfilesettingsButton);
         signout = v2.findViewById(R.id.Signout);
-        settingsTravel = v2.findViewById(R.id.setIcon);
         notification = v2.findViewById(R.id.notification);
 
         mydb = new DatabaseHelper(this.getContext());
@@ -81,18 +80,10 @@ public class BackgroundFragment extends Fragment {
 
             }
         });
-
-        settingsTravel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity() , MainActivity_sl.class);
-                startActivity(intent);
-            }
-        });
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity() , T_MainActivity.class);
+                Intent intent = new Intent(getActivity() , Alarm.class);
                 startActivity(intent);
             }
         });
