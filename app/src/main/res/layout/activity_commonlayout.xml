@@ -28,6 +28,7 @@
             android:background="@drawable/ic_addlo" />
 
         <include
+            android:id="@+id/l1"
             layout="@layout/activity_project_panel"
             />
 

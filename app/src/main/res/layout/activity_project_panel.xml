@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/l1"
     android:layout_height="220dp"
     tools:context=".TanPart.Task_panel"
     android:gravity="center_horizontal"
@@ -24,18 +25,9 @@
         android:text="Projects"
         android:textStyle="bold"
         android:textSize="20sp" />
+    <ListView
+        android:id="@+id/displayListMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-
-
-    <TextView
-        android:id="@+id/Task_txt"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Hello"
-        android:textSize="17sp" />
 </LinearLayout>
