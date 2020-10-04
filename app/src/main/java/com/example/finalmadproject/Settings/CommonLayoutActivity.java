@@ -45,6 +45,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
     private ListView TaskPanel , ListPanel;
     private DatabaseHelper database;
     private SQLiteDatabase db;
+    String variable;
     ArrayAdapter<String> adapter;
     ArrayList<String> arrayList;
 
@@ -58,6 +59,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commonlayout);
 
+
         //Create Database Instancesd
         database = new DatabaseHelper(this);
         db = database.getReadableDatabase();
@@ -65,7 +67,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //implemented by tandin
         //Getting data from login
         Intent i = getIntent();
-        String variable = i.getStringExtra("name");
+        variable = i.getStringExtra("name");
         //used for testing purpose
         //System.out.println(variable);
 
@@ -150,7 +152,13 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
     }
     public void openProfile(View view){
-        redirectProfile(this , profile.class);
+        Intent st = new Intent(getApplicationContext(),profile.class);
+        //sending data to make it a session
+        Bundle bundle = new Bundle();
+        st.putExtra("name", variable);
+        System.out.println("inside the link :"+ variable);
+        startActivity(st);
+        //redirectProfile(this , profile.class);
     }
     public void openAlarm(View view){
         redirectProfile(this , Alarm.class);

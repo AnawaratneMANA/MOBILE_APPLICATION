@@ -700,6 +700,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = database.rawQuery(sql, null);
         return data;
     }
+
+    //deleting user
+    public Boolean deleteUser(String name){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        System.out.println("passing :" +name);
+        long result = db.delete("user","UN = ?",new String[]{name});
+
+        System.out.println();
+        System.out.println("result :"+result);
+
+
+        if(result == -1){
+            return false;
+        }else{
+            return true;
+
+        }
+    }
+    //updating the user
+    public Boolean updateUserpwd(String name, String pwd){
+        //Get a readable database
+        SQLiteDatabase db = getReadableDatabase();
+        System.out.println("this is in db :"+pwd+" name :"+name);
+
+        //String formatting
+        name = " '"+name+"' ";
+        pwd = " '"+pwd+"' ";
+        //SQL
+        String SQL = "UPDATE user" +
+                " SET PW = " + pwd +
+                " WHERE UN = " + name;
+        try{
+            db.execSQL(SQL);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     //Read Task Taneesha
     public Cursor readAlltasks(){
         String query = "SELECT " + TASK_NAME + " FROM " + TABLE2_NAME;
