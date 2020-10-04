@@ -54,6 +54,18 @@
         android:layout_marginLeft="130dp"
         android:text="cancel alarm" />
     </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_buttonHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:layout_marginLeft="340dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/T_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_home" />
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
