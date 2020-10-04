@@ -28,8 +28,12 @@
             android:background="@drawable/ic_addlo" />
         <ListView
             android:id="@+id/taskPanel"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"/>
+            android:layout_width="1010px"
+            android:layout_height="160dp"
+            android:background="@drawable/panel_rounded_corners"
+            android:theme="@style/ListFont"
+            />
+
 
         <Button
             android:id="@+id/AddTask"
@@ -42,8 +46,11 @@
             android:background="@drawable/ic_addlo" />
         <ListView
             android:id="@+id/listPanel"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"/>
+            android:layout_width="1010px"
+            android:layout_height="160dp"
+            android:background="@drawable/panel_rounded_corners"
+            android:theme="@style/ListFont"
+            />
     </LinearLayout>
 
     <RelativeLayout

@@ -179,7 +179,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
         Task_panel task = new Task_panel();
         ListAdapter adapter = new ArrayAdapter<>(CommonLayoutActivity.this,android.R.layout.simple_list_item_1,listName);
         TaskPanel.setAdapter(adapter);
-        System.out.println("----------------- print");
+
     }
 
 }
