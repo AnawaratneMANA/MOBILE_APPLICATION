@@ -27,11 +27,15 @@ public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeS
         setContentView(R.layout.activity_alarm);
         mTextView = findViewById(R.id.textView);
         Button buttonTimePicker = findViewById(R.id.button_timepicker);
+        //Set the Alarm time (only the time.)
         buttonTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
+                //Set alarm trigger here by calling the method.
+                //Do the math to calculate the for the date and add them to the millis as well.
+
             }
         });
         Button buttonCancelAlarm = findViewById(R.id.button_cancel);
@@ -60,6 +64,7 @@ public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeS
     private void updateTimeText(Calendar c) {
         String timeText = "Alarm set for: ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        String timeonly = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
         mTextView.setText(timeText);
     }
     private void startAlarm(Calendar c) {
