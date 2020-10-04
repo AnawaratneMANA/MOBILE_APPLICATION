@@ -19,6 +19,8 @@ import com.example.finalmadproject.R;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import static com.example.finalmadproject.AlarmandNotification.AlertReceiver.mediaplayer;
+
 public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     private TextView mTextView;
     @Override
@@ -33,9 +35,6 @@ public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeS
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
-                //Set alarm trigger here by calling the method.
-                //Do the math to calculate the for the date and add them to the millis as well.
-
             }
         });
         Button buttonCancelAlarm = findViewById(R.id.button_cancel);
@@ -81,6 +80,7 @@ public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeS
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
         alarmManager.cancel(pendingIntent);
+        mediaplayer.stop();
         mTextView.setText("Alarm canceled");
     }
 }
