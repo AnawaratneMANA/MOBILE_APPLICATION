@@ -14,7 +14,10 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.finalmadproject.AlarmandNotification.Alarm;
@@ -29,6 +32,9 @@ import com.example.finalmadproject.TaskManagement.MainActivity;
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 
 import java.util.ArrayList;
+
+import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAME;
+
 //Register all the elements
 public class CommonLayoutActivity extends AppCompatActivity {
 
@@ -36,6 +42,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
     private TextView txt_na;
     public static String string_name;
     private Button bt,bt1;
+    private ListView TaskPanel;
+    private DatabaseHelper database;
+    private SQLiteDatabase db;
 
     // initializing variable
     //implemented by tandin
@@ -46,6 +55,10 @@ public class CommonLayoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commonlayout);
+
+        //Create Database Instancesd
+        database = new DatabaseHelper(this);
+        db = database.getReadableDatabase();
 
         //implemented by tandin
         //Getting data from login
@@ -58,6 +71,11 @@ public class CommonLayoutActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         bt = findViewById(R.id.AddProject);//add tanish akki link
         bt1 =findViewById(R.id.AddTask);//add akash link
+        TaskPanel = findViewById(R.id.taskPanel);
+
+
+        //Panel populating methods
+        createView(database, db);
 
         //Link to List Management.
         bt.setOnClickListener(new View.OnClickListener() {
@@ -81,11 +99,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //Register elements
         txt_na = findViewById(R.id.txt_name);
         //getting the value of FN from UN --- Once these method are uncommented program do not open.
-        DatabaseHelper db = new DatabaseHelper(this);
-        SQLiteDatabase database = db.getReadableDatabase();
-
-
-        Cursor name = db.getName(database, variable);
+        Cursor name = database.getName(db, variable);
         name.moveToNext();
         try {
             string_name = name.getString(name.getColumnIndex("FN"));
@@ -147,6 +161,25 @@ public class CommonLayoutActivity extends AppCompatActivity {
     public static void redirectProfile(Activity activity , Class aclass){
         Intent intent = new Intent(activity , aclass);
         activity.startActivity(intent);
+    }
+
+    //Get List Items
+    public void createView(DatabaseHelper database, SQLiteDatabase db){
+        //Calling the database method.
+        Cursor cursor = database.readTasks(db);
+
+        //ArrayList.
+        ArrayList<String> listName = new ArrayList<String>();
+        while(cursor.moveToNext())
+        {
+            String name = cursor.getString(cursor.getColumnIndex(TASK_NAME));
+            listName.add(name);
+        }
+        //Setting the Adapter
+        Task_panel task = new Task_panel();
+        ListAdapter adapter = new ArrayAdapter<>(CommonLayoutActivity.this,android.R.layout.simple_list_item_1,listName);
+        TaskPanel.setAdapter(adapter);
+        System.out.println("----------------- print");
     }
 
 }
