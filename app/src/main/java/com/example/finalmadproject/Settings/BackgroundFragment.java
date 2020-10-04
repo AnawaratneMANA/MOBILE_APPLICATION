@@ -24,6 +24,7 @@ import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.Project_panel;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TanPart.profile;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.example.finalmadproject.Settings.Notification.notification.NOTIFICATION;
 import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAME;
@@ -35,7 +36,7 @@ public class BackgroundFragment extends Fragment {
     Button profilee;
     Button signout;
     DatabaseHelper mydb;
-    ImageView logo;
+    FloatingActionButton logo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +50,7 @@ public class BackgroundFragment extends Fragment {
         notification = v2.findViewById(R.id.notification);
 
         mydb = new DatabaseHelper(this.getContext());
-        logo = v2.findViewById(R.id.company_logo);
+        logo = v2.findViewById(R.id.add_buttonHome);
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

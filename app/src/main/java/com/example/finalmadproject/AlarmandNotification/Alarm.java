@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.finalmadproject.R;
-import com.example.finalmadproject.TaskManagement.UpdateSubject;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -25,11 +25,20 @@ import static com.example.finalmadproject.AlarmandNotification.AlertReceiver.med
 
 public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     private TextView mTextView;
+    FloatingActionButton logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         mTextView = findViewById(R.id.textView);
+        logo = findViewById(R.id.add_buttonHome);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Alarm.this , CommonLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
         Button buttonTimePicker = findViewById(R.id.button_timepicker);
         //Set the Alarm time (only the time.)
         buttonTimePicker.setOnClickListener(new View.OnClickListener() {
