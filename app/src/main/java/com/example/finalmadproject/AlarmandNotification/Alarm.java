@@ -33,6 +33,8 @@ public class Alarm extends AppCompatActivity implements TimePickerDialog.OnTimeS
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
+                //Set alarm trigger here by calling the method.
+                //Do the math to calculate the for the date and add them to the millis as well.
 
             }
         });
