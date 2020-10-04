@@ -16,9 +16,10 @@ import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
 
 public class profile extends AppCompatActivity {
-    Button de,re;
+    Button de,re,ho;
     EditText reset_password;
     String variable,variable2;
 
@@ -36,7 +37,7 @@ public class profile extends AppCompatActivity {
 
         de = findViewById(R.id.delete);
         re = (Button) findViewById(R.id.rpw);
-
+        ho = (Button) findViewById(R.id.home);
 
         de.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,10 +60,18 @@ public class profile extends AppCompatActivity {
                 }else {
                     confirmDialog_resetpwd();
                 }
-                System.out.println("inetial reset_password"+variable2);
+                //used for checking
+              //  System.out.println("inetial reset_password"+variable2);
             }
         });
 
+        ho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent st = new Intent(profile.this, CommonLayoutActivity.class);
+                startActivity(st);
+            }
+        });
     }
 
 
@@ -112,7 +121,7 @@ public class profile extends AppCompatActivity {
         System.out.println("this is in profile:"+variable+" sdkjfh"+ variable2);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete User");
-        builder.setMessage("Are you sure you want to change your password?");
+        builder.setMessage("Are you sure you want to change your password? Your new password :" + variable2);
 
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
