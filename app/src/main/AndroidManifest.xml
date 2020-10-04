@@ -80,6 +80,11 @@
             -->
 
         </activity>
+
+        <receiver android:name=".AlarmandNotification.AlertReceiver"
+            android:enable="true"
+            android:exported="true"
+            />
     </application>
 
 </manifest>
