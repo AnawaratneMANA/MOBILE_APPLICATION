@@ -16,25 +16,6 @@
         <include
             layout="@layout/mian_toolbar"
         />
-
-        <Button
-            android:id="@+id/AddProject"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/ic_addlo" />
-        <ListView
-            android:id="@+id/taskPanel"
-            android:layout_width="1010px"
-            android:layout_height="160dp"
-            android:background="@drawable/panel_rounded_corners"
-            android:theme="@style/ListFont"
-            />
-
-
         <Button
             android:id="@+id/AddTask"
             android:layout_width="40dp"
@@ -49,6 +30,23 @@
             android:layout_width="1010px"
             android:layout_height="160dp"
             android:textColor="#FF0000"
+            android:background="@drawable/panel_rounded_corners"
+            android:theme="@style/ListFont"
+            />
+
+        <Button
+            android:id="@+id/AddProject"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/ic_addlo" />
+        <ListView
+            android:id="@+id/taskPanel"
+            android:layout_width="1010px"
+            android:layout_height="160dp"
             android:background="@drawable/panel_rounded_corners"
             android:theme="@style/ListFont"
             />
