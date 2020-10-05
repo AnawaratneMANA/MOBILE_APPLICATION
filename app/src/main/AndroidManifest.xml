@@ -81,7 +81,8 @@
             -->
 
         </activity>
-        <receiver android:name=".AlarmandNotification.AlertReceiver"
+        <receiver 
+            android:name=".AlarmandNotification.AlertReceiver"
             android:enabled="true"
             android:exported="true"
         />
