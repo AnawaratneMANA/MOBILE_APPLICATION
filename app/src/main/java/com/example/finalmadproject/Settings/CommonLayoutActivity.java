@@ -13,9 +13,16 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,14 +34,21 @@ import com.example.finalmadproject.R;
 import com.example.finalmadproject.TanPart.StaticActivity;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TanPart.Task_panel;
+import com.example.finalmadproject.TanPart.UserAction;
 import com.example.finalmadproject.TanPart.profile;
+import com.example.finalmadproject.TaskManagement.HomeFragment;
 import com.example.finalmadproject.TaskManagement.MainActivity;
 
 import com.example.finalmadproject.TaskManagement.ReadTaksSelectable;
 
 import java.util.ArrayList;
 
+import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_ID;
 import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAME;
+
+
+
+
 
 //Register all the elements
 public class CommonLayoutActivity extends AppCompatActivity {
@@ -54,6 +68,8 @@ public class CommonLayoutActivity extends AppCompatActivity {
     //implemented by tandin
     DrawerLayout drawerLayout;
     //end of implementation
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,22 +207,42 @@ public class CommonLayoutActivity extends AppCompatActivity {
     }
 
     //Get List Items
+
     public void createView(DatabaseHelper database, SQLiteDatabase db){
         //Calling the database method.
         Cursor cursor = database.readTasks(db);
 
         //ArrayList.
-        ArrayList<String> listName = new ArrayList<String>();
+        final ArrayList<String> listName = new ArrayList<String>();
+
         while(cursor.moveToNext())
         {
             String name = cursor.getString(cursor.getColumnIndex(TASK_NAME));
+
             listName.add(name);
+
         }
         //Setting the Adapter
         Task_panel task = new Task_panel();
         ListAdapter adapter = new ArrayAdapter<>(CommonLayoutActivity.this,android.R.layout.simple_list_item_1,listName);
         TaskPanel.setAdapter(adapter);
+
+        TaskPanel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CommonLayoutActivity.this , UserAction.class);
+                //sending data to make it a session
+                Bundle bundle = new Bundle();
+                intent.putExtra("taskPassingID", position);
+                intent.putExtra("taskPassingUN", variable);
+                System.out.println("inside the link id  :"+ id);
+                System.out.println("inside the link name :"+ variable);
+                startActivity(intent);
+            }
+        });
+
     }
+
     public void readListName(){
         final Cursor cursor = database.readAllData();
         //Creating an ArrayList
@@ -227,3 +263,4 @@ public class CommonLayoutActivity extends AppCompatActivity {
     }
 
 }
+

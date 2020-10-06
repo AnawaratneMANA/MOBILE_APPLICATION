@@ -701,6 +701,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+
+
     //deleting user
     public Boolean deleteUser(String name){
 
