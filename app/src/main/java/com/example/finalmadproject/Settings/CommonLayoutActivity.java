@@ -24,6 +24,7 @@ import com.example.finalmadproject.AlarmandNotification.Alarm;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.List.MainActivity_List;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.TanPart.StaticActivity;
 import com.example.finalmadproject.TanPart.T_MainActivity;
 import com.example.finalmadproject.TanPart.Task_panel;
 import com.example.finalmadproject.TanPart.profile;
@@ -41,7 +42,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
     //Declare elements
     private TextView txt_na;
     public static String string_name;
-    private Button bt,bt1;
+    private Button bt,bt1,bt3;
     private ListView TaskPanel , ListPanel;
     private DatabaseHelper database;
     private SQLiteDatabase db;
@@ -58,7 +59,6 @@ public class CommonLayoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commonlayout);
-
 
         //Create Database Instancesd
         database = new DatabaseHelper(this);
@@ -119,6 +119,21 @@ public class CommonLayoutActivity extends AppCompatActivity {
        // Call the method from the database to populate the list. -- Akash Testing.
        //Task_panel panel = new Task_panel();
        //panel.createView(db, database);
+
+
+        //linking to stat activity
+        bt3 = (Button) findViewById(R.id.stat);
+        bt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), StaticActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtra("name", variable);
+                startActivity(intent);
+            }
+        });
+
     }
 
     //tandin implementation
