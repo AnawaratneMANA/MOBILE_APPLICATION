@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".TanPart.profile"></activity>
+        <activity android:name=".AlarmandNotification.Alarm"></activity>
+        <activity android:name=".TanPart.profile" />
         <activity android:name=".TanPart.Project_panel" />
-        <activity android:name=".TanPart.Task_panel" >
+        <activity android:name=".TanPart.Task_panel">
 
-            <!--Testing Part
+            <!--
+            Testing Part
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,8 +36,16 @@
             android:label="Add list"
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash" />
-        <activity android:name=".Settings.CommonLayoutActivity" />
-        <!-- Main Page -->
+        <activity android:name=".Settings.CommonLayoutActivity">
+            <!-- Testing section
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+
         <activity
             android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -46,7 +55,7 @@
             </intent-filter>
         </activity>
 
-         <!-- Normal Pages -->
+        <!-- Normal Pages -->
         <activity android:name=".TaskManagement.UpdateTask" />
         <activity android:name=".TaskManagement.UpdateSubject" />
         <activity android:name=".TaskManagement.MainActivity">
@@ -59,17 +68,23 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name=".Settings.MainActivity_sl"></activity>
-        <activity android:name=".Settings.Sounds"></activity>
+        <activity android:name=".Settings.MainActivity_sl" />
+        <activity android:name=".Settings.Sounds" />
         <activity android:name=".List.MainActivity_List">
 
             <!--
+            Testing
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             -->
+
         </activity>
+        <receiver android:name=".AlarmandNotification.AlertReceiver"
+            android:enabled="true"
+            android:exported="true"
+        />
     </application>
 
 </manifest>

@@ -396,6 +396,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    //Join method to combine all task details and List details. -- MAKE THE CHANGERS.
+    public Cursor displayListed(String id){
+        //Create DB instances
+        SQLiteDatabase db = getReadableDatabase();
+        //String formatting
+        id = " '"+id+"' ";
+        //Creating the join query - Testing
+        String sql1 = "SELECT\n" +
+                "  Task_infor.Task_name as Task_name \n" +
+                " FROM \n" +
+                " Task_infor \n" +
+                " LEFT JOIN task_display_table ON task_display_table.display_task_id = Task_info.Task_id" +
+                " WHERE task_display_table.display_task_id = " + id;
+        //Final Temporary
+        String sql = " SELECT t.Task_name" +
+                " FROM " + " Task_infor t" + ", task_display_table tt " +
+                " WHERE " + " t.Task_id = tt.display_task_id AND " + " tt.display_list_id = " +id;
+        //Execute query
+        Cursor data = db.rawQuery(sql, null);
+        //return
+        return data;
+    }
+
     //Saliths DB handling Methods ------------------------------------------------------------------
     public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -531,6 +554,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String id = cursor.getString(0);
                     System.out.println("9");
                     value = db.update(TABLE_NOTIFICATION_NAME, contentValues1, "NOTIFICATION_ID=?", new String[]{id});
+                }
+                if(cursor.getString(1).equals("enable")){
+                    value = 1;
                 }
             }
         }
@@ -674,6 +700,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = database.rawQuery(sql, null);
         return data;
     }
+
+
+
+    //deleting user
+    public Boolean deleteUser(String name){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        System.out.println("passing :" +name);
+        long result = db.delete("user","UN = ?",new String[]{name});
+
+        System.out.println();
+        System.out.println("result :"+result);
+
+
+        if(result == -1){
+            return false;
+        }else{
+            return true;
+
+        }
+    }
+    //updating the user
+    public Boolean updateUserpwd(String name, String pwd){
+        //Get a readable database
+        SQLiteDatabase db = getReadableDatabase();
+        System.out.println("this is in db :"+pwd+" name :"+name);
+
+        //String formatting
+        name = " '"+name+"' ";
+        pwd = " '"+pwd+"' ";
+        //SQL
+        String SQL = "UPDATE user" +
+                " SET PW = " + pwd +
+                " WHERE UN = " + name;
+        try{
+            db.execSQL(SQL);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     //Read Task Taneesha
     public Cursor readAlltasks(){
         String query = "SELECT " + TASK_NAME + " FROM " + TABLE2_NAME;

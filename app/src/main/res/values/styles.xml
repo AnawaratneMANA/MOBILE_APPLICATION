@@ -21,6 +21,11 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="ListFont"  >
+        <item name="android:textColor" >#FF0000</item>
+        <item name="android:typeface" >sans</item>
+    </style>
+
     <!-- Task Manager Styles-->
 
 </resources>

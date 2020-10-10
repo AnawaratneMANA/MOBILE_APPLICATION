@@ -8,6 +8,8 @@
     android:background="@drawable/flower"
     android:gravity="center_horizontal"
     android:orientation="vertical">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,37 +19,63 @@
             layout="@layout/mian_toolbar"
         />
 
-        <Button
-            android:id="@+id/AddProject"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/ic_addlo" />
-
-        <include
-            layout="@layout/activity_project_panel"
-            />
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Lists"
+            android:textSize="30dp" />
         <Button
             android:id="@+id/AddTask"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="250dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="50dp"
             android:background="@drawable/ic_addlo" />
+    </LinearLayout>
+        <ListView
+            android:id="@+id/listPanel"
+            android:layout_width="1010px"
+            android:layout_height="160dp"
+            android:background="@drawable/panel_rounded_corners"
+            android:theme="@style/ListFont"
 
-        <include
-            layout="@layout/activity_task_panel"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tasks"
+                android:layout_marginLeft="30dp"
+                android:textSize="30dp"/>
+            <Button
+                android:id="@+id/AddProject"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="240dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_addlo" />
+        </LinearLayout>
+        <ListView
+            android:id="@+id/taskPanel"
+            android:layout_width="1010px"
+            android:layout_height="160dp"
+            android:background="@drawable/panel_rounded_corners"
+            android:theme="@style/ListFont"
             />
 
-
-
     </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="300dp"
@@ -55,7 +83,7 @@
         android:layout_gravity="start">
 
         <include
-            layout="@layout/fragment_background"
+            layout="@layout/fragment_blankground_settings"
             />
 
     </RelativeLayout>
