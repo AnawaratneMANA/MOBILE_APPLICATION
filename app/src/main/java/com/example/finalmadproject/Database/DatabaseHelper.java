@@ -101,7 +101,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //tan's DB part
 
     public static final String CREATE_TABLE_Login = "create table user (UID INTEGER PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
+    public static final String CREATE_TABLE_fl = "create table fl (FID INTEGER PRIMARY KEY AUTOINCREMENT, T_ID INTERGER, T_ti text)";
+    //public static final String CREATE_TABLE_Flag = "create table Flaging (FID INTEGER PRIMARY KEY AUTOINCREMENT,taskid INTEGER,Flag text)";
+
+
     public static final String DROP_TABLE_Login = "drop table if exists user";
+    public static final String DROP_TABLE_fl= "drop table if exists fl";
+    //public static final String DROP_TABLE_Flag = "drop table if exists Flaging";
 
     //Create the constructor
     public DatabaseHelper(Context context)
@@ -116,9 +122,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        //tan's Table creation
-        sqLiteDatabase.execSQL(CREATE_TABLE_Login);
+        //tan's Table creation\
 
+        sqLiteDatabase.execSQL(CREATE_TABLE_Login);
+        sqLiteDatabase.execSQL(CREATE_TABLE_fl);
 
         sqLiteDatabase.execSQL(CREATE_TABLE);
         sqLiteDatabase.execSQL(CREATE_TABLE2); //Testing
@@ -140,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //tan's Data
         sqLiteDatabase.execSQL(DROP_TABLE_Login);
+        sqLiteDatabase.execSQL(DROP_TABLE_fl);
 
 
         sqLiteDatabase.execSQL(DROP_TABLE);
@@ -678,6 +686,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(ins == -1) return false;
         else return true;
     }
+
+
+
     //checking if UN exists
     public Boolean chkUN(String UN){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -752,7 +763,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+//inserting flag to the db
+    public Boolean insert_flag(int taskID, String flaging)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("T_ID",taskID);
+        contentValues.put("T_ti",flaging);
 
+        //Creating the database inserting method.
+       long ins =  db.insert("fl", null, contentValues);
+
+        if(ins == -1) return false;
+        else return true;
+
+    }
+
+    //checking if flag exists
+    public Boolean chkfl(int taskID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from fl where T_ID = ?",new String[]{String.valueOf(taskID)});
+        if(cursor.getCount()>0) return false;
+        else return true;
+    }
+
+    //deleting flag
+    public Boolean deleteflag(int taskID){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        System.out.println("passing :" +taskID);
+        long result = db.delete("fl","T_ID = ?",new String[]{String.valueOf(taskID)});
+
+        System.out.println();
+        System.out.println("result :"+result);
+
+
+        if(result == -1){
+            return false;
+        }else{
+            return true;
+
+        }
+    }
 
 
     //Read Task Taneesha

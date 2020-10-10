@@ -1,24 +1,34 @@
 package com.example.finalmadproject.TanPart;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
+import com.example.finalmadproject.TaskManagement.MainActivity;
 
 public class UserAction extends AppCompatActivity {
     String variable;
     private TextView textheader, textdis;
     int taskvar, addtaskvar;
     public static String string_name, string_dis, string_tit;
+
+    DatabaseHelper check = new DatabaseHelper(this);
     private DatabaseHelper database;
     private SQLiteDatabase db;
+    Button b1,b2,b3,b4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,5 +83,123 @@ public class UserAction extends AppCompatActivity {
 
         textdis = findViewById(R.id.textView);
         textdis.setText(String.valueOf(string_dis));
+
+        b1 = findViewById(R.id.button);
+        b2 = findViewById(R.id.button2);
+        b3 = findViewById(R.id.button3);
+        b4 = findViewById(R.id.button4);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = "FLAG";
+                check= new DatabaseHelper(UserAction.this);
+
+                Boolean chkfl = check.chkfl(addtaskvar);
+
+                if(chkfl == true){
+                    Boolean insert = check.insert_flag(addtaskvar, value);
+
+                    if (insert == true) {
+                        Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
+                        Intent st = new Intent(UserAction.this, CommonLayoutActivity.class);
+                        startActivity(st);
+                    }
+                }else{
+                    Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
+                    confirmDialog();
+
+                }
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = "REMIND";
+                check= new DatabaseHelper(UserAction.this);
+
+                Boolean chkfl = check.chkfl(addtaskvar);
+
+                if(chkfl == true){
+                    Boolean insert = check.insert_flag(addtaskvar, value);
+
+                    if (insert == true) {
+                        Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = "TEMP";
+                check= new DatabaseHelper(UserAction.this);
+
+                Boolean chkfl = check.chkfl(addtaskvar);
+
+                if(chkfl == true){
+                    Boolean insert = check.insert_flag(addtaskvar, value);
+
+                    if (insert == true) {
+                        Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent st = new Intent(UserAction.this, CommonLayoutActivity.class);
+                startActivity(st);
+            }
+        });
+
+
+    }
+
+    //when click delete button popup Dialog box
+    void confirmDialog(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Flag");
+        builder.setMessage("Do you want to delete!");
+
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DatabaseHelper dbHandler = new DatabaseHelper(UserAction.this);
+                boolean result =  dbHandler.deleteflag(addtaskvar);
+                if(result == true){
+                    System.out.println("this is in profile:"+addtaskvar);
+                    Toast.makeText(getApplicationContext(), "Flag Deleted", Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    System.out.println(addtaskvar);
+                    Toast.makeText(getApplicationContext(),"Failed to delete", Toast.LENGTH_SHORT).show();
+
+                }
+                finish();
+            }
+        });
+
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+
+        builder.create().show();
     }
 }

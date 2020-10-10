@@ -87,6 +87,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //used for testing purpose
         //System.out.println(variable);
 
+
         //opening the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
         bt = findViewById(R.id.AddProject);//add tanish akki link
@@ -223,6 +224,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
         }
         //Setting the Adapter
+
         Task_panel task = new Task_panel();
         ListAdapter adapter = new ArrayAdapter<>(CommonLayoutActivity.this,android.R.layout.simple_list_item_1,listName);
         TaskPanel.setAdapter(adapter);
