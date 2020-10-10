@@ -693,15 +693,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) return true;
         else return false;
     }
-    public Cursor getName(SQLiteDatabase database, String name){
 
+    //getting name from id
+    public Cursor getName(SQLiteDatabase database, String name){
+        System.out.println(name);
         //SQL
         String sql = "SELECT * FROM user where UN  = "+ " '" +name+"' ";
         Cursor data = database.rawQuery(sql, null);
         return data;
     }
 
+    //getting description from database
+    public Cursor getdescription(SQLiteDatabase database, int dis){
+        System.out.println(dis);
+        //SQL
+        String sql = "SELECT * FROM Task_infor where Task_id  = "+ " '" +dis+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
 
+    }
 
     //deleting user
     public Boolean deleteUser(String name){
