@@ -652,11 +652,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DES,description);
 
         long result = db.update(TABLE_NAME_T,cv, "_id=?",new String[]{row_id});
+
         if(result == -1){
             //Toast.makeText(context,"Failed to update.",Toast.LENGTH_SHORT).show();
             return false;
-        }else{
-            //Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
+        }else{   //Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
             return true;
         }
     }
