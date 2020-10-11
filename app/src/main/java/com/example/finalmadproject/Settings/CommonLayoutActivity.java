@@ -55,7 +55,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
     //Declare elements
     private TextView txt_na;
-    public static String string_name;
+    public static String string_name,string_fval;
     private Button bt,bt1,bt3;
     private ListView TaskPanel , ListPanel;
     private DatabaseHelper database;
@@ -215,13 +215,22 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
         //ArrayList.
         final ArrayList<String> listName = new ArrayList<String>();
-
+        int incr = 1;
         while(cursor.moveToNext())
         {
             String name = cursor.getString(cursor.getColumnIndex(TASK_NAME));
+            //getting the value of flag
+            Cursor fval = database.getfv(db, incr);
+            fval.moveToNext();
+            try {
+                string_fval = fval.getString(fval.getColumnIndex("T_ti"));
+            }catch (CursorIndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
+                listName.add(name + " (" + string_fval+")");
+                System.out.println(name);
 
-            listName.add(name);
-
+            incr++;
         }
         //Setting the Adapter
 

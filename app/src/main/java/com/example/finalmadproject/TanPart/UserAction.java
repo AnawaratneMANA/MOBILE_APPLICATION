@@ -23,7 +23,7 @@ public class UserAction extends AppCompatActivity {
     String variable;
     private TextView textheader, textdis;
     int taskvar, addtaskvar;
-    public static String string_name, string_dis, string_tit;
+    public static String string_name, string_dis, string_tit,string_fv;
 
     DatabaseHelper check = new DatabaseHelper(this);
     private DatabaseHelper database;
@@ -66,6 +66,16 @@ public class UserAction extends AppCompatActivity {
             e.printStackTrace();
         }
         System.out.println(string_tit);
+
+//        //getting the  flag value
+//        Cursor fv = database.getfv(db, addtaskvar);
+//        fv.moveToNext();
+//        try {
+//            string_fv = fv.getString(fv.getColumnIndex("T_ti"));
+//        }catch (CursorIndexOutOfBoundsException e){
+//            e.printStackTrace();
+//        }
+//        System.out.println("========================="+string_fv);
 
         //getting the value of discription
         Cursor dis = database.getdescription(db, addtaskvar);
@@ -126,9 +136,13 @@ public class UserAction extends AppCompatActivity {
 
                     if (insert == true) {
                         Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
+                        Intent st = new Intent(UserAction.this, CommonLayoutActivity.class);
+                        startActivity(st);
                     }
                 }else{
                     Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
+                    confirmDialog();
+
                 }
             }
         });
@@ -146,9 +160,13 @@ public class UserAction extends AppCompatActivity {
 
                     if (insert == true) {
                         Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
+                        Intent st = new Intent(UserAction.this, CommonLayoutActivity.class);
+                        startActivity(st);
                     }
                 }else{
                     Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
+                    confirmDialog();
+
                 }
             }
         });

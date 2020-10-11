@@ -724,6 +724,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //getting flag value from database
+    public Cursor getfv(SQLiteDatabase database, int fval){
+        System.out.println(fval);
+        //SQL
+        String sql = "SELECT * FROM fl where T_ID  = "+ " '" +fval+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
+
+    }
+
     //deleting user
     public Boolean deleteUser(String name){
 
