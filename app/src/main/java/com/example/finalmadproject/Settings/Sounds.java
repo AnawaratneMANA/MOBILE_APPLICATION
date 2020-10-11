@@ -13,17 +13,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class Sounds extends AppCompatActivity {
 
     private Button btn;
-    ImageView logo;
     ListView songList;
     CustomMusicAdapter adapter;
     ArrayList<SongList> array;
     DatabaseHelper databaseHelper;
+    FloatingActionButton logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class Sounds extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         array = new ArrayList<>();
         viewAudio();
-        logo = findViewById(R.id.company_logo);
+        logo = findViewById(R.id.add_buttonHome);
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

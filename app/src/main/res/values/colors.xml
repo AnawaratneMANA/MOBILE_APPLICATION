@@ -17,4 +17,6 @@
     <color name="T_gradStart">#00796b</color>
     <color name="T_gradStop">#00FFFFF8</color>
     <color name="T_gray">#808080</color>
+    <color name="PanelBackground">#979797</color>
+
 </resources>
