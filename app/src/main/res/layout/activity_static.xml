@@ -51,9 +51,9 @@
             android:layout_height="40dp"
             android:layout_marginLeft="130dp"
             android:layout_marginTop="140dp"
-            android:background="#009688"
+            android:background="@drawable/round_btn"
+            android:textColor="#ffffff"
             android:text="Home"
-            android:textColor="#FFFFFF"
             android:textSize="17sp" />
 
     </LinearLayout>
