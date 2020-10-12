@@ -73,7 +73,7 @@ public class BackgroundFragment extends Fragment {
                 }else{
                     boolean value = mydb.updateDisableStatus();
                     if(value == true){
-                        Toast.makeText(getContext() , "wow" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext() , "status disable" , Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(getContext() , "error occured" , Toast.LENGTH_LONG).show();
