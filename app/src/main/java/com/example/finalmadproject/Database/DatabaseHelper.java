@@ -101,7 +101,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //tan's DB part
 
     public static final String CREATE_TABLE_Login = "create table user (UID INTEGER PRIMARY KEY AUTOINCREMENT, FN text, UN text, PW text)";
+    public static final String CREATE_TABLE_fl = "create table fl (FID INTEGER PRIMARY KEY AUTOINCREMENT, T_ID INTERGER, T_ti text)";
+    //public static final String CREATE_TABLE_Flag = "create table Flaging (FID INTEGER PRIMARY KEY AUTOINCREMENT,taskid INTEGER,Flag text)";
+
+
     public static final String DROP_TABLE_Login = "drop table if exists user";
+    public static final String DROP_TABLE_fl= "drop table if exists fl";
+    //public static final String DROP_TABLE_Flag = "drop table if exists Flaging";
 
     //Create the constructor
     public DatabaseHelper(Context context)
@@ -116,9 +122,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        //tan's Table creation
-        sqLiteDatabase.execSQL(CREATE_TABLE_Login);
+        //tan's Table creation\
 
+        sqLiteDatabase.execSQL(CREATE_TABLE_Login);
+        sqLiteDatabase.execSQL(CREATE_TABLE_fl);
 
         sqLiteDatabase.execSQL(CREATE_TABLE);
         sqLiteDatabase.execSQL(CREATE_TABLE2); //Testing
@@ -140,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //tan's Data
         sqLiteDatabase.execSQL(DROP_TABLE_Login);
+        sqLiteDatabase.execSQL(DROP_TABLE_fl);
 
 
         sqLiteDatabase.execSQL(DROP_TABLE);
@@ -637,6 +645,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor readAllDataNew(SQLiteDatabase database){
+
+        //String Array
+        String [] list = {COLUMN_ID,COLUMN_TITLE};
+
+        //Creating a Cursor object
+        Cursor cursor = database.query(TABLE_NAME_T,list,null,null,null,null,null);
+        return cursor;
+    }
+
+
     public boolean updateData(String row_id,String title, String description){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -644,11 +663,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DES,description);
 
         long result = db.update(TABLE_NAME_T,cv, "_id=?",new String[]{row_id});
+
         if(result == -1){
             //Toast.makeText(context,"Failed to update.",Toast.LENGTH_SHORT).show();
             return false;
-        }else{
-            //Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
+        }else{   //Toast.makeText(context,"Successfully Updated!",Toast.LENGTH_SHORT).show();
             return true;
         }
     }
@@ -678,6 +697,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(ins == -1) return false;
         else return true;
     }
+
+
+
     //checking if UN exists
     public Boolean chkUN(String UN){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -693,12 +715,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) return true;
         else return false;
     }
-    public Cursor getName(SQLiteDatabase database, String name){
 
+    //getting name from id
+    public Cursor getName(SQLiteDatabase database, String name){
+        System.out.println(name);
         //SQL
         String sql = "SELECT * FROM user where UN  = "+ " '" +name+"' ";
         Cursor data = database.rawQuery(sql, null);
         return data;
+    }
+
+    //getting description from database
+    public Cursor getdescription(SQLiteDatabase database, int dis){
+        System.out.println(dis);
+        //SQL
+        String sql = "SELECT * FROM Task_infor where Task_id  = "+ " '" +dis+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
+
+    }
+
+    //getting flag value from database
+    public Cursor getfv(SQLiteDatabase database, int fval){
+        System.out.println(fval);
+        //SQL
+        String sql = "SELECT * FROM fl where T_ID  = "+ " '" +fval+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
+
     }
 
     //deleting user
@@ -740,8 +784,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+//inserting flag to the db
+    public Boolean insert_flag(int taskID, String flaging)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("T_ID",taskID);
+        contentValues.put("T_ti",flaging);
+
+        //Creating the database inserting method.
+       long ins =  db.insert("fl", null, contentValues);
+
+        if(ins == -1) return false;
+        else return true;
+
+    }
+
+    //checking if flag exists
+    public Boolean chkfl(int taskID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("Select * from fl where T_ID = ?",new String[]{String.valueOf(taskID)});
+        if(cursor.getCount()>0) return false;
+        else return true;
+    }
+
+    //deleting flag
+    public Boolean deleteflag(int taskID){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        System.out.println("passing :" +taskID);
+        long result = db.delete("fl","T_ID = ?",new String[]{String.valueOf(taskID)});
+
+        System.out.println();
+        System.out.println("result :"+result);
 
 
+        if(result == -1){
+            return false;
+        }else{
+            return true;
+
+        }
+    }
+    public Cursor readAllFlag(){
+        String query = "SELECT * FROM fl";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    //getting description from database
+    public Cursor getdescriptionflag(SQLiteDatabase database, int dis){
+        System.out.println(dis);
+        //SQL
+        String sql = "SELECT * FROM fl where T_ID  = "+ " '" +dis+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
+
+    }
 
     //Read Task Taneesha
     public Cursor readAlltasks(){

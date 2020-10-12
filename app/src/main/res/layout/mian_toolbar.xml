@@ -27,6 +27,7 @@
 
     <ImageView
         tools:ignore="ContentDescription"
+        android:id="@+id/dp"
         android:src="@drawable/dp"
         android:scaleType="centerCrop"
         android:layout_height="match_parent"
@@ -44,6 +45,15 @@
         android:fontFamily="@font/roboto_regular"
         android:text="Hello"
         android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/stat"
+        android:layout_width="70dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="-30dp"
+        android:layout_height="40dp"
+        android:textSize="17sp"
+        android:text="View" />
 
 
 </LinearLayout>

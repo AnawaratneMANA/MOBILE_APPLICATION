@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 
+import static android.app.DownloadManager.COLUMN_TITLE;
 import static com.example.finalmadproject.TaskManagement.Subject.SubjectEntry.SUBJECT_NAME;
 
 
@@ -112,6 +113,10 @@ public class addSubject extends Fragment implements View.OnClickListener {
                     try{
                         while(subjectsSet.moveToNext()){
                             name_from_DB = subjectsSet.getString(subjectsSet.getColumnIndex(SUBJECT_NAME));
+
+                            System.out.println(name_from_DB);
+                            System.out.println(subjectsSet.getColumnIndex(SUBJECT_NAME));
+
                             if(name_from_DB.contentEquals(name)){
                                 flag++;
                                 break;

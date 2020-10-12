@@ -69,7 +69,7 @@ public class RegisterFragment extends Fragment {
                 s4 = pW2.getText().toString();
 
                 if (s1.equals("") || s2.equals("") || s3.equals("") || s4.equals("")) {
-                    Toast.makeText(getContext(), "Fields are empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "FFields are empty", Toast.LENGTH_SHORT).show();
                 } else {
                     if (s3.contentEquals(s4)) {
                         Boolean chkUN = db.chkUN(s2);
