@@ -38,6 +38,7 @@ public class reminderapp extends AppCompatActivity {
         setContentView(R.layout.activity_reminderapp);
         mydb = new DatabaseHelper(this);
         final String path = mydb.getAudiofilepathSelected();
+
         //songLists = songList.get();
 
         hr = (EditText)findViewById(R.id.hour_set_text);

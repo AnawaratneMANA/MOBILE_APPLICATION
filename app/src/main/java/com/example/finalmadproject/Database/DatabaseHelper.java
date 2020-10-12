@@ -428,6 +428,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Saliths DB handling Methods ------------------------------------------------------------------
+    //insert method in db helper
+    //insserting audio files
     public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
