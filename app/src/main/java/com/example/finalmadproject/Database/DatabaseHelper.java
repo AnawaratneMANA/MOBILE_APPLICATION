@@ -645,6 +645,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor readAllDataNew(SQLiteDatabase database){
+
+        //String Array
+        String [] list = {COLUMN_ID,COLUMN_TITLE};
+
+        //Creating a Cursor object
+        Cursor cursor = database.query(TABLE_NAME_T,list,null,null,null,null,null);
+        return cursor;
+    }
+
+
     public boolean updateData(String row_id,String title, String description){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
