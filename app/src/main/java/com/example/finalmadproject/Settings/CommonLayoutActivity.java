@@ -58,7 +58,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
     public static String string_name,string_fval;
     private Button bt,bt1,bt3;
     private ListView TaskPanel , ListPanel;
-    private DatabaseHelper database;
+    private DatabaseHelper database;//declare databasehelper
     private SQLiteDatabase db;
     int hr,mi;
     String variable;
@@ -197,16 +197,20 @@ public class CommonLayoutActivity extends AppCompatActivity {
         startActivity(st);
         //redirectProfile(this , profile.class);
     }
+    //----------------------- added by salitha------------------------------------------
+    //onclick method for alarm activity through button in blanckground_settings
     public void openAlarm(View view){
         redirectProfile(this , Alarm.class);
     }
+    //onclick method for signout activity through button in blanckground_settings
     public void signout(View view){
         redirectProfile(this , T_MainActivity.class);
     }
+    //onclick method for settings fragment through button in blanckground_settings
     public void openSettings(View view){
         redirectProfile(this , MainActivity_sl.class);
     }
-    //not working -------------------
+    //onclick method for profile activity through button in blanckground_settings
     public static void redirectProfile(Activity activity , Class aclass){
         Intent intent = new Intent(activity , aclass);
         activity.startActivity(intent);

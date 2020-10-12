@@ -34,7 +34,6 @@ public class ViewAllTasks extends AppCompatActivity {
     TextView taskSelected;
     DatabaseHelper mydb;
     private String message;
-    String[] listItems;
     String[] list2; //Testing
     boolean[] checkedItems;
     private ListView layout;
@@ -50,65 +49,32 @@ public class ViewAllTasks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_tasks);
         mydb = new DatabaseHelper(this);
-        //Pass list ID to the List View page
-
-        //System.out.println(message);
-        //dbHandler = new DatabaseHelper(ViewAllTasks.this);
-        //new one
-        //storeTaskInArrays();
 
         addView = findViewById(R.id.btnaddTask);
-        //taskSelected = findViewById(R.id.tvTaskSelected);
         layout = findViewById(R.id.listView);
-
-        //-------------------------------
-        //List -> ArrayList
-        //Call the function when approaching to the page
-        //Append the items to the list.
-        //-------------------------------
-
-        //Testing - Populating the View using database information
         ListPopulate();
-
-        //listItems = getResources().getStringArray(R.array.Tasks);
-
-        //Getting data from the DB.
-
         setSelectedTasks();
         checkedItems = new boolean[count];
 
         addView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("1a");
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ViewAllTasks.this);
-                System.out.println("2a");
                 mBuilder.setTitle(R.string.dialog_title);
-                System.out.println("3a");
                 mBuilder.setMultiChoiceItems(list2, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
-                        System.out.println("4a");
-                        /**
-                        //if (isChecked) {
-                           if (!userItems.contains(position)) {
-                              userItems.add(position);
-                           }
-                        } else if (userItems.contains(position)) {
-                        userItems.remove(position);
-                      }
-                         **/
-
-
                         if(isChecked){
                             userItems.add(position);
+                            //pass intent
                             intent = getIntent();
+                            //take the relevent string value passed by the customerAdapter
                             message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
+                            //take relevent string value of the relevent position from list2 string array declared above
                             String tasks = list2[position];
-                            String s = "1";
-                            System.out.println(tasks);
+                            //here we check the relevent task id of relevent string value initialized above
                             String task_2 = mydb.getTaskID(tasks);
-                            System.out.println(task_2);
+                            //insert method
                             boolean result = mydb.insertListTaskData(message , task_2);
                         }else{
                             userItems.remove((Integer.valueOf(position)));
@@ -119,19 +85,7 @@ public class ViewAllTasks extends AppCompatActivity {
                 mBuilder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-
-
-                        //ListAdapter adapter = new ArrayAdapter<>(getApplication(),android.R.layout.simple_list_item_1,list2);
-                        //layout.setAdapter(adapter);
                         ListPopulate();
-//                        String item = "";
-//                        for (int i = 0; i < userItems.size(); i++) {
-//                            item = item + listItems[userItems.get(i)];
-//                            if (i != userItems.size() - 1) {
-//                                item = item + ", ";
-//                            }
-//                        }
-//                        taskSelected.setText(item);
                     }
                 });
 
@@ -171,9 +125,6 @@ public class ViewAllTasks extends AppCompatActivity {
 
             count2++;
         }
-
-        //Create String Array
-        //List<String> list = new ArrayList<>();
         list2 = new String[count2];
         count = 0;
         for(object.moveToFirst(); !object.isAfterLast(); object.moveToNext()){
@@ -188,18 +139,13 @@ public class ViewAllTasks extends AppCompatActivity {
     public void ListPopulate(){
         DatabaseHelper db = new DatabaseHelper(this);
         SQLiteDatabase database = db.getReadableDatabase();
-        //Cursor object1 = db.displayListed("1");
         intent = getIntent();
         message = intent.getStringExtra(CustomAdapter.EXTRA_ID);
-        System.out.println("--------------------------------------------------");
-        System.out.println("This is a message yo: " + message);
         Cursor object = db.displayListed(message);
 
         int count1 = 0;
         //Testing loop
         while(object.moveToNext()){
-            System.out.println("--------------------------------------------------");
-            System.out.println(object.getString(object.getColumnIndex(TASK_NAME)));
             count1++;
         }
         list3 = new String[count1];
@@ -219,23 +165,6 @@ public class ViewAllTasks extends AppCompatActivity {
         layout.setAdapter(adapter);
 
     }
-
-    //new Method
-   /*void storeTaskInArrays(){
-        Cursor cursor = dbHandler.readAlltasks();
-        if(cursor.getCount() == 0){
-            Toast.makeText(this,"No data", Toast.LENGTH_SHORT).show();
-        }else{
-            while(cursor.moveToNext()){
-               // id.add(cursor.getString(0));
-                //title.add(cursor.getString(1));
-                //description.add(cursor.getString(2));
-                titleTask.add(cursor.getString(0));
-                desTask.add(cursor.getString(1));
-            }
-        }
-    }
-    */
 
 
    //Comment - Remove the statement given. in the dialog box ok button and then add them to the database.

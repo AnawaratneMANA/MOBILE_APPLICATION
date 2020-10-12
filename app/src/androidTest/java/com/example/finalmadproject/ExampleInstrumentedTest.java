@@ -155,7 +155,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void UpdateListItems() throws CursorIndexOutOfBoundsException {
         //Create data
-        String id = "6";
+        String id = "6";//relevent database colomn
         String title = "title2";
         String description = "des2";
         boolean result = database.updateData(id,title,description);

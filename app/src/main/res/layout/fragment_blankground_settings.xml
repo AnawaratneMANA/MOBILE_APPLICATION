@@ -23,6 +23,8 @@
     <Button
         android:id="@+id/ProfilesettingsButton2"
         android:layout_width="222dp"
+        android:background="@drawable/rounded_corners"
+        android:textColor="#ffffff"
         android:layout_height="57dp"
         android:layout_marginTop="35dp"
         android:clickable="true"
@@ -32,6 +34,8 @@
     <Button
         android:id="@+id/AlarmsettingsButton2"
         android:layout_width="222dp"
+        android:background="@drawable/rounded_corners"
+        android:textColor="#ffffff"
         android:layout_height="57dp"
         android:layout_marginTop="35dp"
         android:clickable="true"
@@ -41,6 +45,8 @@
     <Button
         android:id="@+id/Signout"
         android:layout_width="223dp"
+        android:background="@drawable/rounded_corners"
+        android:textColor="#ffffff"
         android:layout_height="57dp"
         android:layout_marginTop="35dp"
         android:clickable="true"

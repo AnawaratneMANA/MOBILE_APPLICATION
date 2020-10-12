@@ -22,22 +22,25 @@ import com.example.finalmadproject.Settings.Sounds;
 import static android.app.DownloadManager.COLUMN_TITLE;
 
 public class AddActivity extends AppCompatActivity {
-
-    EditText title_input, description_input;
-    Button add_button;
-    DatabaseHelper databaseHelper;
+    //declare variable
+    EditText title_input, description_input;//declaring edittext
+    Button add_button;//declaring
+    DatabaseHelper databaseHelper;//declaring databasehelper object
     SQLiteDatabase database;
     Cursor subjectsSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-
+        //passing ids
         title_input = findViewById(R.id.title_input);
         description_input = findViewById(R.id.description);
         add_button = findViewById(R.id.add_button);
+        //inialize databasehelper object
         databaseHelper = new DatabaseHelper(AddActivity.this);
+        //write the data in db
         database = databaseHelper.getWritableDatabase();
+        //onclick
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,48 +55,34 @@ public class AddActivity extends AppCompatActivity {
                     description_input.setError("Enter only characters");
                     return;
                 }
-
-                //Null value validation
-               /* if(title_input.getText().toString() == null){
-                    title_input.setError("Enter data");
-                    return;
-                }
-                else if(description_input.getText().toString() == null){
-                    description_input.setError("Enter Description");
-                    return;
-                }*/
-
+                //passing the string value of edit text title_input
                String title_name = title_input.getText().toString();
+                //passing the string value of edit text description_input
                String des_name = description_input.getText().toString();
 
-
+                //null value passing value
+                //when no value entered it shows a error message
                 if(title_name.contentEquals("")){
                     title_input.setError("Enter the Title name");
                 }else if(des_name.contentEquals("")){
                     description_input.setError("Enter the Description");
-                }
+                    //-------------------duplicate value validation-----------------------------
+                } else {
 
-                //----------------------------------------DUPLICATE VALUE VALIDATION---------------------------------------------
-
-                else {
-                    //Database operation should come in this section.
-                    //Duplication avoiding method.
-                    //Create a object from the SQLiteOpenHelper Class
-
-
+                    //return a cursor object through the method readAllDataNew method in databaseHelper
                     subjectsSet = databaseHelper.readAllDataNew(database);
-
+                    //initialize a null value to the string
                     String name_from_DB= "";
-                    int flag = 0;
+                    int flag = 0;// int value initialized
                     try{
+                        //cursor object is incrementing one by one
                         while(subjectsSet.moveToNext()){
+                            //passing the string value of  "id 1" in relevent cursor object
                             name_from_DB = subjectsSet.getString(1);
-                            //subjectsSet.getColumnIndex(COLUMN_TITLE)
-                            System.out.println(name_from_DB);
-                            System.out.println(subjectsSet.getColumnIndex(COLUMN_TITLE));
-
+                            //duplicate value validation added here
+                            //here we are checking the relevent name from db value is equal to the title name (passing value)
                             if(name_from_DB.contentEquals(title_name)){
-                                flag++;
+                                flag++;//incrementing the flag value
                                 break;
                             }
                         }
@@ -102,7 +91,7 @@ public class AddActivity extends AppCompatActivity {
                     }
 
 
-                    //If condition to check the name
+                    //check whether flag value incremented by 1
                     if(flag == 1){
                         AlertDialog.Builder builder = new AlertDialog.Builder(AddActivity.this);
                         builder.setMessage("List name is already in the database.")
@@ -115,8 +104,9 @@ public class AddActivity extends AppCompatActivity {
                                 });
                         AlertDialog alert = builder.create();
                         alert.show();
+                        //duplication is not happened
                     } else {
-
+                        //calling the inserting method in databasehelper
                         boolean result = databaseHelper.addList(title_input.getText().toString().trim(),
                                 description_input.getText().toString().trim());
 
