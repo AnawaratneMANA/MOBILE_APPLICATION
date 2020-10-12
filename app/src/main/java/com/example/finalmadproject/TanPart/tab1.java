@@ -1,6 +1,7 @@
 package com.example.finalmadproject.TanPart;
 
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -29,7 +30,7 @@ public class tab1 extends Fragment {
     ArrayList<String> arrayList;
     ListView ListPanel;
     private SQLiteDatabase db;
-    String list_name;
+    String list_name, string_tit,string_fla;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,21 +84,43 @@ public class tab1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tab1, container, false);
-        ListPanel = (ListView) view.findViewById(R.id.listPanel);
 
-        readListName();
-        return view;
-    }
-    public void readListName() {
-
-        final Cursor cursor = database.readAllData();
+        ListPanel = view.findViewById(R.id.ListPanel);
+        System.out.println(ListPanel);
+        final Cursor cursor = database.readAllFlag();
+        System.out.println(cursor);
         //Creating an ArrayList
         arrayList = new ArrayList<>();
         //Loop
-        while(cursor.moveToNext()){
-            list_name = cursor.getString(1);
-            arrayList.add(list_name);
-            adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_activated_1,arrayList);
-            ListPanel.setAdapter(adapter);}
+
+            while (cursor.moveToNext()) {
+                list_name = cursor.getString(1);
+                System.out.println(list_name);
+
+                //getting the value title
+                Cursor tit = database.getdescription(db, Integer.parseInt(list_name));
+                Cursor fla = database.getdescriptionflag(db, Integer.parseInt(list_name));
+
+                tit.moveToNext();
+                fla.moveToNext();
+                try {
+                    string_tit = tit.getString(tit.getColumnIndex("Task_name"));
+                    string_fla =  fla.getString(fla.getColumnIndex("T_ti"));
+                } catch (CursorIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(string_tit);
+                System.out.println(string_fla);
+
+                if(string_fla.equals("FLAG")){
+                    arrayList.add(string_tit);
+                }
+
+            }
+
+            adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, arrayList);
+            System.out.println(adapter);
+            ListPanel.setAdapter(adapter);
+        return view;
     }
 }

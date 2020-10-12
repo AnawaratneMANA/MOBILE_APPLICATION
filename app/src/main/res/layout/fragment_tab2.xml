@@ -6,9 +6,9 @@
     tools:context=".TanPart.tab2">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="remind" />
+        android:id="@+id/ListPanel2"/>
 
 </FrameLayout>

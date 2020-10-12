@@ -30,11 +30,13 @@
         android:id="@+id/buttonAddAudio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000080"
         android:text="Open Audio files" />
 
     <ListView
         android:id="@+id/DatabaseSongListView"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         android:layout_marginTop="20dp" />
 

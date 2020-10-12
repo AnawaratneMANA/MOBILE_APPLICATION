@@ -848,6 +848,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //getting description from database
+    public Cursor getdescriptionflag(SQLiteDatabase database, int dis){
+        System.out.println(dis);
+        //SQL
+        String sql = "SELECT * FROM fl where T_ID  = "+ " '" +dis+"' ";
+        Cursor data = database.rawQuery(sql, null);
+        return data;
+
+    }
 
     //Read Task Taneesha
     public Cursor readAlltasks(){
