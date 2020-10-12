@@ -60,6 +60,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
     private ListView TaskPanel , ListPanel;
     private DatabaseHelper database;
     private SQLiteDatabase db;
+    int hr,mi;
     String variable;
     ArrayAdapter<String> adapter;
     ArrayList<String> arrayList;
@@ -87,6 +88,10 @@ public class CommonLayoutActivity extends AppCompatActivity {
         //used for testing purpose
         //System.out.println(variable);
 
+
+        //getting the hr n min from the fflag
+        hr = i.getIntExtra("hr",0);
+        mi = i.getIntExtra("min",0);
 
         //opening the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -227,8 +232,17 @@ public class CommonLayoutActivity extends AppCompatActivity {
             }catch (CursorIndexOutOfBoundsException e){
                 e.printStackTrace();
             }
+
+            if(!string_fval.isEmpty()){
                 listName.add(name + " (" + string_fval+")");
                 System.out.println(name);
+            }else{
+
+                listName.add(name);
+                System.out.println(name);
+
+            }
+
 
             incr++;
         }

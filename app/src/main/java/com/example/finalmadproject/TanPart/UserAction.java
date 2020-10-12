@@ -17,18 +17,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 import com.example.finalmadproject.Settings.CommonLayoutActivity;
-import com.example.finalmadproject.TaskManagement.MainActivity;
 
 public class UserAction extends AppCompatActivity {
     String variable;
     private TextView textheader, textdis;
     int taskvar, addtaskvar;
-    public static String string_name, string_dis, string_tit,string_fv;
+    public static String string_name, string_dis, string_tit,string_datee;
 
     DatabaseHelper check = new DatabaseHelper(this);
     private DatabaseHelper database;
     private SQLiteDatabase db;
-    Button b1,b2,b3,b4;
+    Button b1,b2,b4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +42,7 @@ public class UserAction extends AppCompatActivity {
         taskvar = i.getIntExtra("taskPassingID", -1);
         addtaskvar = taskvar + 1;
         variable = i.getStringExtra("taskPassingUN");
+
 
         System.out.println("after the link id  :"+ addtaskvar);
         System.out.println("after the link name  :"+ variable);
@@ -66,6 +66,16 @@ public class UserAction extends AppCompatActivity {
             e.printStackTrace();
         }
         System.out.println(string_tit);
+
+        //getting the value dateee
+        Cursor datee = database.getdescription(db, addtaskvar);
+        datee.moveToNext();
+        try {
+            string_datee = datee.getString(tit.getColumnIndex("Task_date"));
+        }catch (CursorIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+        System.out.println(string_datee);
 
 //        //getting the  flag value
 //        Cursor fv = database.getfv(db, addtaskvar);
@@ -94,9 +104,9 @@ public class UserAction extends AppCompatActivity {
         textdis = findViewById(R.id.textView);
         textdis.setText(String.valueOf(string_dis));
 
+
         b1 = findViewById(R.id.button);
         b2 = findViewById(R.id.button2);
-        b3 = findViewById(R.id.button3);
         b4 = findViewById(R.id.button4);
 
         b1.setOnClickListener(new View.OnClickListener() {
@@ -129,15 +139,19 @@ public class UserAction extends AppCompatActivity {
                 String value = "REMIND";
                 check= new DatabaseHelper(UserAction.this);
 
+
                 Boolean chkfl = check.chkfl(addtaskvar);
+
 
                 if(chkfl == true){
                     Boolean insert = check.insert_flag(addtaskvar, value);
 
                     if (insert == true) {
-                        Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
-                        Intent st = new Intent(UserAction.this, CommonLayoutActivity.class);
-                        startActivity(st);
+
+                        Intent tr = new Intent(UserAction.this, reminderapp.class);
+//                        tr.putExtra("datee", string_datee);
+//                        tr.putExtra("info", string_tit);
+                        startActivity(tr);
                     }
                 }else{
                     Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
@@ -147,29 +161,7 @@ public class UserAction extends AppCompatActivity {
             }
         });
 
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String value = "TEMP";
-                check= new DatabaseHelper(UserAction.this);
 
-                Boolean chkfl = check.chkfl(addtaskvar);
-
-                if(chkfl == true){
-                    Boolean insert = check.insert_flag(addtaskvar, value);
-
-                    if (insert == true) {
-                        Toast.makeText(UserAction.this, "Marked", Toast.LENGTH_SHORT).show();
-                        Intent st = new Intent(UserAction.this, CommonLayoutActivity.class);
-                        startActivity(st);
-                    }
-                }else{
-                    Toast.makeText(UserAction.this, "Flag already exist", Toast.LENGTH_SHORT).show();
-                    confirmDialog();
-
-                }
-            }
-        });
 
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +170,8 @@ public class UserAction extends AppCompatActivity {
                 startActivity(st);
             }
         });
+
+
 
 
     }
@@ -214,10 +208,13 @@ public class UserAction extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+
             }
         });
 
 
         builder.create().show();
     }
+
+
 }

@@ -20,7 +20,6 @@ public class PaageAdapter extends FragmentPagerAdapter {
        switch (position){
            case 0: return new tab1();
            case 1: return new tab2();
-           case 2: return new tab3();
            default : return null;
        }
     }

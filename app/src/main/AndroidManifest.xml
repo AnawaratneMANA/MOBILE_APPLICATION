@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AlarmandNotification.Alarm"></activity>
+        <activity android:name=".TanPart.reminderapp"></activity>
+        <activity android:name=".AlarmandNotification.Alarm" />
         <activity android:name=".TanPart.profile" />
         <activity android:name=".TanPart.Project_panel" />
         <activity android:name=".TanPart.Task_panel">
@@ -37,7 +39,9 @@
             android:parentActivityName=".List.MainActivity_List" />
         <activity android:name=".List.Splash" />
         <activity android:name=".Settings.CommonLayoutActivity">
-            <!-- Testing section
+
+            <!--
+            Testing section
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,17 +49,15 @@
             </intent-filter>
             -->
         </activity>
-
         <activity
             android:name=".TanPart.T_MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Normal Pages -->
+        </activity> <!-- Normal Pages -->
         <activity android:name=".TaskManagement.UpdateTask" />
         <activity android:name=".TaskManagement.UpdateSubject" />
         <activity android:name=".TaskManagement.MainActivity">
@@ -81,10 +83,11 @@
             -->
 
         </activity>
-        <receiver android:name=".AlarmandNotification.AlertReceiver"
+
+        <receiver
+            android:name=".AlarmandNotification.AlertReceiver"
             android:enabled="true"
-            android:exported="true"
-        />
+            android:exported="true" />
     </application>
 
 </manifest>

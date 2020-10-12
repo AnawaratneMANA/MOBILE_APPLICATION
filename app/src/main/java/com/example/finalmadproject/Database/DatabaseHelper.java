@@ -815,6 +815,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }
     }
+    public Cursor readAllFlag(){
+        String query = "SELECT * FROM fl";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
 
 
     //Read Task Taneesha

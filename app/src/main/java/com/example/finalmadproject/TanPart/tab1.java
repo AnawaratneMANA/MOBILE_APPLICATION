@@ -1,5 +1,7 @@
 package com.example.finalmadproject.TanPart;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +24,12 @@ import com.example.finalmadproject.R;
  * create an instance of this fragment.
  */
 public class tab1 extends Fragment {
+    private DatabaseHelper database;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> arrayList;
+    ListView ListPanel;
+    private SQLiteDatabase db;
+    String list_name;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,12 +69,35 @@ public class tab1 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+//Create Database Instancesd
+
+        database = new DatabaseHelper(getContext());
+        db = database.getReadableDatabase();
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab1, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab1, container, false);
+        ListPanel = (ListView) view.findViewById(R.id.listPanel);
+
+        readListName();
+        return view;
+    }
+    public void readListName() {
+
+        final Cursor cursor = database.readAllData();
+        //Creating an ArrayList
+        arrayList = new ArrayList<>();
+        //Loop
+        while(cursor.moveToNext()){
+            list_name = cursor.getString(1);
+            arrayList.add(list_name);
+            adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_activated_1,arrayList);
+            ListPanel.setAdapter(adapter);}
     }
 }

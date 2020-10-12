@@ -31,7 +31,7 @@ public class StaticActivity extends AppCompatActivity {
 
     private TabLayout tablayout;
     private ViewPager viewPager;
-    private TabItem tab1, tab2, tab3;
+    private TabItem tab1, tab2;
     public PaageAdapter pageAdapter;
 
 
@@ -88,7 +88,6 @@ public class StaticActivity extends AppCompatActivity {
         tablayout = (TabLayout) findViewById(R.id.tablayout);
         tab1 = (TabItem) findViewById(R.id.tab1);
         tab2 = (TabItem) findViewById(R.id.tab2);
-        tab3 = (TabItem) findViewById(R.id.tab3);
         viewPager = findViewById(R.id.viewpager);
 
         pageAdapter = new PaageAdapter(getSupportFragmentManager(), tablayout.getTabCount());
@@ -104,8 +103,6 @@ public class StaticActivity extends AppCompatActivity {
                 if(tab.getPosition() == 0){
                     pageAdapter.notifyDataSetChanged();
                 }else if(tab.getPosition() == 1){
-                    pageAdapter.notifyDataSetChanged();
-                }else if(tab.getPosition() == 2){
                     pageAdapter.notifyDataSetChanged();
                 }
             }
