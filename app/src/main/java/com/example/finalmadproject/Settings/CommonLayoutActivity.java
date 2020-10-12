@@ -233,15 +233,9 @@ public class CommonLayoutActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            if(!string_fval.isEmpty()){
                 listName.add(name + " (" + string_fval+")");
                 System.out.println(name);
-            }else{
 
-                listName.add(name);
-                System.out.println(name);
-
-            }
 
 
             incr++;
