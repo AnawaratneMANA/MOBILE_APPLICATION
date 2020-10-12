@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/sf_pro_display"
-        android:text="@string/add_new_task"
+        android:text="Update Task"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
         android:ems="10"
         android:fontFamily="@font/sf_pro_display_medium_italic"
         android:gravity="start|top"
-        android:hint="Enter Task ID"
+        android:hint="Enter Task Description"
         android:inputType="textMultiLine"
         android:paddingLeft="20dp"
         android:paddingTop="35dp"
@@ -105,19 +105,21 @@
 
 
         <Spinner
-            android:fontFamily="@font/sf_pro_display_medium_italic"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
             android:id="@+id/SubjectSpinner"
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginStart="47dp"
             android:layout_marginEnd="64dp"
             android:layout_marginRight="64dp"
             android:background="@drawable/bgspinner"
-            tools:layout_editor_absoluteX="55dp"
+            android:fontFamily="@font/sf_pro_display_medium_italic"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
             android:textSize="18sp"
+            tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="458dp" />
 
         <ImageView

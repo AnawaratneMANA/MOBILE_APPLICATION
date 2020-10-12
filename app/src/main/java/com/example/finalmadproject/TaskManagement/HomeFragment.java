@@ -43,6 +43,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //Button Registration
     private ImageView Addtask, Addsub, Showtask, companyLogo;
 
+    //View
+    private View view;
+    private int number = 1;
+
     //Creating a instance from the interface
     ControlOpListener controlOpListener;
 
@@ -82,7 +86,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+            view =  inflater.inflate(R.layout.fragment_home, container, false);
 
 
         //UI Controlling
@@ -125,10 +129,36 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
+        //Calling the method to update the UI.
+        //updateUI();
 
         return view;
     }
+
+    private void updateUI() {
+        if(number == 1){
+
+            back = (ImageView) view.findViewById(R.id.backg);
+            flower = (ImageView) view.findViewById(R.id.flower);
+            welcome = (TextView) view.findViewById(R.id.welcome);
+            Headinglo = (LinearLayout) view.findViewById(R.id.headinglo);
+            menu = (LinearLayout) view.findViewById(R.id.menu);
+            floweranim =  AnimationUtils.loadAnimation(getActivity(),R.anim.floweranim);
+            frombot = AnimationUtils.loadAnimation(getActivity(),R.anim.frombotop);
+            buttonFX = AnimationUtils.loadAnimation(getActivity(),R.anim.button);
+            flower.startAnimation(floweranim);
+            //Animations
+            back.animate().translationY(-400).setDuration(500).setStartDelay(800);
+            welcome.animate().alpha(0).setDuration(900).setStartDelay(100);
+            //menu.animate().alpha(100).setDuration(800).setStartDelay(1200);
+
+            //LinearLayout Animation
+            Headinglo.startAnimation(frombot);
+            menu.startAnimation(buttonFX);
+            number++;
+        }
+    }
+
     @Override
     public void onClick(View view){
         switch (view.getId())
