@@ -272,6 +272,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
             list_name = cursor.getString(1);
             arrayList.add(list_name);
             adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,arrayList);
+            System.out.println("==============================="+adapter);
             ListPanel.setAdapter(adapter);
         }
 
