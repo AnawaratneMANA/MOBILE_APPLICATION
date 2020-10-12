@@ -49,6 +49,8 @@
         android:layout_marginTop="-53dp"
         android:layout_marginRight="35dp"
         android:clickable="true"
+        android:textColor="#ffffff"
+        android:background="@drawable/rounded_corners"
         android:onClick="rpw"
         android:text="Reset" />
 
@@ -58,6 +60,8 @@
         android:layout_height="57dp"
         android:layout_marginTop="75dp"
         android:clickable="true"
+        android:textColor="#ffffff"
+        android:background="@drawable/rounded_corners"
         android:onClick="delete"
         android:text="DELETE" />
 
@@ -76,6 +80,8 @@
         android:layout_height="57dp"
         android:layout_marginTop="75dp"
         android:clickable="true"
+        android:textColor="#ffffff"
+        android:background="@drawable/rounded_corners"
         android:onClick="home"
         android:text="Home" />
 

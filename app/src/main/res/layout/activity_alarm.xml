@@ -40,6 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="130dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/rounded_corners"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="open time picker" />
@@ -50,6 +52,8 @@
         android:layout_below="@id/button_timepicker"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/rounded_corners"
         android:gravity="center"
         android:layout_marginLeft="130dp"
         android:text="cancel alarm" />
