@@ -1,17 +1,22 @@
 package com.example.finalmadproject.TanPart;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
@@ -121,6 +126,56 @@ public class tab1 extends Fragment {
             adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, arrayList);
             System.out.println(adapter);
             ListPanel.setAdapter(adapter);
+
+
+            ListPanel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    confirmDialog();
+                }
+            });
         return view;
+    }
+    //when click delete button popup Dialog box
+    void confirmDialog(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Delete Flag");
+        builder.setMessage("Do you want to delete!");
+
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DatabaseHelper dbHandler = new DatabaseHelper(getContext());
+                boolean result =  dbHandler.deleteflag(Integer.parseInt(list_name));
+                if(result == true){
+                    System.out.println("this is in profile:"+list_name);
+                    Toast.makeText(getContext(), "Flag Deleted", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getContext(), StaticActivity.class);
+                    Bundle bundle = new Bundle();
+                    startActivity(intent);
+
+                }else{
+
+                    System.out.println(list_name);
+                    Toast.makeText(getContext(),"Failed to delete", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+
+            }
+        });
+
+
+        builder.create().show();
     }
 }
