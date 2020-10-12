@@ -86,7 +86,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View view) {
                 Intent intent1 = new Intent(context.getApplicationContext(), ViewAllTasks.class);
                 intent1.putExtra(EXTRA_ID,msg).toString();
-                System.out.println("ll : " + msg);
                 view.getContext().startActivity(intent1);
             }
         });

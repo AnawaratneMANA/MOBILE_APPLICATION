@@ -32,11 +32,10 @@ import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAM
 
 public class BackgroundFragment extends Fragment {
 
-    Switch notification;
-    Button profilee;
-    Button signout;
-    DatabaseHelper mydb;
-    FloatingActionButton logo;
+    Switch notification;//declare switch
+    Button profilee , signout;//declare button
+    DatabaseHelper mydb;//declare databasehelper element
+    FloatingActionButton logo;//declare floatingButton
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,9 +47,9 @@ public class BackgroundFragment extends Fragment {
         profilee = v2.findViewById(R.id.ProfilesettingsButton);
         signout = v2.findViewById(R.id.Signout);
         notification = v2.findViewById(R.id.notification);
-
-        mydb = new DatabaseHelper(this.getContext());
         logo = v2.findViewById(R.id.add_buttonHome);
+        mydb = new DatabaseHelper(this.getContext());
+
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,11 +57,15 @@ public class BackgroundFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        //adding onchechchangeListner to toggle button
         notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean enableTrue) {
+                //if signal enable
                 if(enableTrue){
+                    //initialize a string value
                     String enable = "enable";
+                    //return a boolean value to the database helper method that return a boolean value
                     boolean value = mydb.updateEnableStatus(enable);
                     if(value == true){
                         Toast.makeText(getContext() , "Status is updating" , Toast.LENGTH_LONG).show();
@@ -70,6 +73,7 @@ public class BackgroundFragment extends Fragment {
                     else{
                         Toast.makeText(getContext() , "error occured" , Toast.LENGTH_LONG).show();
                     }
+                    //if signal enable
                 }else{
                     boolean value = mydb.updateDisableStatus();
                     if(value == true){

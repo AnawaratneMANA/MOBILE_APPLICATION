@@ -19,8 +19,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class SettingsFragment extends Fragment {
-    private Button button2;
-    private Button button3;
+    //declare buttons
+    private Button button2 , button3;
+    //declare floating buttons
     FloatingActionButton logo;
 
 
@@ -30,29 +31,39 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v1 = inflater.inflate(R.layout.fragment_settings, container, false);
-        button2 = (Button) v1.findViewById(R.id.buttonBackground);
-        button3 = (Button) v1.findViewById(R.id.buttonSounds) ;
-        logo = v1.findViewById(R.id.add_buttonHome);
+        button2 = (Button) v1.findViewById(R.id.buttonBackground);//giving the relevent id
+        button3 = (Button) v1.findViewById(R.id.buttonSounds) ;//giving the relevent id
+        logo = v1.findViewById(R.id.add_buttonHome);//giving the relevent id
+        //adding a onclick listner to to the floating button
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //passing intent to the cpmmon layout
                 Intent intent = new Intent(getActivity() , CommonLayoutActivity.class);
+                //navigating to the relevent activity
                 startActivity(intent);
             }
         });
+        //adding a onclick listner to to the button
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //creating the fragment object
                 BackgroundFragment backgroundFragment = new BackgroundFragment();
+                //fragmenttransaction
                 FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+                //giving relevent fragment
                 transaction1.replace(R.id.mainSettingsLayout , backgroundFragment).addToBackStack(null);
                 transaction1.commit();
             }
         });
+        //adding a onclick listner to to the button
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //passing intent to the sound layout
                 Intent intent = new Intent(getActivity() , Sounds.class);
+                //navigating to the relevent activity
                 startActivity(intent);
             }
         });

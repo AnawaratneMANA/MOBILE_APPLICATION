@@ -389,7 +389,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Create a Method to get the Task Id when
     public String getTaskID(String name){
         String id = "";
-        //Create DB instances
         SQLiteDatabase db = getReadableDatabase();
         //String formatting.
         name = " '"+name+"' ";
@@ -532,22 +531,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     //added
     public boolean updateEnableStatus(String signal){
+        //initialize long value as -1
         long value = -1;
         SQLiteDatabase db = this.getWritableDatabase();
+        //when we pass a signal that will not initialized as "enable" or "disable" will return false
         if(signal != "enable" && signal != "disable"){
             return false;
         }
+        //return a cursor value from the notification table
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTIFICATION_NAME, null);
-        System.out.println(cursor.getCount());
+        //if cursor value return a null value
+        //that means notification table has no value
         if (cursor.getCount() == 0) {
-            System.out.println("22");
+            //Creates a contentValue
             ContentValues contentValues = new ContentValues();
-            System.out.println("23");
+            //pass the value of signal to the colomn "Notification" in notification table
             contentValues.put(NOTIFICATION , signal);
-            System.out.println("24");
+            //return a long value when insert query called
             value = db.insert(TABLE_NOTIFICATION_NAME, null, contentValues);
-            System.out.println("25");
         }else {
+            //when cursor object has values and check each cursor object one by one
             while (cursor.moveToNext()) {
                 if (cursor.getString(1).equals(disable)) {
                     System.out.println("6");
@@ -659,6 +662,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor readAllDataNew(SQLiteDatabase database){
 
         //String Array
+        //string array pasing the values of colomn id and and colomn title in table Table_NAME_T
+        //array id 0 title 1
         String [] list = {COLUMN_ID,COLUMN_TITLE};
 
         //Creating a Cursor object
