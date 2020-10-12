@@ -37,7 +37,6 @@ public class reminderapp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminderapp);
         mydb = new DatabaseHelper(this);
-        mydb = new DatabaseHelper(this);
         final String path = mydb.getAudiofilepathSelected();
         //songLists = songList.get();
 

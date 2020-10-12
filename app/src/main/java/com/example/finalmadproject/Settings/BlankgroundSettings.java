@@ -42,39 +42,6 @@ public class BlankgroundSettings extends Fragment {
 
         //mydb = new DatabaseHelper(this.getContext());
         logo = v2.findViewById(R.id.company_logo);
-        /**
-        logo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CommonLayoutActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        settingsTravel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity_sl.class);
-                startActivity(intent);
-            }
-        });
-        signout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), T_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        profilee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(getActivity(), profile.class);
-                startActivity(intent);
-
-            }
-        });
-**/
 
         return v2;
     }
