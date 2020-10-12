@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,6 +23,8 @@ public class SettingsFragment extends Fragment {
     private Button button2;
     private Button button3;
     FloatingActionButton logo;
+    DatabaseHelper mydb;
+    TextView ee;
 
 
 
@@ -32,6 +36,10 @@ public class SettingsFragment extends Fragment {
         button2 = (Button) v1.findViewById(R.id.buttonBackground);
         button3 = (Button) v1.findViewById(R.id.buttonSounds) ;
         logo = v1.findViewById(R.id.add_buttonHome);
+        ee = v1.findViewById(R.id.songee);
+        mydb = new DatabaseHelper(getContext());
+        String path = mydb.getAudiofilepathSelected();
+        ee.setText(path);
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

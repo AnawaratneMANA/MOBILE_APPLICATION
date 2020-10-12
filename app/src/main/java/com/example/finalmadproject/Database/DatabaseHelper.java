@@ -49,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "homework_db";
     public static final int DATABASE_VERSION = 1;
     public static final String notstatus = "Not Selected";
+    public static final String status = "Selected";
     public static final String disable = "disable";
 
     //TODO: SQL Queries
@@ -493,18 +494,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
         ContentValues cv = new ContentValues();
-        ContentValues cv1 = new ContentValues();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
 
         while (cursor.moveToNext()) {
-            System.out.println("1");
             if (cursor.getString(2).equals(status)) {
-                System.out.println("2");
                 String oldstatusid = cursor.getString(0);
-                System.out.println("3");
                 cv.put(SONG_STATUS, notstatus);
                 st = db.update(TABLE_SONG_NAME, cv, "SONG_ID=?", new String[]{oldstatusid});
-
             }
         }
         if (st == -1) {
@@ -607,6 +603,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_NOTIFICATION_NAME,notifications,null,null,null,null,null);
         return cursor;
     }
+    public String getAudiofilepathSelected(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String songPath = null;
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
+        if (cursor.getCount() == 0) {
+            return songPath;
+        }
+        while (cursor.moveToNext()){
+            if (cursor.getString(2).equals(status)){
+                songPath = cursor.getString(3);
+            }
+        }
+        return songPath;
+    }
+
     //taneesha - DB methods ------------------------------------------------------------------------
     public boolean addList(String title, String des){
         SQLiteDatabase db = this.getWritableDatabase();
