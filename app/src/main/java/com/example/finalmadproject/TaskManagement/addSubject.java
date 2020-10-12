@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
@@ -89,6 +90,7 @@ public class addSubject extends Fragment implements View.OnClickListener {
         Submit = view.findViewById(R.id.btnUpdateSub);
         Name = view.findViewById(R.id.SubjectName);
         viewsubject = view.findViewById(R.id.btnDeleteSub);
+
 
         //Create a click listener
         Submit.setOnClickListener(new View.OnClickListener() {

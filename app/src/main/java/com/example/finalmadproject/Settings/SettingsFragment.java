@@ -3,6 +3,7 @@ package com.example.finalmadproject.Settings;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +49,16 @@ public class SettingsFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //creating the fragment object
-                BackgroundFragment backgroundFragment = new BackgroundFragment();
-                //fragmenttransaction
-                FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
-                //giving relevent fragment
-                transaction1.replace(R.id.mainSettingsLayout , backgroundFragment).addToBackStack(null);
-                transaction1.commit();
+//                //creating the fragment object
+//                BackgroundFragment backgroundFragment = new BackgroundFragment();
+//                //fragmenttransaction
+//                FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+//                //giving relevent fragment
+//                transaction1.replace(R.id.mainSettingsLayout , backgroundFragment).addToBackStack(null);
+//                transaction1.commit();
+
+                Intent jklk = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+                startActivity(jklk);
             }
         });
         //adding a onclick listner to to the button
