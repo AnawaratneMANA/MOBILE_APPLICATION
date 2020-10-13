@@ -21,8 +21,8 @@ public class Sounds extends AppCompatActivity {
 
     private Button btn;
     ListView songList;
-    CustomMusicAdapter adapter;
-    ArrayList<SongList> array;
+    CustomMusicAdapter adapter;//declaring the Custom adapter
+    ArrayList<SongList> array;//declaring an array that has values in SONGLIST java file
     DatabaseHelper databaseHelper;
     FloatingActionButton logo;
     @Override
@@ -50,10 +50,15 @@ public class Sounds extends AppCompatActivity {
             }
         });
     }
+    //displaying llistView rows through created adapter
     private void viewAudio() {
+        //returning an array list from method getAllAUdios
         array = databaseHelper.getAllAudios();
-        adapter = new CustomMusicAdapter(this , array);
+        //assigning that array to the adapter
+        adapter = new CustomMusicAdapter(this , array);//this is called in customMusicAdapter
+        //then set that adapter to the listView
         songList.setAdapter(adapter);
+        //mentioning to update the rows
         adapter.notifyDataSetChanged();
     }
 

@@ -51,6 +51,7 @@ public class AudioListFragment extends DialogFragment {
             }
         });
         myDB = new DatabaseHelper(getActivity());
+        //in this if statement it ask the access of the internal storage and if we deny the acces
         if(ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
@@ -79,7 +80,7 @@ public class AudioListFragment extends DialogFragment {
             int songLocation = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
 
             do {
-                String currentTitle = songCursor.getString(songtitle);
+                //String currentTitle = songCursor.getString(songtitle);
                 String currentLocation = songCursor.getString(songLocation);
                 //arrayList.add(currentTitle);
                 arrayList.add(currentLocation);
