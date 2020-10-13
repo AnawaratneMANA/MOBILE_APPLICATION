@@ -51,17 +51,16 @@ public class AudioListFragment extends DialogFragment {
             }
         });
         myDB = new DatabaseHelper(getActivity());
-        //in this if statement it ask the access of the internal storage and if we deny the acces
-        if(ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.READ_EXTERNAL_STORAGE)){
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String []{Manifest.permission.READ_EXTERNAL_STORAGE} , MY_PERMISSION_REQUEST);
+        //check whether the manifest permission already granted to read the external storage
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            //app has requested this permission previously and the user denied the request
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.READ_EXTERNAL_STORAGE)){
+                //request permition from user
+                ActivityCompat.requestPermissions(getActivity(),new String []{Manifest.permission.READ_EXTERNAL_STORAGE} , MY_PERMISSION_REQUEST);
             }
             else {
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST);
+                //permision request is not asked previously
+                ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST);
             }
         }else{
             dostuff();
@@ -72,30 +71,30 @@ public class AudioListFragment extends DialogFragment {
     public void dostuff() {
         arrayList = new ArrayList<>();
         ContentResolver contentResolver = getActivity().getContentResolver();
-        Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;//this shows all the audio uris in external storage
+        // are added into Uri object
         final Cursor songCursor = contentResolver.query(songUri,null,null,null,null);
         if(songCursor != null && songCursor.moveToFirst()){
-            int songtitle = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-
-            int songLocation = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+            int songLocation = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);//pass the audio file location here
 
             do {
                 //String currentTitle = songCursor.getString(songtitle);
-                String currentLocation = songCursor.getString(songLocation);
+                String currentLocation = songCursor.getString(songLocation);// pass the string value of the songLocation
                 //arrayList.add(currentTitle);
-                arrayList.add(currentLocation);
-                adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1 , arrayList);
-                myListViewforSongs.setAdapter(adapter);
+                arrayList.add(currentLocation);//adding into the arrayList
+                adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1 , arrayList);//here we are passing the arrayLIst to the adapter
+                myListViewforSongs.setAdapter(adapter);//adapter is set to a listView
+                //here when we click on an adapter
                 myListViewforSongs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        String title = myListViewforSongs.getItemAtPosition(i).toString();
-                        String location = myListViewforSongs.getItemAtPosition(i).toString();
+                        String title = myListViewforSongs.getItemAtPosition(i).toString();//pass the string value at the postion
+                        String location = myListViewforSongs.getItemAtPosition(i).toString();//pass the string value at the postion
                        // if (title.equals())
-                        String songname = title.substring(title.length() - 10);
+                        String songname = title.substring(title.length() - 10);//sub string to song title to 10 words
 
 
-                        boolean inserted = myDB.insertData(songname , location);
+                        boolean inserted = myDB.insertData(songname , location);//callling the insert method
                         if (inserted == true) {
                             Toast.makeText(getActivity() , "data added" , Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity() , Sounds.class);
@@ -113,13 +112,17 @@ public class AudioListFragment extends DialogFragment {
         }
 
     }
+    //this shows the permission message to access external storage to user
     @Override
     public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults) {
         switch(requestCode){
+            //when permission request
             case MY_PERMISSION_REQUEST: {
+                //check granted result length is grater than 0 and
+                //granted result is equal to permission granted
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if(ContextCompat.checkSelfPermission(getActivity(),
-                            Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+                    //check the permission granted
+                    if(ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
                         Toast.makeText(getActivity(), "Permission Granted!", Toast.LENGTH_SHORT).show();
                         dostuff();
                     }else{
@@ -131,10 +134,4 @@ public class AudioListFragment extends DialogFragment {
             }
         }
     }
-
-
-
-
-
-
 }

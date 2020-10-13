@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ import static com.example.finalmadproject.TaskManagement.Task.TaskEntry.TASK_NAM
 public class BackgroundFragment extends Fragment {
 
     Switch notification;//declare switch
-    Button profilee , signout;//declare button
+    Button profilee , alarm;//declare button
     DatabaseHelper mydb;//declare databasehelper element
     FloatingActionButton logo;//declare floatingButton
 
@@ -45,7 +46,7 @@ public class BackgroundFragment extends Fragment {
 
         View v2 = inflater.inflate(R.layout.fragment_background, container, false);
         profilee = v2.findViewById(R.id.ProfilesettingsButton);
-        signout = v2.findViewById(R.id.Signout);
+        alarm = v2.findViewById(R.id.Signout);
         notification = v2.findViewById(R.id.notification);
         logo = v2.findViewById(R.id.add_buttonHome);
         mydb = new DatabaseHelper(this.getContext());
@@ -86,11 +87,11 @@ public class BackgroundFragment extends Fragment {
 
             }
         });
-        signout.setOnClickListener(new View.OnClickListener() {
+        alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity() , Alarm.class);
-                startActivity(intent);
+                Intent jklk = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+                startActivity(jklk);
             }
         });
         profilee.setOnClickListener(new View.OnClickListener() {
