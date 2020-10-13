@@ -165,7 +165,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/datetextview"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/OpenDate"
@@ -191,6 +191,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OpenDate" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

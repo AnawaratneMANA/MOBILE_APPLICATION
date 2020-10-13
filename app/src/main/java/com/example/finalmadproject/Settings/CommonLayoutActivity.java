@@ -1,5 +1,6 @@
 //This class is temporary class should be removed afterwards
 package com.example.finalmadproject.Settings;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,11 +9,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finalmadproject.AlarmandNotification.Alarm;
 import com.example.finalmadproject.Database.DatabaseHelper;
@@ -200,7 +204,7 @@ public class CommonLayoutActivity extends AppCompatActivity {
     //----------------------- added by salitha------------------------------------------
     //onclick method for alarm activity through button in blanckground_settings
     public void openAlarm(View view){
-        redirectProfile(this , Alarm.class);
+        confirmDialog();
     }
     //onclick method for signout activity through button in blanckground_settings
     public void signout(View view){
@@ -284,6 +288,35 @@ public class CommonLayoutActivity extends AppCompatActivity {
 
 
 
+    }
+    void confirmDialog(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alarm");
+        builder.setMessage("Do you want a instant alarm!");
+
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent jklk = new Intent(AlarmClock.ACTION_SET_ALARM);
+                startActivity(jklk);
+            }
+        });
+
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent jklk = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+                startActivity(jklk);
+            }
+        });
+
+
+        builder.create().show();
     }
 
 }
