@@ -114,9 +114,14 @@ public class MainActivity_List extends AppCompatActivity {
     //Search The item in recycle view
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //create getMenuInflater and provide resourse main menu and pass the menu parameter
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        //get menu item
         MenuItem item = menu.findItem(R.id.action_search);
+        //get search view
         SearchView searchView = (SearchView) item.getActionView();
+        //run search view here
+        //here create search view after implement this method
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -125,6 +130,7 @@ public class MainActivity_List extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //call the Customer Adapter filter method
                 customAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -133,6 +139,12 @@ public class MainActivity_List extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
+
+
+
+
+
 
    /* public void viewButtonClick(View view){
         Intent intent = new Intent(MainActivity_List.this, ViewAllTasks.class);

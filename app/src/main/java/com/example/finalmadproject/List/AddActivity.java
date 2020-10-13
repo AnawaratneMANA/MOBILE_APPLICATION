@@ -36,7 +36,8 @@ public class AddActivity extends AppCompatActivity {
         title_input = findViewById(R.id.title_input);
         description_input = findViewById(R.id.description);
         add_button = findViewById(R.id.add_button);
-        //inialize databasehelper object
+
+        //initialize database helper object
         databaseHelper = new DatabaseHelper(AddActivity.this);
         //write the data in db
         database = databaseHelper.getWritableDatabase();
@@ -47,20 +48,22 @@ public class AddActivity extends AppCompatActivity {
                 //DatabaseHelper dbHandler = new DatabaseHelper(AddActivity.this);
 
                 //validation
-                if(!title_input.getText().toString().matches("[a-z,A-Z]*")){
+                /*if(!title_input.getText().toString().matches("[a-z,A-Z]*")){
                     title_input.setError("Enter only characters");
                     return;
                 }
                 else if(!description_input.getText().toString().matches("[a-z,A-Z]*")){
                     description_input.setError("Enter only characters");
                     return;
-                }
+                }*/
+
                 //passing the string value of edit text title_input
                String title_name = title_input.getText().toString();
                 //passing the string value of edit text description_input
                String des_name = description_input.getText().toString();
 
                 //null value passing value
+                //check whether the title and des null
                 //when no value entered it shows a error message
                 if(title_name.contentEquals("")){
                     title_input.setError("Enter the Title name");
@@ -73,7 +76,7 @@ public class AddActivity extends AppCompatActivity {
                     subjectsSet = databaseHelper.readAllDataNew(database);
                     //initialize a null value to the string
                     String name_from_DB= "";
-                    int flag = 0;// int value initialized
+                    int flag = 0;// int value initialized for check the duplicate value
                     try{
                         //cursor object is incrementing one by one
                         while(subjectsSet.moveToNext()){

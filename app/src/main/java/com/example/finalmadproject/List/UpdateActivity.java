@@ -28,7 +28,7 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-
+        //passing ids
         title_input = findViewById(R.id.title_input2);
         description = findViewById(R.id.description2);
         update_button = findViewById(R.id.update_button);
@@ -55,7 +55,9 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatabaseHelper dbHandler = new DatabaseHelper(UpdateActivity.this);
+                //passing the string value of edit test title_input
                 title = title_input.getText().toString().trim();
+                //passing the string value of edit text description
                 des = description.getText().toString().trim();
                 boolean result = dbHandler.updateData(id,title,des);
 
@@ -78,6 +80,7 @@ public class UpdateActivity extends AppCompatActivity {
         //getAndSetIntentData();
     }
 
+    //Display selected data field title and description after entered the update interface
     void getAndSetIntentData(){
         if(getIntent().hasExtra("id") && getIntent().hasExtra("title") && getIntent().hasExtra("description")){
 
@@ -106,9 +109,9 @@ public class UpdateActivity extends AppCompatActivity {
                 DatabaseHelper dbHandler = new DatabaseHelper(UpdateActivity.this);
                boolean result =  dbHandler.deleteOneRow(id);
                if(result == true){
-                   Toast.makeText(getApplicationContext(), "Failed to delete", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(), "Successfully delete", Toast.LENGTH_SHORT).show();
                }else{
-                   Toast.makeText(getApplicationContext(),"Successfully Deleted", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(getApplicationContext(),"Failed to delete", Toast.LENGTH_SHORT).show();
                }
                 finish();
             }

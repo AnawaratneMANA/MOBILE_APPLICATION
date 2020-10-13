@@ -41,7 +41,7 @@ public class ViewAllTasks extends AppCompatActivity {
     int count ;
     private Intent intent;
     private String[] list3;
-    int count5;
+    //int count5;
 
 
     @Override
@@ -50,6 +50,7 @@ public class ViewAllTasks extends AppCompatActivity {
         setContentView(R.layout.activity_view_all_tasks);
         mydb = new DatabaseHelper(this);
 
+        //passing ids
         addView = findViewById(R.id.btnaddTask);
         layout = findViewById(R.id.listView);
         ListPopulate();

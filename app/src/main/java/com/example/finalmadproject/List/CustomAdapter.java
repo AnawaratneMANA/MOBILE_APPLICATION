@@ -25,6 +25,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     Activity activity;
     private ArrayList id, title, description;
+    //create ArrayList for search
     ArrayList idFiltered, titleFiltered, descriptionFiltered;
     ArrayList<String> arrayList;
     Button viewTaskBtn;
@@ -42,6 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.id = id;
         this.title = title;
         this.description = description;
+        //initialize Array List for search here
         this.idFiltered = id;
         this.titleFiltered = title;
         this.descriptionFiltered = description;
@@ -91,12 +93,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         });
     }
 
+    //default method
     @Override
     public int getItemCount() {
 
         return idFiltered.size();
     }
 
+    //default method
     //Search data
     @Override
     public Filter getFilter() {
@@ -104,7 +108,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String charString = charSequence.toString();
+                //add all the list item into the charString varible
                 if (charString.isEmpty()) {
+                    //pass all list item
                     idFiltered = id;
                     titleFiltered = title;
                     descriptionFiltered = description;
@@ -112,8 +118,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     ArrayList filteredId = new ArrayList();
                     ArrayList filteredTitle = new ArrayList();
                     ArrayList filteredDescription = new ArrayList();
+                    //loop the list items
                     for (int i = 0; i < title.size(); i++) {
+                        //check list item contain char Sequence
+                        //pass the title to lowercase(filter not depend on the Case )
                         if (((String) title.get(i)).toLowerCase().contains(charString.toLowerCase())) {
+                            //added the list item to the filtered list
                             filteredId.add((String) id.get(i));
                             filteredTitle.add((String) title.get(i));
                             filteredDescription.add((String) description.get(i));
@@ -123,12 +133,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     titleFiltered = filteredTitle;
                     descriptionFiltered = filteredDescription;
                 }
+                //get the filter results
                 FilterResults filterResults = new FilterResults();
                 filterResults.values = titleFiltered;
+                //return the filter result
                 return filterResults;
             }
+
+            //return value of the Perform filter resulting method parameter of filterResults
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                //notify the data has been changed
                 notifyDataSetChanged();
             }
         };

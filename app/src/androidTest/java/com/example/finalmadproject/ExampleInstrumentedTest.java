@@ -140,7 +140,9 @@ public class ExampleInstrumentedTest {
         //Create data
         String title = "title1";
         String description = "des1";
+        //Calling the method Add to database
         boolean result = database.addList(title,description);
+        //check
         assertTrue(result);
     }
     @Test
@@ -148,17 +150,21 @@ public class ExampleInstrumentedTest {
         //Create data
         String title = "";
         String description = "des1";
+        //here testing is the title null
         boolean result = database.addList(title,description);
+        //check
         assertFalse(result);
     }
 
     @Test
     public void UpdateListItems() throws CursorIndexOutOfBoundsException {
         //Create data
-        String id = "6";//relevent database colomn
+        String id = "6";//relevent database column
         String title = "title2";
         String description = "des2";
+        //update data
         boolean result = database.updateData(id,title,description);
+        //check
         assertTrue(result);
     }
 
@@ -166,7 +172,9 @@ public class ExampleInstrumentedTest {
     public void DeleteListItems() throws CursorIndexOutOfBoundsException {
         //Create data
         String id = "7";
+        //delete the row
         boolean result = database.deleteOneRow(id);
+        //check
         assertTrue(result);
     }
 
