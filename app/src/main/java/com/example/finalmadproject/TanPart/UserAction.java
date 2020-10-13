@@ -181,7 +181,7 @@ public class UserAction extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete Flag");
-        builder.setMessage("Do you want to delete!");
+        builder.setMessage("Do you want to delete! As its already flagged");
 
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

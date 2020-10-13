@@ -20,14 +20,12 @@ import java.util.ArrayList;
 public class CustomMusicAdapter extends BaseAdapter {
     private Context context;
     ArrayList<SongList> songList;
-    //added
-    //added
     TextView textName , textID , textStatus;
     Button btnPlay , btnPause , btnDelete , btnAssignToAlarm;
     private int layout;
     DatabaseHelper mydb;
     private MediaPlayer mediaPlayer;
-
+    // this is called in the Sounds java file
     public CustomMusicAdapter(Context context, ArrayList<SongList> songList) {
         this.context = context;
         this.songList = songList;
@@ -57,21 +55,27 @@ public class CustomMusicAdapter extends BaseAdapter {
             btnDelete = (Button) view.findViewById(R.id.deleteButton);
             mydb = new DatabaseHelper(this.context);
             btnAssignToAlarm = (Button) view.findViewById(R.id.assignToButton);
-            final SongList songLists = songList.get(i);
+            final SongList songLists = songList.get(i);//i means relevent adapter position
+            //songList(i) means we are geting the relevent array value of ArrayList<SongList> at postion i
 
             String songname2 = songLists.getSongName();
-            /**
-            String songname = songname2.substring(songname2.length() - 10);\
-             **/
             textName.setText(songname2);
-            //added
             textID.setText(songLists.getSongID());
+            //setting the database song status here
             textStatus.setText(songLists.getStatus());
+            //playing the audio file
             btnPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mediaPlayer = new MediaPlayer();
                     try {
+                        /**
+                         * sound java
+                         * array at last
+                         * adapter
+                         * above constructor
+                         * class object SongList
+                         */
                         mediaPlayer.setDataSource(songLists.getPath());
                         mediaPlayer.prepare();
                         mediaPlayer.start();
@@ -106,7 +110,11 @@ public class CustomMusicAdapter extends BaseAdapter {
                 public void onClick(View view) {
                     //all are added
                     String selectStatus = "Selected";
+                    //when relevent custom adapter
+                    // pressed change the previous selected status adaptor row to "not selected"
                     boolean value = mydb.updateSelectedStatus(selectStatus);
+                    //when relevent custom adapter pressed
+                    // change the selected row status to "selected"
                     mydb.updateStatus(songLists.getSongID() , selectStatus);
                     if(value == true){
                         Toast.makeText(context , "Status updated" , Toast.LENGTH_LONG).show();

@@ -3,6 +3,7 @@ package com.example.finalmadproject.Settings;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class SettingsFragment extends Fragment {
     //declare buttons
-    private Button button2 , button3;
+    private Button button2 , button3 , button4;
     //declare floating buttons
     FloatingActionButton logo;
 
@@ -33,6 +34,7 @@ public class SettingsFragment extends Fragment {
         View v1 = inflater.inflate(R.layout.fragment_settings, container, false);
         button2 = (Button) v1.findViewById(R.id.buttonBackground);//giving the relevent id
         button3 = (Button) v1.findViewById(R.id.buttonSounds) ;//giving the relevent id
+        button4 = (Button) v1.findViewById(R.id.buttonAlarm) ;
         logo = v1.findViewById(R.id.add_buttonHome);//giving the relevent id
         //adding a onclick listner to to the floating button
         logo.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +50,12 @@ public class SettingsFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //creating the fragment object
+               //creating the fragment object
                 BackgroundFragment backgroundFragment = new BackgroundFragment();
                 //fragmenttransaction
-                FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+               FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
                 //giving relevent fragment
-                transaction1.replace(R.id.mainSettingsLayout , backgroundFragment).addToBackStack(null);
+              transaction1.replace(R.id.mainSettingsLayout , backgroundFragment).addToBackStack(null);
                 transaction1.commit();
             }
         });
@@ -65,6 +67,14 @@ public class SettingsFragment extends Fragment {
                 Intent intent = new Intent(getActivity() , Sounds.class);
                 //navigating to the relevent activity
                 startActivity(intent);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //passing intent to the alarm
+                Intent jklk = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+                startActivity(jklk);
             }
         });
 

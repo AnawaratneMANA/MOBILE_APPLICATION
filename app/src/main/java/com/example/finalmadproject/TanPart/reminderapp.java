@@ -10,6 +10,7 @@ import android.provider.AlarmClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
@@ -23,11 +24,11 @@ public class reminderapp extends AppCompatActivity {
     private EditText hr, mi;
     Button b5;
     String variableInfo, variableDate;
-    private MediaPlayer mediaPlayer;
     DatabaseHelper mydb;
 
 
     int hrs,mis;
+    TextView hintba;
 
     public reminderapp() {
     }
@@ -38,13 +39,15 @@ public class reminderapp extends AppCompatActivity {
         setContentView(R.layout.activity_reminderapp);
         mydb = new DatabaseHelper(this);
         final String path = mydb.getAudiofilepathSelected();
+
         //songLists = songList.get();
 
         hr = (EditText)findViewById(R.id.hour_set_text);
         mi = (EditText)findViewById(R.id.min_set_text);
-
+        hintba = (TextView)findViewById(R.id.hintbar);
 
         b5 = findViewById(R.id.button5);
+
 
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,24 +57,27 @@ public class reminderapp extends AppCompatActivity {
 
                 Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
 
-                intent.putExtra(AlarmClock.EXTRA_RINGTONE , path);
+               intent.putExtra(AlarmClock.EXTRA_RINGTONE , path);
                 intent.putExtra(AlarmClock.EXTRA_HOUR,hrs);
                 intent.putExtra(AlarmClock.EXTRA_MINUTES,mis);
 
                 if(hrs <= 24 && mis <=60){
-                    Toast.makeText(reminderapp.this, "Marked", Toast.LENGTH_SHORT).show();
 
+                        Toast.makeText(reminderapp.this, "Marked", Toast.LENGTH_SHORT).show();
+                        Intent jk = new Intent(reminderapp.this, CommonLayoutActivity.class);
+                        jk.putExtra("hr", hrs);
+                        jk.putExtra("min", mis);
+                        startActivity(jk);
+                        startActivity(intent);
 
-                    Intent jk = new Intent(reminderapp.this , CommonLayoutActivity.class);
-                    jk.putExtra("hr", hrs);
-                    jk.putExtra("min",mis);
-                    startActivity(jk);
-                    startActivity(intent);
+                }else{
+                    hintba.setText("please give the time in 24 hr format");
                 }
 
 
             }
         });
+
     }
 
 }

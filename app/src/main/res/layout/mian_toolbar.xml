@@ -51,6 +51,8 @@
         android:layout_width="70dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="-30dp"
+        android:background="@drawable/round_btn"
+        android:textColor="#ffffff"
         android:layout_height="40dp"
         android:textSize="17sp"
         android:text="View" />

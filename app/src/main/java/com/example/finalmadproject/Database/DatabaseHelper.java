@@ -428,6 +428,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Saliths DB handling Methods ------------------------------------------------------------------
+    //insert method in db helper
+    //insserting audio files
     public boolean insertData(String audio , String path){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_SONG_NAME, null);
@@ -453,6 +455,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+    //through this return type array method
+    //passing song id name status and path of song table in the database
     public ArrayList<SongList> getAllAudios() {
 
         //Creating the ArrayList and start the database connection
@@ -486,6 +490,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     //---------------newly added by salitha----------------------------
     //added
+    //when relevent custom adapter
+    // pressed change the previous selected status adaptor row to "not selected"
     public boolean updateSelectedStatus(String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         long st = 0;
@@ -498,7 +504,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             if (cursor.getString(2).equals(status)) {
                 String oldstatusid = cursor.getString(0);
-                cv.put(SONG_STATUS, notstatus);
+                cv.put(SONG_STATUS, notstatus);//updating the selected status to not selected
                 st = db.update(TABLE_SONG_NAME, cv, "SONG_ID=?", new String[]{oldstatusid});
             }
         }
@@ -509,7 +515,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    //added
+    //when relevent custom adapter pressed
+    // change the selected row status to "selected"
     public void updateStatus(String songID, String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -553,13 +560,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //when cursor object has values and check each cursor object one by one
             while (cursor.moveToNext()) {
                 if (cursor.getString(1).equals(disable)) {
-                    System.out.println("6");
                     ContentValues contentValues1 = new ContentValues();
-                    System.out.println("7");
                     contentValues1.put(NOTIFICATION , signal);
-                    System.out.println("8");
                     String id = cursor.getString(0);
-                    System.out.println("9");
                     value = db.update(TABLE_NOTIFICATION_NAME, contentValues1, "NOTIFICATION_ID=?", new String[]{id});
                 }
                 if(cursor.getString(1).equals("enable")){
@@ -606,6 +609,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_NOTIFICATION_NAME,notifications,null,null,null,null,null);
         return cursor;
     }
+    //take the audio file path from selected status
     public String getAudiofilepathSelected(){
         SQLiteDatabase db = this.getWritableDatabase();
         String songPath = null;

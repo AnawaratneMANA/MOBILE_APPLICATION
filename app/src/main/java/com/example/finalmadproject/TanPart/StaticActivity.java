@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.sql.Time;
@@ -17,6 +19,7 @@ import java.util.Locale;
 
 import com.example.finalmadproject.Database.DatabaseHelper;
 import com.example.finalmadproject.R;
+import com.example.finalmadproject.Settings.CommonLayoutActivity;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,7 +31,7 @@ public class StaticActivity extends AppCompatActivity {
     public static String string_name;
     private DatabaseHelper database;
     private SQLiteDatabase db;
-
+    Button b1;
     private TabLayout tablayout;
     private ViewPager viewPager;
     private TabItem tab1, tab2;
@@ -48,7 +51,15 @@ public class StaticActivity extends AppCompatActivity {
         //getting current date
         String currentDate = new SimpleDateFormat("MMMM,yyyy", Locale.getDefault()).format(new Date());
 
+        b1 = (Button) findViewById(R.id.home);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(getApplicationContext(), CommonLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
         //Create Database Instancesd
         database = new DatabaseHelper(this);
         db = database.getReadableDatabase();

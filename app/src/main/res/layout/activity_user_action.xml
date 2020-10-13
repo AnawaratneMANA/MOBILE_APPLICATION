@@ -28,7 +28,7 @@
     <TextView
         android:id="@+id/textViewheadder"
         android:layout_width="339dp"
-        android:layout_height="34dp"
+        android:layout_height="50dp"
         android:fontFamily="@font/roboto_regular"
         android:text="TextView"
         android:textAlignment="center"
@@ -43,28 +43,28 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="335dp"
-        android:layout_height="337dp"
+        android:layout_width="332dp"
+        android:layout_height="206dp"
         android:fontFamily="@font/roboto_regular"
         android:text="TextView"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:background="@drawable/buttonhover"
+        android:background="@drawable/round_btn"
+        android:textColor="#ffffff"
         android:fontFamily="@font/roboto_regular"
         android:shape="ring"
         android:text="@string/btn_flag"
-        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -72,7 +72,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonhover"
+        android:background="@drawable/round_btn"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/btn_remind"
         android:textColor="@android:color/white"
@@ -84,7 +84,7 @@
         android:id="@+id/button4"
         android:layout_width="221dp"
         android:layout_height="41dp"
-        android:background="@drawable/buttonhover"
+        android:background="@drawable/round_btn"
         android:fontFamily="@font/roboto_regular"
         android:text="HOME"
         android:textColor="@android:color/white"
